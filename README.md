@@ -1,1 +1,1 @@
-# projectSeminarMgtSys
+# Project/Seminar Management System
