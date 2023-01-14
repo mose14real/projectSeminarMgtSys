@@ -1,1 +1,1 @@
-# Project/Seminar Management System
+Project/Seminar Management System
