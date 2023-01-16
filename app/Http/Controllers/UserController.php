@@ -17,33 +17,23 @@ class UserController extends Controller
 
     public function register()
     {
-        return view('student.register');
+        return view('register');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'f_name' => ['required'],
-            'm_name' => ['required'],
-            'l_name' => ['required'],
-            'matric' => ['required', 'unique:students', 'min:10', 'max:10'],
-            'email' => ['required', 'unique:students'],
-            'phone' => ['required', 'unique:students', 'min:11'],
-            'supervisor' => ['required'],
-            'session' => ['required', 'min:9', 'max:9'],
+            'name' => ['required'],
+            'email' => ['required', 'unique:users'],
+            'role' => ['required'],
             'password' => ['required'],
             'cpassword' => ['required', 'same:password'],
         ]);
 
-        Student::create([
-            'f_name' => $request['f_name'],
-            'm_name' => $request['m_name'],
-            'l_name' => $request['l_name'],
-            'matric' => $request['matric'],
+        User::create([
+            'name' => $request['name'],
             'email' => $request['email'],
-            'phone' => $request['phone'],
-            'supervisor' => $request['supervisor'],
-            'session' => $request['session'],
+            'role' => $request['role'],
             // 'password' => Hash::make($request['password']),
             'password' => $request['password']
         ]);
@@ -53,25 +43,25 @@ class UserController extends Controller
 
     public function login()
     {
-        return view('student.login');
+        return view('login');
     }
 
     public function authLogin(Request $request)
     {
         $request->validate([
-            'matric' => ['required'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
-        $credentials = $request->only('matric', 'password');
+        $credentials = $request->only('email', 'password');
 
-        // if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
 
-        //     return redirect()->intended('dashboard')
-        //         ->withSuccess('You have Successfully loggedin');
-        // }
+            return redirect()->intended('student.dashboard')
+                ->withSuccess('You have Successfully loggedin');
+        }
 
-        // return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
+        return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
 
         if ($credentials) {
             return redirect()->intended('student.dashboard')->withSuccess('You have Successfully loggedin');
@@ -80,55 +70,17 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        // if (Auth::check()) {
+        if (Auth::check()) {
 
-        //     return view('student.dashboard');
-        // }
+            return view('student.dashboard');
+        }
 
-        // return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("login")->withSuccess('Opps! You do not have access');
 
         return view('student.dashboard');
     }
 
-    public function profile()
-    {
-        return view('student.profile');
-    }
 
-    public function details()
-    {
-        return view('details');
-    }
-
-    public function editProfile($id)
-    {
-        //
-    }
-
-    public function updateProfile(Request $request, $id)
-    {
-        //
-    }
-
-    public function uploadProject(Request $request, $id)
-    {
-        //
-    }
-
-    public function downloadProject(Request $request, $id)
-    {
-        //
-    }
-
-    public function uploadSeminar()
-    {
-        //
-    }
-
-    public function downloadSeminar()
-    {
-        //
-    }
 
     public function logout()
     {

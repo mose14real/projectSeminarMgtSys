@@ -44,10 +44,10 @@
                 </ul>
                 <!-- register and login button wrapper -->
                 <div>
-                    <a href="{{ url('student/register') }}" class="">
+                    <a href="{{ url('register') }}" class="">
                         <button class="btn btn-block shadow-none register-btn">Register</button>
                     </a>
-                    <a href="{{ url('student/login') }}" class="ms-3 mt-2">
+                    <a href="{{ url('login') }}" class="ms-3 mt-2">
                         <button class="btn btn-block shadow-none login-btn">Login</button>
                     </a>
                 </div>
@@ -408,11 +408,11 @@
                                 class="text-white quick-links">Seminars</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/register') }}"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
                                 class="text-white quick-links">Register</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/login') }}"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
                                 class="text-white quick-links">Login</a>
                         </li>
                     </ul>

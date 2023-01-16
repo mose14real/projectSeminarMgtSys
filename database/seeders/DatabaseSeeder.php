@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'admin' => 'Admin',
+            'admin' => 'Admin Admin',
             'email' => 'admin@mapoly.com.ng',
+            'role' => 'admin',
+            'password' => 'admin'
         ]);
     }
 }
