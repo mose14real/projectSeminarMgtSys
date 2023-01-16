@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('seminar_id')->constrained('seminars');
+            $table->foreignId('project_id')->constrained('projects');
             $table->string('f_name');
             $table->string('m_name');
             $table->string('l_name');
@@ -23,9 +26,8 @@ return new class extends Migration
             $table->string('phone')->unique;
             $table->string('supervisor');
             $table->string('session');
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
