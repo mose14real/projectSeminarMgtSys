@@ -104,7 +104,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
     </nav>
@@ -113,26 +112,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <!-- HEADER SECTION STARTS HERE -->
-    <header class="header-section d-flex align-items-center justify-content-center flex-column">
-        <div class="container">
-            <h1 class="text-center header-text"><i class="fas fa-book-open-cover">Project and Seminar Management
-                    System</i></h1>
-            <p class="mt-3 text-center text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
-                commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis, doloribus
-                deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
-                magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
-                officiis cupiditate vel cum
-            </p>
-            <img src="{{ asset('img/data-archival.svg') }}" alt=""
-                class="data-archival-img d-none d-sm-none d-md-block">
-            <img src="{{ asset('img/data-archival.svg') }}" alt=""
-                class="data-archival-img2 d-none d-sm-none d-md-block">
-        </div>
-    </header>
-
     <div class="user-details-section mb-5">
         <div class="container">
             <h2 class="mt-5">Personal Information</h2>
