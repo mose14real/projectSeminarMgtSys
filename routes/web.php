@@ -24,15 +24,14 @@ Route::controller(UserController::class)->group(function () {
     //
     Route::get('/', 'index');
     Route::get('details', 'details');
-    Route::get('/register', 'register');
-    Route::post('/store', 'store');
-    Route::get('/login', 'login');
+    Route::get('register', 'register');
+    Route::post('store', 'store');
+    Route::get('login', 'login');
     Route::post('auth-login', 'authLogin');
+    Route::get('logout', 'logout')->name('logout');
 });
 
 Route::controller(StudentController::class)->group(function () {
-    // Route::post('/store', 'store');
-    // Route::post('auth-login', 'authLogin');
     Route::prefix('student')->group(function () {
         Route::get('/dashboard', 'dashboard');
         Route::get('/profile', 'profile');

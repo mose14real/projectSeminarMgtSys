@@ -5,15 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Session;
 use App\Models\User;
 use Hash;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        return view('index');
+    }
+
+    public function details()
+    {
+        return view('details');
+    }
+
+    public function register()
+    {
+        return view('register');
+    }
+
     public function store(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'first_name' => ['required'],
             'middle_name' => ['required'],
             'last_name' => ['required'],
@@ -25,16 +39,12 @@ class UserController extends Controller
             'password' => ['required'],
             'cpassword' => ['required', 'same:password'],
         ]);
-
-        dd($credentials);
-
         $user = User::create([
             'name' => $request['first_name'] . " " . $request['middle_name'] . " " . $request['last_name'],
             'email' => $request['email'],
             'role' => 'student',
             'password' =>  Hash::make($request['password'])
         ]);
-
         Student::create([
             'user_id' => $user->id,
             'first_name' => $request['first_name'],
@@ -44,10 +54,8 @@ class UserController extends Controller
             'phone' => $request['phone'],
             'supervisor' => $request['supervisor'],
             'session' => $request['session'],
-            'password' => Hash::make($request['password']),
         ]);
-
-        return redirect("student.dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect("login")->withSuccess('Great! You have Successfully registered');
     }
 
     public function login()
@@ -58,34 +66,21 @@ class UserController extends Controller
     public function authLogin(Request $request)
     {
         $request->validate([
-            'matric' => ['required'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
-
-        $credentials = $request->only('matric', 'password');
-
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-
-            return redirect()->intended('student.dashboard')
-                ->withSuccess('You have Successfully loggedin');
+            return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
         }
-
         return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
     }
 
-    public function dashboard()
+    public function logout(Request $request)
     {
-        if (Auth::check()) {
-
-            return view('student.dashboard');
-        }
-
-        return redirect("login")->withSuccess('Opps! You do not have access');
-    }
-
-
-    public function logout()
-    {
-        //
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
     }
 }

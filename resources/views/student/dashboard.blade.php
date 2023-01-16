@@ -53,7 +53,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Ariyibi</i>
+                        <i class="bi bi-person-circle"> {{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url('student/profile') }}"><i
@@ -62,7 +62,8 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href="#"><button class="btn btn-block d-block mx-auto sign-out-btn">Sign
+                        <li><a href="{{ route('logout') }}"><button
+                                    class="btn btn-block d-block mx-auto sign-out-btn">Sign
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -112,6 +113,12 @@
                 </div>
             </div>
     </nav>
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 
     <!-- HEADER SECTION STARTS HERE -->
     <header class="header-section d-flex align-items-center justify-content-center flex-column">
@@ -452,14 +459,6 @@
                             <li class="mt-2">
                                 <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
                                     class="text-white quick-links">Seminars</a>
-                            </li>
-                            <li class="mt-2">
-                                <i class="bi bi-chevron-right text-white"></i> <a
-                                    href="{{ url('student/register') }}" class="text-white quick-links">Register</a>
-                            </li>
-                            <li class="mt-2">
-                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/login') }}"
-                                    class="text-white quick-links">Login</a>
                             </li>
                         </ul>
                     </div>

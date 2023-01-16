@@ -69,10 +69,10 @@
                 <form class="mt-3" action="{{ url('auth-login') }}" method="POST">
                     @csrf
                     <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                            value="{{ old('matric') }}">
-                        @if ($errors->has('matric'))
-                            <span class="text-danger">{{ $errors->first('matric') }}</span>
+                        <input type="text" class="form-control" placeholder="Email" name="email"
+                            value="{{ old('email') }}">
+                        @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
                     </div>
                     <div class="col-12 mb-3">

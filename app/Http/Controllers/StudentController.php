@@ -10,14 +10,15 @@ use Hash;
 
 class StudentController extends Controller
 {
-    public function profile()
-    {
-        return view('student.profile');
-    }
 
-    public function details()
+    public function dashboard()
     {
-        return view('details');
+        if (Auth::check()) {
+
+            return view('student.dashboard');
+        }
+
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
 
     public function editProfile($id)
@@ -50,8 +51,11 @@ class StudentController extends Controller
         //
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        //
+        // Session::flush();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 }
