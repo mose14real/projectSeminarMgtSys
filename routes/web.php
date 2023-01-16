@@ -31,17 +31,20 @@ Route::controller(UserController::class)->group(function () {
     Route::get('logout', 'logout')->name('logout');
 });
 
-Route::controller(StudentController::class)->group(function () {
-    Route::prefix('student')->group(function () {
-        Route::get('/dashboard', 'dashboard');
-        Route::get('/profile', 'profile');
-        // Route::post('/profile/edit/{id}', 'editProfile');
-        // Route::update('/profile/update/{id}', 'updateProfile');
-        // Route::post('/upload/project/{id}', 'uploadProject');
-        // Route::get('/download/project{id}', 'downloadProject');
-        // Route::post('/upload/seminar/{id}', 'uploadSeminar');
-        // Route::get('/download/seminar/{id}', 'downloadSeminar');
-        // Route::get('/logout', 'studentLogout');
+Route::middleware(['web'])->group(function () {
+    Route::controller(StudentController::class)->group(function () {
+        Route::prefix('student')->group(function () {
+            Route::get('/dashboard', 'dashboard');
+            Route::get('/profile/show', 'showProfile');
+            Route::get('/profile/edit/{id}', 'editProfile');
+            Route::put('/profile/update/{id}', 'updateProfile')->name('update-profile');
+            // Route::post('/profile/edit/{id}', 'editProfile');
+            // Route::post('/upload/project/{id}', 'uploadProject');
+            // Route::get('/download/project{id}', 'downloadProject');
+            // Route::post('/upload/seminar/{id}', 'uploadSeminar');
+            // Route::get('/download/seminar/{id}', 'downloadSeminar');
+            // Route::get('/logout', 'studentLogout');
+        });
     });
 });
 
@@ -64,3 +67,7 @@ Route::controller(StudentController::class)->group(function () {
 //         // Route::get('/logout', 'logout');
 //     });
 // });
+
+Route::get('/', function () {
+    //
+})->middleware('web');

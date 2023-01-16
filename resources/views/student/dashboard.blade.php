@@ -56,7 +56,7 @@
                         <i class="bi bi-person-circle"> {{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('student/profile') }}"><i
+                        <li><a class="dropdown-item" href="{{ url('student/profile/show') }}"><i
                                     class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
                         <li>
@@ -113,13 +113,11 @@
                 </div>
             </div>
     </nav>
-
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-
     <!-- HEADER SECTION STARTS HERE -->
     <header class="header-section d-flex align-items-center justify-content-center flex-column">
         <div class="container">
@@ -128,7 +126,8 @@
             <p class="mt-3 text-center text-white">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
                 commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis, doloribus
+                Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis,
+                doloribus
                 deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
                 magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
                 officiis cupiditate vel cum
@@ -152,7 +151,8 @@
                             </p>
                             <h1 class="card-title text-center text-white">0</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#project-registration-modal">Register New Project</button>
+                                data-bs-target="#project-registration-modal">Register New
+                                Project</button>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,8 @@
                             </p>
                             <h1 class="card-title text-center text-white">Approved</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" disabled
-                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status Button</button>
+                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status
+                                Button</button>
                         </div>
                     </div>
                 </div>
@@ -206,7 +207,8 @@
                             </p>
                             <h1 class="card-title text-center text-white">0</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#seminar-upload-modal">+ Upload New Seminar</button>
+                                data-bs-target="#seminar-upload-modal">+ Upload New
+                                Seminar</button>
                         </div>
                     </div>
                 </div>
@@ -219,7 +221,8 @@
                             </p>
                             <h1 class="card-title text-center text-white">Approved</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" disabled
-                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status Button</button>
+                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status
+                                Button</button>
                         </div>
                     </div>
                 </div>
@@ -364,7 +367,8 @@
                                 <tr>
                                     <th scope="row">Project Description</th>
                                     <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam
-                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error consectetur?
+                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error
+                                        consectetur?
                                     </td>
                                 </tr>
                                 <tr>
@@ -402,7 +406,8 @@
                                 <tr>
                                     <th scope="row">Seminar Description</th>
                                     <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam
-                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error consectetur?
+                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error
+                                        consectetur?
                                     </td>
                                 </tr>
                                 <tr>

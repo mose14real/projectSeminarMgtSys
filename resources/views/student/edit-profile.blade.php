@@ -53,7 +53,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Ariyibi</i>
+                        <i class="bi bi-person-circle"> Email Here</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url('student/profile') }}"><i
@@ -62,7 +62,8 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href="#"><button class="btn btn-block d-block mx-auto sign-out-btn">Sign
+                        <li><a href="{{ route('logout') }}"><button
+                                    class="btn btn-block d-block mx-auto sign-out-btn">Sign
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -88,11 +89,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @endif
                             <div class="modal-body">
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -112,7 +108,11 @@
                 </div>
             </div>
     </nav>
-
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <!-- HEADER SECTION STARTS HERE -->
     <header class="header-section d-flex align-items-center justify-content-center flex-column">
         <div class="container">
@@ -138,60 +138,60 @@
             <h2 class="mt-5">Personal Information</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <form class="mt-3" action="#" method="POST">
+                    <form class="mt-3" action="{{ route('update-profile') }}" method="POST">
                         @csrf
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="First Name" name="f_name"
-                                value="">
-                            @if ($errors->has('f_name'))
-                                <span class="text-danger">{{ $errors->first('f_name') }}</span>
+                            <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                                value="{{ $student->first_name }}">
+                            @if ($errors->has('first_name'))
+                                <span class="text-danger">{{ $errors->first('first_name') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="m_name"
-                                value="">
-                            @if ($errors->has('m_name'))
-                                <span class="text-danger">{{ $errors->first('m_name') }}</span>
+                            <input type="text" class="form-control" placeholder="Middle Name" name="middle_name"
+                                value="{{ $student->middle_name }}">
+                            @if ($errors->has('middle_name'))
+                                <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Last Name" name="l_name"
-                                value="">
-                            @if ($errors->has('l_name'))
-                                <span class="text-danger">{{ $errors->first('l_name') }}</span>
+                            <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                                value="{{ $student->last_name }}">
+                            @if ($errors->has('last_name'))
+                                <span class="text-danger">{{ $errors->first('last_name') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                                value="">
+                                value="{{ $student->matric }}">
                             @if ($errors->has('matric'))
                                 <span class="text-danger">{{ $errors->first('matric') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" class="form-control" placeholder="Email" name="email"
-                                value="">
+                                value="{{ $user->email }}">
                             @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Phone Number" name="phone"
-                                value="">
+                                value="{{ $student->name }}">
                             @if ($errors->has('phone'))
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Supervisor" name="supervisor"
-                                value="">
+                                value="{{ $student->supervisor }}">
                             @if ($errors->has('supervisor'))
                                 <span class="text-danger">{{ $errors->first('supervisor') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Session i.e 2021/2022"
-                                name="session" value="">
+                                name="session" value="{{ $student->session }}">
                             @if ($errors->has('session'))
                                 <span class="text-danger">{{ $errors->first('session') }}</span>
                             @endif
@@ -237,7 +237,7 @@
                     <h5 class="text-white mt-3">Quick Links</h5>
                     <ul>
                         <li class="mt-3">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('/') }}"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/profile') }}"
                                 class="text-white quick-links">Home</a>
                         </li>
                         <li class="mt-2">
@@ -247,14 +247,6 @@
                         <li class="mt-2">
                             <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
                                 class="text-white quick-links">Seminars</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
-                                class="text-white quick-links">Register</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
-                                class="text-white quick-links">Login</a>
                         </li>
                     </ul>
                 </div>

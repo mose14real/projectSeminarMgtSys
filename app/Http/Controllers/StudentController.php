@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\Student;
+use App\Models\User;
 use Hash;
 
 class StudentController extends Controller
@@ -21,14 +22,46 @@ class StudentController extends Controller
         return redirect("login")->withSuccess('Opps! You do not have access');
     }
 
+    public function showProfile()
+    {
+        if (Auth::check()) {
+
+            // Student::where('user_id', $id);
+
+            return view('student.show-profile');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access to show profile');
+    }
+
     public function editProfile($id)
     {
-        //
+        if (Auth::check()) {
+            return view('student.edit-profile');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access to edit profile');
     }
 
     public function updateProfile(Request $request, $id)
     {
-        //
+        $credentials = $request->validate([
+            'first_name' => [],
+            'middle_name' => [],
+            'last_name' => [],
+            'matric' => ['min:10', 'max:10'],
+            'email' => [],
+            'phone' => ['min:11'],
+            'supervisor' => [],
+            'session' => ['min:9', 'max:9'],
+        ]);
+
+        if (Auth::check()) {
+
+            Student::where('user_id', $id)->update($credentials);
+
+            return redirect('student/profile/show' . $id)->withSuccess('Profile updated successfully');
+        }
+
+        return redirect("login")->withSuccess('Opps! You do not have access to update profile');
     }
 
     public function uploadProject(Request $request, $id)

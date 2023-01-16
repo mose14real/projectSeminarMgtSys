@@ -6,7 +6,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -65,19 +65,36 @@ class UserController extends Controller
 
     public function authLogin(Request $request)
     {
-        $request->validate([
-            'email' => ['required'],
+        // $credentials = $request->validate([
+        //     'email' => ['required', 'email'],
+        //     'password' => ['required'],
+        // ]);
+
+        // if (Auth::attempt($credentials)) {
+        //     return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
+        // }
+        // return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        $credentials = $request->only('email', 'password');
+
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
             return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
         }
-        return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
+
+        return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
     }
 
     public function logout(Request $request)
     {
+        // Session::flush();
+        // Auth::logout();
+        // return redirect('login');
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
