@@ -31,7 +31,8 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::controller(StudentController::class)->group(function () {
-
+    // Route::post('/store', 'store');
+    // Route::post('auth-login', 'authLogin');
     Route::prefix('student')->group(function () {
         Route::get('/dashboard', 'dashboard');
         Route::get('/profile', 'profile');

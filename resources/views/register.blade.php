@@ -66,24 +66,24 @@
                 <form class="mt-3" action="{{ url('store') }}" method="POST">
                     @csrf
                     <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="First Name" name="f_name"
-                            value="{{ old('f_name') }}">
-                        @if ($errors->has('f_name'))
-                            <span class="text-danger">{{ $errors->first('f_name') }}</span>
+                        <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                            value="{{ old('first_name') }}">
+                        @if ($errors->has('first_name'))
+                            <span class="text-danger">{{ $errors->first('first_name') }}</span>
                         @endif
                     </div>
                     <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Middle Name" name="m_name"
-                            value="{{ old('m_name') }}">
-                        @if ($errors->has('m_name'))
-                            <span class="text-danger">{{ $errors->first('m_name') }}</span>
+                        <input type="text" class="form-control" placeholder="Middle Name" name="middle_name"
+                            value="{{ old('middle_name') }}">
+                        @if ($errors->has('middle_name'))
+                            <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                         @endif
                     </div>
                     <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Last Name" name="l_name"
-                            value="{{ old('l_name') }}">
-                        @if ($errors->has('l_name'))
-                            <span class="text-danger">{{ $errors->first('l_name') }}</span>
+                        <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                            value="{{ old('last_name') }}">
+                        @if ($errors->has('last_name'))
+                            <span class="text-danger">{{ $errors->first('last_name') }}</span>
                         @endif
                     </div>
                     <div class="col-12 mb-3">

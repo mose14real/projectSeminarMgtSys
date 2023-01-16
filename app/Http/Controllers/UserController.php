@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -10,32 +11,40 @@ use Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        return view('index');
-    }
-
-    public function register()
-    {
-        return view('register');
-    }
-
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required'],
+        $credentials = $request->validate([
+            'first_name' => ['required'],
+            'middle_name' => ['required'],
+            'last_name' => ['required'],
+            'matric' => ['required', 'unique:students', 'min:10', 'max:10'],
             'email' => ['required', 'unique:users'],
-            'role' => ['required'],
+            'phone' => ['required', 'unique:students', 'min:11'],
+            'supervisor' => ['required'],
+            'session' => ['required', 'min:9', 'max:9'],
             'password' => ['required'],
             'cpassword' => ['required', 'same:password'],
         ]);
 
-        User::create([
-            'name' => $request['name'],
+        dd($credentials);
+
+        $user = User::create([
+            'name' => $request['first_name'] . " " . $request['middle_name'] . " " . $request['last_name'],
             'email' => $request['email'],
-            'role' => $request['role'],
-            // 'password' => Hash::make($request['password']),
-            'password' => $request['password']
+            'role' => 'student',
+            'password' =>  Hash::make($request['password'])
+        ]);
+
+        Student::create([
+            'user_id' => $user->id,
+            'first_name' => $request['first_name'],
+            'middle_name' => $request['middle_name'],
+            'last_name' => $request['last_name'],
+            'matric' => $request['matric'],
+            'phone' => $request['phone'],
+            'supervisor' => $request['supervisor'],
+            'session' => $request['session'],
+            'password' => Hash::make($request['password']),
         ]);
 
         return redirect("student.dashboard")->withSuccess('Great! You have Successfully loggedin');
@@ -49,11 +58,11 @@ class UserController extends Controller
     public function authLogin(Request $request)
     {
         $request->validate([
-            'email' => ['required'],
+            'matric' => ['required'],
             'password' => ['required'],
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('matric', 'password');
 
         if (Auth::attempt($credentials)) {
 
@@ -62,10 +71,6 @@ class UserController extends Controller
         }
 
         return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
-
-        if ($credentials) {
-            return redirect()->intended('student.dashboard')->withSuccess('You have Successfully loggedin');
-        }
     }
 
     public function dashboard()
@@ -76,10 +81,7 @@ class UserController extends Controller
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access');
-
-        return view('student.dashboard');
     }
-
 
 
     public function logout()

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('project_members')->nullable();
             $table->string('project_file_path')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

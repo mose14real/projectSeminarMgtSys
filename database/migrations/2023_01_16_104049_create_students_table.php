@@ -16,18 +16,16 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('seminar_id')->constrained('seminars');
-            $table->foreignId('project_id')->constrained('projects');
-            $table->string('f_name');
-            $table->string('m_name');
-            $table->string('l_name');
+            $table->foreignId('seminar_id')->constrained('seminars')->nullable();
+            $table->foreignId('project_id')->constrained('projects')->nullable();
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
             $table->string('matric')->unique();
-            $table->string('email')->unique();
             $table->string('phone')->unique;
             $table->string('supervisor');
             $table->string('session');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

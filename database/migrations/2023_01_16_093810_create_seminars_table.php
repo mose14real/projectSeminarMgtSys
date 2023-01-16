@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('seminar_desc');
             $table->string('seminar_file_path')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

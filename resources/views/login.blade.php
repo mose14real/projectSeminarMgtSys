@@ -35,7 +35,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><a
-                                    href="{{ url('student/login') }}">Login</a></li>
+                                    href="{{ url('login') }}">Login</a></li>
                         </ol>
                     </nav>
                     <div class="">
