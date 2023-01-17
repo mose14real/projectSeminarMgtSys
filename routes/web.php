@@ -17,11 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('index');
 // });
 
 Route::controller(UserController::class)->group(function () {
-    //
     Route::get('/', 'index');
     Route::get('details', 'details');
     Route::get('register', 'register');
@@ -68,6 +67,6 @@ Route::middleware(['web'])->group(function () {
 //     });
 // });
 
-Route::get('/', function () {
-    //
-})->middleware('web');
+// Route::get('/', function () {
+//     //
+// })->middleware('web');

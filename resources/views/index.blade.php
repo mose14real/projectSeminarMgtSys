@@ -93,15 +93,6 @@
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-and-seminar-section bg-white" id="projects">
         <div class="container">
-            <h2 class="text-center mt-5 deep-blue-color">Projects And Seminars</h2>
-            <p class="text-center mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus laborum
-                optio neque minima, asperiores assumenda repellat explicabo et aut sit earum atque cupiditate nam
-                voluptatibus nisi, porro quae aliquam harum modi dolor? Voluptatum repellat tempore repudiandae
-                praesentium error totam magnam dolorem debitis, molestiae explicabo cum id maiores vel unde nostrum ad,
-                earum sit minus? Consequatur, voluptas officiis consequuntur quos illum error! Exercitationem, pariatur
-                beatae qui dolore facilis voluptates unde nesciunt vitae quod sint, non animi ducimus libero nobis
-                numquam eum laborum. Quo consequuntur dicta odio quos corrupti eveniet sequi architecto nihil tenetur
-                excepturi alias rem ab laudantium, repellendus quia sed!</p>
             <div class="row">
                 <!-- Ilustrations -->
                 <div class="col-md-4 p-2">

@@ -85,7 +85,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalTitleId"><i class="bi bi-bell-fill fs-5"></i>
-                                    Notification center</h5>
+                                    Notifications</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -93,13 +93,7 @@
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
-                                    <small> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad libero deserunt
-                                        veniam quas tenetur aliquid aperiam animi sunt recusandae excepturi accusamus
-                                        provident possimus accusantium optio eaque voluptatibus omnis voluptate, quam
-                                        neque. Corrupti libero, odio explicabo expedita hic aperiam. Quaerat illum
-                                        tempore id accusantium adipisci soluta cupiditate deleniti asperiores,
-                                        necessitatibus unde eos, dolorum veritatis debitis tempora quia molestias?
-                                        Alias, voluptatibus explicabo!</small>
+                                    <small> Notifications! Ntoifications!! Notifications!!!</small>
                                 </div>
                             </div>
                         </div>
@@ -118,47 +112,50 @@
             <h2 class="mt-5">Personal Information</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <form class="mt-3" action="#" method="POST">
-                        @csrf
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="First Name" name="first_name"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="middle_name"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Last Name" name="last_name"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="email" class="form-control" placeholder="Email" name="email"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Phone Number" name="phone"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Supervisor" name="supervisor"
-                                value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Session i.e 2021/2022"
-                                name="session" value="">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <a href="{{ url('student/profile/edit') }}"><button type="submit"
-                                    class="btn btn-block w-25 register-page-btn">Edit Profile</button>
-                                <div class="clearfix"></div>
-                            </a>
-                        </div>
-                    </form>
+                    <div class="mt-5">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">First Name</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Middle Name</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Last Name</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matric Number</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone Number</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Supervisor</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Session</th>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <a href="{{ url('student/profile/edit') }}"><button type="submit"
+                                class="btn btn-block w-25 register-page-btn">Edit Profile</button>
+                            <div class="clearfix"></div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ asset('img/5.svg') }}" alt="" style="width:300px;margin-left:50px;">

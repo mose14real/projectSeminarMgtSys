@@ -85,7 +85,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalTitleId"><i class="bi bi-bell-fill fs-5"></i>
-                                    Notification center</h5>
+                                    Notifications</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -93,17 +93,12 @@
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
-                                    <small> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad libero deserunt
-                                        veniam quas tenetur aliquid aperiam animi sunt recusandae excepturi accusamus
-                                        provident possimus accusantium optio eaque voluptatibus omnis voluptate, quam
-                                        neque. Corrupti libero, odio explicabo expedita hic aperiam. Quaerat illum
-                                        tempore id accusantium adipisci soluta cupiditate deleniti asperiores,
-                                        necessitatibus unde eos, dolorum veritatis debitis tempora quia molestias?
-                                        Alias, voluptatibus explicabo!</small>
+                                    <small> Notifications! Ntoifications!! Notifications!!!</small>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
     </nav>

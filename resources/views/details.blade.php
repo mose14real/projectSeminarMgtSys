@@ -27,75 +27,34 @@
 <body>
 
     <!-- NAVBAR SECTION STARTS HERE -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" id="navigation-bar">
         <div class="container">
-            <h1 class="navbar-brand font-bold text-white" href="#"><i class="bi bi-box-seam-fill"></i> ProjectArch
-            </h1>
-            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <!-- <span class="navbar-toggler-icon"></span> -->
-                <li class="bi bi-list fs-1 text-white"></li>
-            </button>
+            <h1 class="navbar-brand font-bold text-white" href="{{ url('/') }}"><i class="bi bi-box-seam-fill">
+                    ProjectArch</i></h1>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link text-white active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white " href="#projects">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="#seminars">Seminars</a>
+                        <a class="nav-link text-white " href="#projects">Seminars</a>
                     </li>
                 </ul>
                 <!-- register and login button wrapper -->
                 <div>
-                    <a href="#" class="">
+                    <a href="{{ url('register') }}" class="">
                         <button class="btn btn-block shadow-none register-btn">Register</button>
                     </a>
-                    <a href="#" class="ms-3 mt-2">
+                    <a href="{{ url('login') }}" class="ms-3 mt-2">
                         <button class="btn btn-block shadow-none login-btn">Login</button>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-
-    <!-- HEADER SECTION STARTS HERE -->
-    <header class="header-section d-flex align-items-center justify-content-center flex-column">
-        <div class="container">
-            <h1 class="text-center header-text">Project and Seminar Management System <i
-                    class="fas fa-book-open-cover"></i></h1>
-            <p class="mt-3 text-center text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
-                commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis, doloribus
-                deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
-                magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
-                officiis cupiditate vel cum
-            </p>
-            <div class="mx-auto mt-3 col-8">
-                <form>
-                    <div class="row">
-                        <div class="col-md-8 mb-3">
-                            <input type="search" class="form-control p-2" placeholder="Search Projects / Seminars"
-                                aria-label="First name">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <button type="submit" class="btn btn-block p-2 w-100 search-btn">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-
-            <img src="{{ asset('img/data-archival.svg') }}" alt=""
-                class="data-archival-img d-none d-sm-none d-md-block">
-            <img src="{{ asset('img/data-archival.svg') }}" alt=""
-                class="data-archival-img2 d-none d-sm-none d-md-block">
-        </div>
-    </header>
 
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-details-section bg-white" id="projects">
@@ -157,139 +116,15 @@
         <!-- ends -->
     </div>
 
-    <!-- PROJECTS -->
-    <div class="projects">
-        <div class="container">
-            <h2 class="text-center mb-3 mt-5 deep-blue-color">Projects And Seminars Lists</h2>
-            <div class="row">
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins">project <i
-                                    class="bi bi-book-fill"></i></span>
-                            <h5 class="card-title">
-                                <a href="#">Control Management system in Javascript</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"></i> <span
-                                            class="ml-2 fs-6">Ariyibi</span>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"></i> <span class="ml-2 fs-6">2022-09-05</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins">seminar <i
-                                    class="bi bi-book-fill"></i></span>
-                            <h5 class="card-title">
-                                <a href="#">Simple Furniture Website Single Page Template in HTML and CSS</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"></i> <span
-                                            class="ml-2 fs-6">Ariyibi</span>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"></i> <span class="ml-2 fs-6">2022-09-05</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins">project <i
-                                    class="bi bi-book-fill"></i></span>
-                            <h5 class="card-title">
-                                <a href="#">Android Firebase Attendance System template in kotlin</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"></i> <span
-                                            class="ml-2 fs-6">Ariyibi</span>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"></i> <span class="ml-2 fs-6">2022-09-05</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins">seminar <i
-                                    class="bi bi-book-fill"></i></span>
-                            <h5 class="card-title">
-                                <a href="#">Online Shopping Store project in PHP</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"></i> <span
-                                            class="ml-2 fs-6">Ariyibi</span>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"></i> <span class="ml-2 fs-6">2022-09-05</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-            </div>
-        </div>
-    </div>
 
     <!-- FOOTER SECTION -->
     <footer class="mt-5">
         <div class="container">
             <div class="row">
-
                 <!-- ProjectArch -->
                 <div class="col-md-6 p-3 mb-3">
-                    <a href="#">
-                        <h4 class="text-white mt-3"><i class="bi bi-box-seam-fill"></i> ProjectArch</h4>
+                    <a href="#navigation-bar">
+                        <h4 class="text-white mt-3"><i class="bi bi-box-seam-fill"> ProjectArch</i></h4>
                     </a>
                     <p class="text-white mt-3">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui atque et, ipsum laboriosam,
@@ -302,23 +137,23 @@
                     <h5 class="text-white mt-3">Quick Links</h5>
                     <ul>
                         <li class="mt-3">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('/') }}"
                                 class="text-white quick-links">Home</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
                                 class="text-white quick-links">Projects</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
                                 class="text-white quick-links">Seminars</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
                                 class="text-white quick-links">Register</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
                                 class="text-white quick-links">Login</a>
                         </li>
                     </ul>
@@ -343,14 +178,12 @@
                     <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
                         <i class="bi bi-instagram"></i>
                     </a>
-
                 </div>
-
             </div>
         </div>
         <div class="col-12 p-2 footer-bottom">
             <p class="text-center text-white">Created with ❤ By <a href="#" class="dev-opt">Developer</a>
-                &copy; CopyRight Reserved 2022</p>
+                &copy; CopyRight Reserved 2023</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

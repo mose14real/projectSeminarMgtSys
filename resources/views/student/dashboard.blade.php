@@ -85,26 +85,15 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalTitleId"><i class="bi bi-bell-fill fs-5"></i>
-                                    Notification center</h5>
+                                    Notifications</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @endif
                             <div class="modal-body">
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
-                                    <small> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad libero deserunt
-                                        veniam quas tenetur aliquid aperiam animi sunt recusandae excepturi accusamus
-                                        provident possimus accusantium optio eaque voluptatibus omnis voluptate, quam
-                                        neque. Corrupti libero, odio explicabo expedita hic aperiam. Quaerat illum
-                                        tempore id accusantium adipisci soluta cupiditate deleniti asperiores,
-                                        necessitatibus unde eos, dolorum veritatis debitis tempora quia molestias?
-                                        Alias, voluptatibus explicabo!</small>
+                                    <small> Notifications! Ntoifications!! Notifications!!!</small>
                                 </div>
                             </div>
                         </div>
@@ -118,24 +107,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <!-- HEADER SECTION STARTS HERE -->
-    <header class="header-section d-flex align-items-center justify-content-center flex-column">
-        <div class="container">
-            <h1 class="text-center header-text"><i class="fas fa-book-open-cover">Project and Seminar Management
-                    System</i></h1>
-            <p class="mt-3 text-center text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
-                commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis,
-                doloribus
-                deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
-                magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
-                officiis cupiditate vel cum
-            </p>
-            <img src="{{ asset('img/data-archival.svg') }}" class="data-archival-img d-none d-sm-none d-md-block">
-            <img src="{{ asset('img/data-archival.svg') }}" class="data-archival-img2 d-none d-sm-none d-md-block">
-        </div>
-    </header>
 
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">
