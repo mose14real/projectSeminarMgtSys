@@ -43,7 +43,6 @@ class UserController extends Controller
         ]);
         $user = User::create([
             'uuid' => Str::orderedUuid(),
-            // 'name' => $request['first_name'] . " " . $request['middle_name'] . " " . $request['last_name'],
             'first_name' => $request['first_name'],
             'middle_name' => $request['middle_name'],
             'last_name' => $request['last_name'],

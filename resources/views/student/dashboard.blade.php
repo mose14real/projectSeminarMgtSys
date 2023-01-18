@@ -102,8 +102,9 @@
             </div>
     </nav>
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
+        <div class="alert alert-success alert-dismissible fade show">
+            <span>{{ $message }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
@@ -250,12 +251,21 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3" action="create-seminar" method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic">
+                                    <input type="text" class="form-control" placeholder="Seminar Topic"
+                                        name="seminar_topic" value="{{ old('seminar_topic') }}">
+                                    @if ($errors->has('seminar_topic'))
+                                        <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
+                                    @endif
                                 </div>
                                 <div class="mb-3 group-details">
-                                    <textarea class="form-control" rows="3" placeholder="Seminar Description"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Seminar Description" name="seminar_desc"
+                                        value="{{ old('seminar_desc') }}"></textarea>
+                                    @if ($errors->has('seminar_desc'))
+                                        <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit"
@@ -389,17 +399,16 @@
                                 <tr>
                                     <th scope="row">Action</th>
                                     <td>
-                                        <button class="btn btn-block edit-btn w-25" data-bs-toggle="modal"
-                                            data-bs-target="#student-data-modal" download="">Download
-                                        </button>
+                                        <a href="#">
+                                            <button class="btn btn-block edit-btn w-25" data-bs-toggle="modal"
+                                                data-bs-target="#student-data-modal">Download
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!-- PROJECT AND SEMINAR HERE -->
-                <div class="" id="projects">
                 </div>
             </div>
         </div>
@@ -425,7 +434,8 @@
                         <ul>
                             <li class="mt-3">
                                 <i class="bi bi-chevron-right text-white"></i> <a
-                                    href="{{ url('student/dashboard') }}" class="text-white quick-links">Dashboard</a>
+                                    href="{{ url('student/dashboard') }}"
+                                    class="text-white quick-links">Dashboard</a>
                             </li>
                             <li class="mt-2">
                                 <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"

@@ -39,8 +39,9 @@ Route::middleware(['web'])->group(function () {
             Route::put('/profile/update/{uuid}', 'updateProfile');
             // Route::post('/upload/project/{id}', 'uploadProject');
             // Route::get('/download/project{id}', 'downloadProject');
-            // Route::post('/upload/seminar/{id}', 'uploadSeminar');
-            // Route::get('/download/seminar/{id}', 'downloadSeminar');
+            Route::post('create-seminar', 'createSeminar');
+            Route::post('/upload/seminar/{uuid}', 'uploadSeminar');
+            Route::get('/download/seminar/{id}', 'downloadSeminar');
             // Route::get('/logout', 'studentLogout');
         });
     });

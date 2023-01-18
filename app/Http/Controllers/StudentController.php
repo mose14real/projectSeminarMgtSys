@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seminar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Session;
 use App\Models\Student;
-use App\Models\User;
-use Hash;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -63,14 +62,21 @@ class StudentController extends Controller
         return redirect("login")->withSuccess('Opps! You do not have access to update profile');
     }
 
-    public function uploadProject(Request $request, $uuid)
+    public function createSeminar(Request $request)
     {
-        //
-    }
-
-    public function downloadProject(Request $request, $uuid)
-    {
-        //
+        if (Auth::check()) {
+            $request->validate([
+                'seminar_topic' => ['required'],
+                'seminar_desc' => ['required'],
+            ]);
+            $seminar = Seminar::create([
+                'uuid' => Str::orderedUuid(),
+                'seminar_topic' => $request['seminar_topic'],
+                'seminar_desc' => $request['seminar_desc'],
+            ]);
+            // dd($seminar);
+            return redirect('student/dashboard')->withSuccess('Great! You have Successfully registered');
+        }
     }
 
     public function uploadSeminar(Request $request, $uuid)
@@ -79,6 +85,16 @@ class StudentController extends Controller
     }
 
     public function downloadSeminar(Request $request, $uuid)
+    {
+        //
+    }
+
+    public function uploadProject(Request $request, $uuid)
+    {
+        //
+    }
+
+    public function downloadProject(Request $request, $uuid)
     {
         //
     }
