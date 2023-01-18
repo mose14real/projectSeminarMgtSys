@@ -29,8 +29,7 @@
     <!-- NAVBAR SECTION STARTS HERE -->
     <nav class="navbar navbar-expand-lg" id="navigation-bar">
         <div class="container">
-            <h1 class="navbar-brand font-bold text-white " href="{{ url('student/dashboard') }}"><i
-                    class="bi bi-box-seam-fill">
+            <h1 class="navbar-brand font-bold text-white"><i class="bi bi-box-seam-fill">
                     ProjectArch</i></h1>
             <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,7 +40,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
                         <a class="nav-link text-white active me-2" aria-current="page"
-                            href="{{ url('student/dashboard') }}">Home</a>
+                            href="{{ url('student/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
@@ -53,17 +52,18 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> {{ auth()->user()->email }}</i>
+                        <i class="bi bi-person-circle"> {{ auth()->user()->student->matric }}</i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('student/profile/edit/') }}"><i
+                        <li><a class="dropdown-item"
+                                href="{{ url('/student/profile/edit') }}/{{ auth()->user()->student->uuid }}"><i
                                     class="bi bi-person-badge-fill"></i>
                                 Edit Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a href="{{ route('logout') }}"><button
-                                    class="btn btn-block d-block mx-auto sign-out-btn">Sign
+                                    class="btn btn-block d-block mx-auto sign-out-btn">Log
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -117,42 +117,42 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">First Name</th>
-                                    <td></td>
+                                    <td>{{ $student->user->first_name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Middle Name</th>
-                                    <td></td>
+                                    <td>{{ $student->user->middle_name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Last Name</th>
-                                    <td></td>
+                                    <td>{{ $student->user->last_name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Matric Number</th>
-                                    <td></td>
+                                    <td>{{ $student->matric }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Email</th>
-                                    <td></td>
+                                    <td>{{ $student->user->email }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Phone Number</th>
-                                    <td></td>
+                                    <td>{{ $student->phone }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Supervisor</th>
-                                    <td></td>
+                                    <td>{{ $student->supervisor }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Session</th>
-                                    <td></td>
+                                    <td>{{ $student->session }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-12 mb-3">
-                        <a href="{{ url('student/profile/edit') }}"><button type="submit"
-                                class="btn btn-block w-25 register-page-btn">Edit Profile</button>
+                        <a href="{{ url('/student/profile/edit') }}/{{ auth()->user()->student->uuid }}"><button
+                                type="submit" class="btn btn-block w-25 register-page-btn">Edit Profile</button>
                             <div class="clearfix"></div>
                         </a>
                     </div>
@@ -193,15 +193,11 @@
                     <ul>
                         <li class="mt-3">
                             <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/dashboard') }}"
-                                class="text-white quick-links">Home</a>
+                                class="text-white quick-links">Dashboard</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Projects</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Seminars</a>
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"
+                                class="text-white quick-links">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -249,7 +245,6 @@
             }
         })
         projectTypeEditUser.addEventListener('click', (event) => {
-            // alert()
             event.preventDefault();
             if (projectTypeEditUser.value == 'group') {
                 groupDetailsEditUser.classList.remove('d-none');

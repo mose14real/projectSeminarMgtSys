@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -40,16 +42,18 @@ class UserController extends Controller
             'cpassword' => ['required', 'same:password'],
         ]);
         $user = User::create([
-            'name' => $request['first_name'] . " " . $request['middle_name'] . " " . $request['last_name'],
+            'uuid' => Str::orderedUuid(),
+            // 'name' => $request['first_name'] . " " . $request['middle_name'] . " " . $request['last_name'],
+            'first_name' => $request['first_name'],
+            'middle_name' => $request['middle_name'],
+            'last_name' => $request['last_name'],
             'email' => $request['email'],
             'role' => 'student',
             'password' =>  Hash::make($request['password'])
         ]);
         Student::create([
+            'uuid' => Str::orderedUuid(),
             'user_id' => $user->id,
-            'first_name' => $request['first_name'],
-            'middle_name' => $request['middle_name'],
-            'last_name' => $request['last_name'],
             'matric' => $request['matric'],
             'phone' => $request['phone'],
             'supervisor' => $request['supervisor'],
@@ -91,13 +95,10 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        // Session::flush();
-        // Auth::logout();
-        // return redirect('login');
-
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('login');
     }
 }

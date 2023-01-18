@@ -34,10 +34,9 @@ Route::middleware(['web'])->group(function () {
     Route::controller(StudentController::class)->group(function () {
         Route::prefix('student')->group(function () {
             Route::get('/dashboard', 'dashboard');
-            Route::get('/profile/show', 'showProfile');
-            Route::get('/profile/edit/{id}', 'editProfile');
-            Route::put('/profile/update/{id}', 'updateProfile')->name('update-profile');
-            // Route::post('/profile/edit/{id}', 'editProfile');
+            Route::get('/profile/show/{uuid}', 'showProfile');
+            Route::get('/profile/edit/{uuid}', 'editProfile');
+            Route::put('/profile/update/{uuid}', 'updateProfile');
             // Route::post('/upload/project/{id}', 'uploadProject');
             // Route::get('/download/project{id}', 'downloadProject');
             // Route::post('/upload/seminar/{id}', 'uploadSeminar');

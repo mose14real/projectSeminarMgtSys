@@ -41,7 +41,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
                         <a class="nav-link text-white active me-2" aria-current="page"
-                            href="{{ url('student/dashboard') }}">Home</a>
+                            href="{{ url('student/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
@@ -53,17 +53,18 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Email Here</i>
+                        <i class="bi bi-person-circle"> {{ auth()->user()->student->matric }}</i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('student/profile') }}"><i
+                        <li><a class="dropdown-item"
+                                href="{{ url('/student/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
                                     class="bi bi-person-badge-fill"></i>
-                                Profile</a></li>
+                                View Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a href="{{ route('logout') }}"><button
-                                    class="btn btn-block d-block mx-auto sign-out-btn">Sign
+                                    class="btn btn-block d-block mx-auto sign-out-btn">Log
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -112,25 +113,27 @@
             <h2 class="mt-5">Personal Information</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <form class="mt-3" action="{{ route('update-profile') }}" method="POST">
+                    <form class="mt-3" action="{{ url('student/profile/update', $student->uuid) }}"
+                        method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="First Name" name="first_name"
-                                value="{{ $student->first_name }}">
+                            <input type="text" class="form-control" name="first_name"
+                                value="{{ $student->user->first_name }}">
                             @if ($errors->has('first_name'))
                                 <span class="text-danger">{{ $errors->first('first_name') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="middle_name"
-                                value="{{ $student->middle_name }}">
+                            <input type="text" class="form-control" name="middle_name"
+                                value="{{ $student->user->middle_name }}">
                             @if ($errors->has('middle_name'))
                                 <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Last Name" name="last_name"
-                                value="{{ $student->last_name }}">
+                            <input type="text" class="form-control" name="last_name"
+                                value="{{ $student->user->last_name }}">
                             @if ($errors->has('last_name'))
                                 <span class="text-danger">{{ $errors->first('last_name') }}</span>
                             @endif
@@ -144,14 +147,14 @@
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" class="form-control" placeholder="Email" name="email"
-                                value="{{ $user->email }}">
+                                value="{{ $student->user->email }}">
                             @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Phone Number" name="phone"
-                                value="{{ $student->name }}">
+                                value="{{ $student->phone }}">
                             @if ($errors->has('phone'))
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             @endif
@@ -211,20 +214,15 @@
                     <h5 class="text-white mt-3">Quick Links</h5>
                     <ul>
                         <li class="mt-3">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/profile') }}"
-                                class="text-white quick-links">Home</a>
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/dashboard') }}"
+                                class="text-white quick-links">Dashboard</a>
                         </li>
                         <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Projects</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Seminars</a>
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"
+                                class="text-white quick-links">Logout</a>
                         </li>
                     </ul>
                 </div>
-
                 <!-- social links -->
                 <div class="col-md-3 p-3 mb-3">
                     <h5 class="text-white mt-3">Social Links</h5>

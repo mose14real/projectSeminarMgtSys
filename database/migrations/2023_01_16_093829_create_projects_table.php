@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('project_topic');
             $table->text('project_desc');
             $table->string('project_type');

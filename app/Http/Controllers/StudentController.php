@@ -15,39 +15,37 @@ class StudentController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-
             return view('student.dashboard');
         }
 
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect('login')->withSuccess('Opps! You do not have access to dashboard');
     }
 
-    public function showProfile()
+    public function showProfile($uuid)
     {
         if (Auth::check()) {
-
-            // Student::where('user_id', $id);
-
-            return view('student.show-profile');
+            $student = Student::findByUuid($uuid);
+            return view('student.show-profile', compact('student'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access to show profile');
+        return redirect('login')->withSuccess('Opps! You do not have access to show profile');
     }
 
-    public function editProfile($id)
+    public function editProfile($uuid)
     {
         if (Auth::check()) {
-            return view('student.edit-profile');
+            $student = Student::findByUuid($uuid);
+            return view('student.edit-profile', compact('student'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access to edit profile');
+        return redirect('login')->withSuccess('Opps! You do not have access to edit profile');
     }
 
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request, $uuid)
     {
         $credentials = $request->validate([
             'first_name' => [],
             'middle_name' => [],
             'last_name' => [],
-            'matric' => ['min:10', 'max:10'],
+            'matric' => [],
             'email' => [],
             'phone' => ['min:11'],
             'supervisor' => [],
@@ -55,31 +53,32 @@ class StudentController extends Controller
         ]);
 
         if (Auth::check()) {
+            $student = Student::findByUuid($uuid);
+            $student->update($credentials);
+            $student->user->update($credentials);
 
-            Student::where('user_id', $id)->update($credentials);
-
-            return redirect('student/profile/show' . $id)->withSuccess('Profile updated successfully');
+            return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access to update profile');
     }
 
-    public function uploadProject(Request $request, $id)
+    public function uploadProject(Request $request, $uuid)
     {
         //
     }
 
-    public function downloadProject(Request $request, $id)
+    public function downloadProject(Request $request, $uuid)
     {
         //
     }
 
-    public function uploadSeminar()
+    public function uploadSeminar(Request $request, $uuid)
     {
         //
     }
 
-    public function downloadSeminar()
+    public function downloadSeminar(Request $request, $uuid)
     {
         //
     }
