@@ -62,8 +62,9 @@
             <div class="col-md-6 pt-4 d-flex align-items-center justify-content-center flex-column form-register">
                 <h4 class="deep-blue-color text-start d-block">Login</h4>
                 @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <span>{{ $message }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
                 <form class="mt-3" action="{{ url('auth-login') }}" method="POST">

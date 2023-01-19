@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -24,28 +25,19 @@ class Student extends Model
         'session',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'id',
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
+    public function seminar(): HasOne
     {
-        return 'uuid';
+        return $this->hasOne(Seminar::class);
+    }
+
+    public function project(): HasOne
+    {
+        return $this->hasOne(Project::class);
     }
 
     public static function findByUuid(string $uuid)

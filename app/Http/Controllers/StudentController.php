@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Seminar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,21 +90,36 @@ class StudentController extends Controller
         //
     }
 
-    public function uploadProject(Request $request, $uuid)
+    public function seminarDetails($uuid)
     {
-        //
+        if (Auth::check()) {
+            $seminar = Seminar::findByUuid($uuid);
+            return view('student.seminar-details', compact('seminar'));
+        }
+        return redirect('login')->withSuccess('Opps! No access to view seminar details');
     }
 
-    public function downloadProject(Request $request, $uuid)
-    {
-        //
-    }
+    // public function createProject()
+    // {
+    //     //
+    // }
 
-    public function logout(Request $request)
+    // public function uploadProject(Request $request, $uuid)
+    // {
+    //     //
+    // }
+
+    // public function downloadProject(Request $request, $uuid)
+    // {
+    //     //
+    // }
+
+    public function projectDetails($uuid)
     {
-        // Session::flush();
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        if (Auth::check()) {
+            $project = Seminar::findByUuid($uuid);
+            return view('student.project-details', compact('project'));
+        }
+        return redirect('login')->withSuccess('Opps! No access to view project details');
     }
 }

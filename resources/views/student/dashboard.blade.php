@@ -104,7 +104,7 @@
     @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show">
             <span>{{ $message }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
 
@@ -144,14 +144,14 @@
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">Project Status</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">View Project</span>
                             <p class="card-text text-center text-white">
-                                <i class="bi bi-check-lg project-overview-icon"></i>
+                                <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">Approved</h1>
-                            <button class="btn btn-block w-100 project-overview-btn font-bold" disabled
-                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status
-                                Button</button>
+                            <h1 class="card-title text-center text-white">1</h1>
+                            <a href="{{ url('/student/project-details') }}/{{ auth()->user()->student->uuid }}"><button
+                                    class="btn btn-block w-100 project-overview-btn font-bold">View
+                                    Project</button></a>
                         </div>
                     </div>
                 </div>
@@ -186,14 +186,14 @@
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">Seminar Status</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">View Seminar</span>
                             <p class="card-text text-center text-white">
-                                <i class="bi bi-check-lg project-overview-icon"></i>
+                                <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">Approved</h1>
-                            <button class="btn btn-block w-100 project-overview-btn font-bold" disabled
-                                data-bs-toggle="modal" data-bs-target="#upload-project-modal">Status
-                                Button</button>
+                            <h1 class="card-title text-center text-white">1</h1>
+                            <a href="{{ url('/student/seminar-details') }}/{{ auth()->user()->student->uuid }}"><button
+                                    class="btn btn-block w-100 project-overview-btn font-bold">View
+                                    Seminar</button></a>
                         </div>
                     </div>
                 </div>
@@ -332,85 +332,6 @@
                 </div>
             </div>
             <!-- ENDS HERE -->
-
-            <!-- PROJECT TABLE DATA STARTS HERE -->
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Project Details</h4>
-                        <table class="table table-bordered mb-5">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Project Topic</th>
-                                    <td>Project and Seminar Management System</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Project Description</th>
-                                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam
-                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error
-                                        consectetur?
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Project Type</th>
-                                    <td>Individual</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Student Matric Number</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">File</th>
-                                    <td>
-                                        <a href="#">Project and Seminar Management System</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Action</th>
-                                    <td>
-                                        <button class="btn btn-block edit-btn w-25" data-bs-toggle="modal"
-                                            data-bs-target="#student-data-modal" download="">Download</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4>Seminar Details</h4>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Seminar Topic</th>
-                                    <td>Project and Seminar Management System</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Seminar Description</th>
-                                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam
-                                        obcaecati doloribus officiis, nesciunt eum laborum nostrum error
-                                        consectetur?
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">File</th>
-                                    <td>
-                                        <a href="#">Project and Seminar Management System</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Action</th>
-                                    <td>
-                                        <a href="#">
-                                            <button class="btn btn-block edit-btn w-25" data-bs-toggle="modal"
-                                                data-bs-target="#student-data-modal">Download
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- FOOTER SECTION -->
         <footer class="mt-5">

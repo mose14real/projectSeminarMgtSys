@@ -28,11 +28,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function student(): HasOne
-    {
-        return $this->hasOne(Student::class);
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,7 +36,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'id',
     ];
 
     /**
@@ -53,14 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
+    public function student(): HasOne
     {
-        return 'uuid';
+        return $this->hasOne(Student::class);
     }
 
     public static function findByUuid(string $uuid)

@@ -28,7 +28,7 @@
     <!-- NAVBAR SECTION STARTS HERE -->
     <nav class="navbar navbar-expand-lg" id="navigation-bar">
         <div class="container">
-            <h1 class="navbar-brand font-bold text-white" href="{{ url('/') }}"><i class="bi bi-box-seam-fill">
+            <h1 class="navbar-brand font-bold text-white"><i class="bi bi-box-seam-fill">
                     ProjectArch</i></h1>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
@@ -98,7 +98,6 @@
                 <div class="col-md-4 p-2">
                     <img src="{{ asset('img/2.svg') }}" alt="" class="project-illustrations mt-5">
                 </div>
-
                 <!-- projects cards starts here -->
                 <div class="col-md-4 p-2">
                     <div class="card mt-5">
@@ -109,37 +108,9 @@
                             <li class="list-group-item">
                                 <a href="#">Project and Seminar Management System</a>
                             </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
-
                 <!-- Seminars cards starts here -->
                 <div class="col-md-4 p-2">
                     <div class="card mt-5">
@@ -150,38 +121,10 @@
                             <li class="list-group-item">
                                 <a href="#">Project and Seminar Management System</a>
                             </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     </div>
@@ -248,195 +191,79 @@
                     </div>
                 </div>
                 <!-- ends here -->
-
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    project</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- seminar card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    seminar</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    project</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
-
-                <!-- seminar card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    seminar</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ends here -->
             </div>
         </div>
-    </div>
-    <!-- FOOTER SECTION -->
-    <footer class="mt-5">
-        <div class="container">
-            <div class="row">
-                <!-- ProjectArch -->
-                <div class="col-md-6 p-3 mb-3">
-                    <a href="#navigation-bar">
-                        <h4 class="text-white mt-3"><i class="bi bi-box-seam-fill"> ProjectArch</i></h4>
-                    </a>
-                    <p class="text-white mt-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui atque et, ipsum laboriosam,
-                        voluptatibus consequatur distinctio suscipit recusandae cupiditate quam voluptatem eius animi
-                    </p>
-                </div>
+        <!-- FOOTER SECTION -->
+        <footer class="mt-5">
+            <div class="container">
+                <div class="row">
+                    <!-- ProjectArch -->
+                    <div class="col-md-6 p-3 mb-3">
+                        <a href="#navigation-bar">
+                            <h4 class="text-white mt-3"><i class="bi bi-box-seam-fill"> ProjectArch</i></h4>
+                        </a>
+                        <p class="text-white mt-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui atque et, ipsum laboriosam,
+                            voluptatibus consequatur distinctio suscipit recusandae cupiditate quam voluptatem eius
+                            animi
+                        </p>
+                    </div>
 
-                <!-- quick links -->
-                <div class="col-md-3 p-3 mb-3">
-                    <h5 class="text-white mt-3">Quick Links</h5>
-                    <ul>
-                        <li class="mt-3">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('/') }}"
-                                class="text-white quick-links">Home</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Projects</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
-                                class="text-white quick-links">Seminars</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
-                                class="text-white quick-links">Register</a>
-                        </li>
-                        <li class="mt-2">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
-                                class="text-white quick-links">Login</a>
-                        </li>
-                    </ul>
-                </div>
+                    <!-- quick links -->
+                    <div class="col-md-3 p-3 mb-3">
+                        <h5 class="text-white mt-3">Quick Links</h5>
+                        <ul>
+                            <li class="mt-3">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('/') }}"
+                                    class="text-white quick-links">Home</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
+                                    class="text-white quick-links">Projects</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
+                                    class="text-white quick-links">Seminars</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
+                                    class="text-white quick-links">Register</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
+                                    class="text-white quick-links">Login</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <!-- social links -->
-                <div class="col-md-3 p-3 mb-3">
-                    <h5 class="text-white mt-3">Social Links</h5>
+                    <!-- social links -->
+                    <div class="col-md-3 p-3 mb-3">
+                        <h5 class="text-white mt-3">Social Links</h5>
 
-                    <a href="#" class="text-white social-links">
-                        <i class="bi bi-facebook fs-4 mt-3"></i>
-                    </a>
+                        <a href="#" class="text-white social-links">
+                            <i class="bi bi-facebook fs-4 mt-3"></i>
+                        </a>
 
-                    <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
-                        <i class="bi bi-twitter"></i>
-                    </a>
+                        <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
+                            <i class="bi bi-twitter"></i>
+                        </a>
 
-                    <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
+                        <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
 
-                    <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
-                        <i class="bi bi-instagram"></i>
-                    </a>
+                        <a href="#" class="fs-4 ms-3 mt-3 text-white social-links">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 p-2 footer-bottom">
-            <p class="text-center text-white">Created with ❤ By <a href="#" class="dev-opt">Developer</a>
-                &copy; CopyRight Reserved 2023</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="col-12 p-2 footer-bottom">
+                <p class="text-center text-white">Created with ❤ By <a href="#" class="dev-opt">Developer</a>
+                    &copy; CopyRight Reserved 2023</p>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

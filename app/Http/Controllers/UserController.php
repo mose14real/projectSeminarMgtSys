@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Project;
+use App\Models\Seminar;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Student;
@@ -50,13 +51,21 @@ class UserController extends Controller
             'role' => 'student',
             'password' =>  Hash::make($request['password'])
         ]);
-        Student::create([
+        $student = Student::create([
             'uuid' => Str::orderedUuid(),
             'user_id' => $user->id,
             'matric' => $request['matric'],
             'phone' => $request['phone'],
             'supervisor' => $request['supervisor'],
             'session' => $request['session'],
+        ]);
+        Seminar::create([
+            'uuid' => Str::orderedUuid(),
+            'student_id' => $student->id,
+        ]);
+        Project::create([
+            'uuid' => Str::orderedUuid(),
+            'student_id' => $student->id,
         ]);
         return redirect("login")->withSuccess('Great! You have Successfully registered');
     }
@@ -68,14 +77,6 @@ class UserController extends Controller
 
     public function authLogin(Request $request)
     {
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
-        //     return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
-        // }
         // return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
 
         $credentials = $request->validate([

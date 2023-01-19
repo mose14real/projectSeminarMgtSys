@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
@@ -16,6 +17,7 @@ class Project extends Model
      */
     protected $fillable = [
         'uuid',
+        'student_id',
         'project_topic',
         'project_desc',
         'project_type',
@@ -23,22 +25,13 @@ class Project extends Model
         'project_file_path',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'id',
-    ];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
+    public function seminar(): BelongsTo
     {
-        return 'uuid';
+        return $this->belongsTo(Student::class);
+    }
+
+    public static function findByUuid(string $uuid)
+    {
+        return self::where('uuid', $uuid)->first();
     }
 }

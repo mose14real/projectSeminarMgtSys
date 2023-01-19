@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('seminar_id')->nullable()->constrained('seminars');
-            $table->foreignId('project_id')->nullable()->constrained('projects');
             $table->string('matric')->unique();
             $table->string('phone')->unique;
             $table->string('supervisor');
