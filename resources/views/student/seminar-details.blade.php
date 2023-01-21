@@ -112,9 +112,9 @@
                         <img src="{{ asset('img/4.svg') }}" alt="">
                     </div>
                     <div class="col p-3">
-                        <h3 class="fw-normal fs-5">Student Name</h3>
+                        <h3 class="fw-normal fs-5">{{ $seminar->seminar_topic }}</h3>
                         <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
-                            2023-01-31</span>
+                            {{ $seminar->created_at }}</span>
                     </div>
                 </div>
             </div>
@@ -123,15 +123,15 @@
                     <tbody>
                         <tr>
                             <th scope="row">Seminar Topic</th>
-                            <td>Topic</td>
+                            <td>{{ $seminar->seminar_topic }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Seminar Description</th>
-                            <td>Description</td>
+                            <td>{{ $seminar->seminar_desc }}</td>
                         </tr>
                         <tr>
                             <th scope="row">File</th>
-                            <td>Seminar File</td>
+                            <td>{{ $seminar->seminar_file_path }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -169,7 +169,8 @@
                         <ul>
                             <li class="mt-3">
                                 <i class="bi bi-chevron-right text-white"></i> <a
-                                    href="{{ url('student/dashboard') }}" class="text-white quick-links">Dashboard</a>
+                                    href="{{ url('student/dashboard') }}"
+                                    class="text-white quick-links">Dashboard</a>
                             </li>
                             <li class="mt-2">
                                 <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"

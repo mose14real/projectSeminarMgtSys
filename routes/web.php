@@ -41,7 +41,7 @@ Route::middleware(['web'])->group(function () {
             // Route::post('/upload/project/{uuid}', 'uploadProject');
             // Route::get('/download/project{uuid}', 'downloadProject');
             Route::get('project-details/{uuid}', 'projectDetails');
-            Route::post('create-seminar', 'createSeminar');
+            Route::post('create-seminar/{uuid}', 'createSeminar');
             Route::post('/upload/seminar/{uuid}', 'uploadSeminar');
             Route::get('/download/seminar/{uuid}', 'downloadSeminar');
             Route::get('seminar-details/{uuid}', 'seminarDetails');

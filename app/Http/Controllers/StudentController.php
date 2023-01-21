@@ -7,6 +7,7 @@ use App\Models\Seminar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class StudentController extends Controller
@@ -63,7 +64,7 @@ class StudentController extends Controller
         return redirect("login")->withSuccess('Opps! You do not have access to update profile');
     }
 
-    public function createSeminar(Request $request)
+    public function createSeminar(Request $request, $uuid)
     {
         if (Auth::check()) {
             $request->validate([
@@ -71,11 +72,10 @@ class StudentController extends Controller
                 'seminar_desc' => ['required'],
             ]);
             $seminar = Seminar::create([
-                'uuid' => Str::orderedUuid(),
                 'seminar_topic' => $request['seminar_topic'],
                 'seminar_desc' => $request['seminar_desc'],
-            ]);
-            // dd($seminar);
+            ])->where('uuid', $uuid);
+            dd($seminar);
             return redirect('student/dashboard')->withSuccess('Great! You have Successfully registered');
         }
     }

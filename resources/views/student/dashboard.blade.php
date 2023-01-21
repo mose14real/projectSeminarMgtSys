@@ -149,7 +149,8 @@
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
                             <h1 class="card-title text-center text-white">1</h1>
-                            <a href="{{ url('/student/project-details') }}/{{ auth()->user()->student->uuid }}"><button
+                            <a
+                                href="{{ url('/student/project-details') }}/{{ auth()->user()->student->project->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Project</button></a>
                         </div>
@@ -191,7 +192,8 @@
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
                             <h1 class="card-title text-center text-white">1</h1>
-                            <a href="{{ url('/student/seminar-details') }}/{{ auth()->user()->student->uuid }}"><button
+                            <a
+                                href="{{ url('/student/seminar-details') }}/{{ auth()->user()->student->seminar->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Seminar</button></a>
                         </div>
@@ -251,7 +253,9 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3" action="create-seminar" method="POST">
+                            <form class="mt-3"
+                                action="{{ url('/student/create-seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
+                                method="POST">
                                 @csrf
                                 <div class="col-12 mb-3">
                                     <input type="text" class="form-control" placeholder="Seminar Topic"
