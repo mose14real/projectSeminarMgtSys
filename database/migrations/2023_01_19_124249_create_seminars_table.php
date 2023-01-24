@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->string('seminar_topic');
-            $table->text('seminar_desc');
+            $table->foreignId('student_id')->constrained('students');
+            $table->string('seminar_topic')->nullable();
+            $table->text('seminar_desc')->nullable();
             $table->string('seminar_file_path')->nullable();
             $table->timestamps();
         });

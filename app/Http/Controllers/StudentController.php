@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Seminar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class StudentController extends Controller
@@ -62,7 +64,7 @@ class StudentController extends Controller
         return redirect("login")->withSuccess('Opps! You do not have access to update profile');
     }
 
-    public function createSeminar(Request $request)
+    public function createSeminar(Request $request, $uuid)
     {
         if (Auth::check()) {
             $request->validate([
@@ -70,11 +72,10 @@ class StudentController extends Controller
                 'seminar_desc' => ['required'],
             ]);
             $seminar = Seminar::create([
-                'uuid' => Str::orderedUuid(),
                 'seminar_topic' => $request['seminar_topic'],
                 'seminar_desc' => $request['seminar_desc'],
-            ]);
-            // dd($seminar);
+            ])->where('uuid', $uuid);
+            dd($seminar);
             return redirect('student/dashboard')->withSuccess('Great! You have Successfully registered');
         }
     }
@@ -89,21 +90,36 @@ class StudentController extends Controller
         //
     }
 
-    public function uploadProject(Request $request, $uuid)
+    public function seminarDetails($uuid)
     {
-        //
+        if (Auth::check()) {
+            $seminar = Seminar::findByUuid($uuid);
+            return view('student.seminar-details', compact('seminar'));
+        }
+        return redirect('login')->withSuccess('Opps! No access to view seminar details');
     }
 
-    public function downloadProject(Request $request, $uuid)
-    {
-        //
-    }
+    // public function createProject()
+    // {
+    //     //
+    // }
 
-    public function logout(Request $request)
+    // public function uploadProject(Request $request, $uuid)
+    // {
+    //     //
+    // }
+
+    // public function downloadProject(Request $request, $uuid)
+    // {
+    //     //
+    // }
+
+    public function projectDetails($uuid)
     {
-        // Session::flush();
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        if (Auth::check()) {
+            $project = Seminar::findByUuid($uuid);
+            return view('student.project-details', compact('project'));
+        }
+        return redirect('login')->withSuccess('Opps! No access to view project details');
     }
 }

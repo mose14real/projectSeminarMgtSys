@@ -64,8 +64,8 @@
             <h2 class="fw-light mt-5">Free Download Online Air Conditioner Shop Project in PHP with source code</h2>
             <div class="mt-3">
                 <span class="badge bg-primary text-white fs-6 fw-normal">Projects</span>
-                <span class="me-3 fs-6">Published on -</span><span class="timestamp fs-6"><i
-                        class="bi bi-clock-fill fs-6"></i> 2022-09-14</span>
+                <span class="me-3 fs-6">Published on -</span>
+                <span class="timestamp fs-6"><i class="bi bi-clock-fill fs-6">2022-09-14</i></span>
             </div>
             <!-- student details card starts here -->
             <div class="mt-5 col-md-4 student-details-card">
