@@ -2,52 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Seminar;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
-use Session;
-use Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        return view('admin.index');
-    }
-
     public function details()
     {
         return view('admin.details');
     }
 
-    // public function register()
-    // {
-    //     return view('admin.register');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    public function login()
-    {
-        return view('admin.login');
-    }
-
-    public function authLogin()
-    {
-        //
-    }
-
     public function dashboard()
     {
-        // if (Auth::check()) {
-
-        //     return view('admin.dashboard');
-        // }
-
-        // return redirect("admin.login")->withSuccess('Opps! You do not have access');
-
         return view('admin.dashboard');
     }
 

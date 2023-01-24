@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('project_desc')->nullable();
             $table->string('project_type')->nullable();
             $table->string('project_members')->nullable();
+            $table->string('project_file_name')->nullable();
             $table->string('project_file_path')->nullable();
             $table->timestamps();
         });

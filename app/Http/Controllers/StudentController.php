@@ -66,28 +66,43 @@ class StudentController extends Controller
 
     public function createSeminar(Request $request, $uuid)
     {
+        $credentials = $request->validate([
+            'seminar_topic' => ['required'],
+            'seminar_desc' => ['required'],
+        ]);
+
         if (Auth::check()) {
-            $request->validate([
-                'seminar_topic' => ['required'],
-                'seminar_desc' => ['required'],
-            ]);
-            $seminar = Seminar::create([
-                'seminar_topic' => $request['seminar_topic'],
-                'seminar_desc' => $request['seminar_desc'],
-            ])->where('uuid', $uuid);
-            dd($seminar);
-            return redirect('student/dashboard')->withSuccess('Great! You have Successfully registered');
+            $seminar = Seminar::findByUuid($uuid);
+            $seminar->update($credentials);
+            return redirect('student/dashboard')->withSuccess('Seminar registered successfully');
         }
+        return redirect("login")->withSuccess('Opps! You do not have access to register seminar');
     }
 
     public function uploadSeminar(Request $request, $uuid)
     {
-        //
+        $request->validate([
+            'seminar_file' => ['required', 'mimes:doc,docx,pdf,zip', 'max:2048']
+        ]);
+
+        if (Auth::check()) {
+            $seminar = Seminar::findByUuid($uuid);
+            if ($request->seminar_file) {
+                $fileName = $request->seminar_file->getClientOriginalName();
+                $filePath = $request->seminar_file->move(public_path('seminars'), $fileName);
+                $seminarPath = "seminars/{$fileName}";
+                $seminar->seminar_file_path = $seminarPath;
+                $seminar->save();
+                return redirect('student/dashboard')->withSuccess('Seminar uploaded successfully');
+            }
+        }
+        return redirect("login")->withSuccess('Opps! Access denied to upload seminar');
     }
 
     public function downloadSeminar(Request $request, $uuid)
     {
-        //
+        $seminars = Seminar::orderBy('id', 'desc')->paginate(5);
+        return view('fileDownload', compact('seminars'));
     }
 
     public function seminarDetails($uuid)

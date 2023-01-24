@@ -114,7 +114,7 @@
                     <div class="col p-3">
                         <h3 class="fw-normal fs-5">{{ $seminar->seminar_topic }}</h3>
                         <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
-                            {{ $seminar->created_at }}</span>
+                            {{ $seminar->updated_at }}</span>
                     </div>
                 </div>
             </div>
@@ -131,21 +131,20 @@
                         </tr>
                         <tr>
                             <th scope="row">File</th>
-                            <td>{{ $seminar->seminar_file_path }}</td>
+                            <td>
+                                {{ $seminar->seminar_file_path }}
+                                <a href="#"><button type="submit"
+                                        class="btn btn-block edit-btn">Download</button>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
-                <div class="col-12 mb-3">
-                    <a href="#"><button type="submit" class="btn btn-block edit-btn">Download</button>
-                        <div class="clearfix"></div>
-                    </a>
-                </div>
             </div>
-
         </div>
         <!-- SEMINAR DETAILS END -->
-
-
 
         <!-- FOOTER SECTION -->
         <footer class="mt-5">
