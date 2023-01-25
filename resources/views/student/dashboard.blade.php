@@ -320,9 +320,16 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3"
+                                action="{{ url('/student/upload/seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
+                                method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="">
+                                    <input type="file" name="seminar_file" class="form-control">
+                                    @if ($errors->has('seminar_file'))
+                                        <span class="text-danger">{{ $errors->first('seminar_file') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn btn-block float-end register-page-btn">Upload
