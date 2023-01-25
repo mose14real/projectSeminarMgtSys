@@ -41,7 +41,7 @@
                         <a class="nav-link text-white active me-2" aria-current="page"
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link text-white " href="#">Students</a>
                     </li>
                     <li class="nav-item">
@@ -49,7 +49,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white " href="#">Seminars</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
@@ -65,9 +65,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
-                                projects</a></li>
-                        <li>
+                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
+                                projects</a></li> -->
+                        <!-- <li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -165,7 +165,6 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-mortarboard-fill project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">34</h1>
                             <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Student</button></a>
                         </div>
                     </div>
@@ -176,7 +175,6 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">300</h1>
                             <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Project</button></a>
                         </div>
                     </div>
@@ -187,7 +185,6 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">324</h1>
                             <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Seminar</button></a>
                         </div>
                     </div>
@@ -205,58 +202,41 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                        <form class="mt-3">
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
+                                    <input type="text" class="form-control" placeholder="First Name"
                                         aria-label="First name">
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col">
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Middle Name"
+                                        aria-label="First name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Last Name"
+                                        aria-label="First name">
+                                </div>
+                                    <div class="col-12 mb-3">
                                         <input type="text" class="form-control" placeholder="Matric Number"
                                             aria-label="First name">
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12 mb-3">
+                                        <input type="email" class="form-control" placeholder="Email Address"
+                                            aria-label="First name">
+                                    </div>
+                                    <div class="col-12 mb-3">
                                         <input type="text" class="form-control" placeholder="Phone Number"
                                             aria-label="Last name">
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
+                                    <div class="col-12 mb-3">
                                         <input type="text" class="form-control" placeholder="Supervisor"
                                             aria-label="First name">
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12 mb-3">
                                         <input type="text" class="form-control"
                                             placeholder="Session i.e 2021/2022" aria-label="Last name">
                                     </div>
-                                </div>
                                 <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Password"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Add
-                                        +</button>
+                                    <button type="submit" class="btn btn-block float-end register-page-btn">Edit Student</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>

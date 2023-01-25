@@ -41,15 +41,6 @@
                         <a class="nav-link text-white active me-2" aria-current="page"
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Students</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Seminars</a>
-                    </li>
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Students">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
@@ -65,9 +56,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
-                                projects</a></li>
-                        <li>
+                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
+                                projects</a></li> -->
+                        <!-- <li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -112,54 +103,37 @@
     </nav>
 
     <!-- PROJECT AND SEMINAR HERE -->
-    <div class="project-overview" id="projects-overview">
+    <div class="student-data-area" id="projects-overview">
         <div class="container">
             <h2 class="text-start mt-5">Student Data Table</h2>
 
 
             <div class="mt-5">
-                <table class="table table-bordered" style="width:70%">
+                <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th scope="col" style="width:40%">S/N</th>
-                            <td></td>
-                        </tr>
-                        <tr>
+                            <th scope="col">S/N</th>
                             <th scope="col">First name</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Middle name</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Last name</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Matric number</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Email address</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Phone Number</th>
-                            <td></td>
-                        </tr>
-
-                        <tr>
                             <th scope="col">Supervisor</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th scope="col">Session</th>
-                            <td></td>
+                            <th scope="col">Action</th>
                         </tr>
                         <tr>
-                            <th scope="col">Action</th>
-                            <td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>  
+                        <td>
                             <button class="btn btn-block edit-btn" data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"><i class="bi bi-pencil-square"></i></button>
                             <button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button>
                         </td>
