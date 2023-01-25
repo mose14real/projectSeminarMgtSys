@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Project & Seminar Archival Mgt Sys</title>
+    <title>Student | Edit-Profile | Page</title>
 </head>
 
 <body>
@@ -103,12 +103,14 @@
                 </div>
             </div>
     </nav>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show">
             <span>{{ $message }}</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
+
     <div class="user-details-section mb-5">
         <div class="container">
             <h2 class="mt-5">Personal Information</h2>
@@ -191,9 +193,6 @@
     <div class="" id="projects">
     </div>
 
-    </div>
-    </div>
-
     <!-- FOOTER SECTION -->
     <footer class="mt-5">
         <div class="container">
@@ -224,6 +223,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <!-- social links -->
                 <div class="col-md-3 p-3 mb-3">
                     <h5 class="text-white mt-3">Social Links</h5>

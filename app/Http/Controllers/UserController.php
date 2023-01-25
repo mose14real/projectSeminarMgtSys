@@ -18,9 +18,14 @@ class UserController extends Controller
         return view('index');
     }
 
-    public function details()
+    public function projectDetails()
     {
-        return view('details');
+        return view('project-details');
+    }
+
+    public function seminarDetails()
+    {
+        return view('seminar-details');
     }
 
     public function register()

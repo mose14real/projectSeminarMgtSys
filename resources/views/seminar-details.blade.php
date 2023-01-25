@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Student | Seminar-Details | Page</title>
+    <title>Seminar-Details | Page</title>
 </head>
 
 <body>
@@ -31,90 +31,47 @@
         <div class="container">
             <h1 class="navbar-brand font-bold text-white"><i class="bi bi-box-seam-fill">
                     ProjectArch</i></h1>
-            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <li class="bi bi-list fs-1 text-white"></li>
-            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white active me-2" aria-current="page"
-                            href="{{ url('student/dashboard') }}">Dashboard</a>
+                        <a class="nav-link text-white active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
-                    <li class="nav-item d-flex">
-                        <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
-                        <button type="submit" class="btn btn-block ms-2 search-btn"><i
-                                class="bi bi-search"></i></button>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " href="#projects">Seminars</a>
                     </li>
                 </ul>
-
-                <li class="nav-item dropdown me-5">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> {{ auth()->user()->student->matric }}</i>
+                <!-- register and login button wrapper -->
+                <div>
+                    <a href="{{ url('register') }}" class="">
+                        <button class="btn btn-block shadow-none register-btn">Register</button>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item"
-                                href="{{ url('/student/profile/edit') }}/{{ auth()->user()->student->uuid }}"><i
-                                    class="bi bi-person-badge-fill"></i>
-                                Edit Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a href="{{ route('logout') }}"><button
-                                    class="btn btn-block d-block mx-auto sign-out-btn">Log
-                                    Out</button></a></li>
-                    </ul>
-                </li>
-
-                <!-- notification -->
-                <li class="nav-item notification-wrapper">
-                    <i class="bi bi-bell-fill position-relative fs-5 text-white notification-bell"
-                        data-bs-toggle="modal" data-bs-target="#modalId">
-                        <span
-                            class="position-absolute start-100 translate-middle bg-danger rounded-circle notification">
-                            <span class="visually-hidden">New alerts</span>
-                        </span>
-                    </i>
-                </li>
-
-                <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-                    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalTitleId"><i class="bi bi-bell-fill fs-5"></i>
-                                    Notifications</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                    <small> Notifications! Ntoifications!! Notifications!!!</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ url('login') }}" class="ms-3 mt-2">
+                        <button class="btn btn-block shadow-none login-btn">Login</button>
+                    </a>
                 </div>
             </div>
+        </div>
     </nav>
 
-    <!-- SEMINAR DETAILS START HERE -->
+    <!-- PROJECT DETAILS START HERE -->
     <div class="project-details-section bg-white" id="projects">
         <div class="container">
             <h2 class="text-center mt-5 deep-blue-color">Seminar Details</h2>
+            <h2 class="fw-light mt-5">Free Download Online Air Conditioner Shop Project in PHP with source code</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae nisi necessitatibus dignissimos! Minima
+                inventore id sunt hic nihil dolore temporibus.</p>
             <div class="mt-5 col-md-4 student-details-card">
                 <div class="row">
                     <div class="col p-3">
                         <img src="{{ asset('img/4.svg') }}" alt="">
                     </div>
                     <div class="col p-3">
-                        <h3 class="fw-normal fs-5">{{ $seminar->seminar_topic }}</h3>
+                        <h3 class="fw-normal fs-5">Topic</h3>
                         <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
-                            {{ $seminar->updated_at }}</span>
+                            Date</span>
                     </div>
                 </div>
             </div>
@@ -122,24 +79,26 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th scope="row">Seminar Topic</th>
-                            <td>{{ $seminar->seminar_topic }}</td>
+                            <th scope="row">Project Topic</th>
+                            <td>Project Topic</td>
                         </tr>
                         <tr>
-                            <th scope="row">Seminar Description</th>
-                            <td>{{ $seminar->seminar_desc }}</td>
+                            <th scope="row">Project Description</th>
+                            <td>Project Description</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Developer Name</th>
+                            <td>Developer Name</td>
                         </tr>
                         <tr>
                             <th scope="row">File</th>
                             <td>
-                                {{ $seminar->seminar_file_name }}
-                                <a href="{{ url('student/download/seminar/' . base64_encode($seminar->seminar_file_path)) }}"
-                                    download="download"><button type="button"
+                                File
+                                <a href="#" download="download"><button type="button"
                                         class="btn btn-block edit-btn float-end">Download</button>
                                     <div class="clearfix"></div>
                                 </a>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -168,13 +127,24 @@
                         <h5 class="text-white mt-3">Quick Links</h5>
                         <ul>
                             <li class="mt-3">
-                                <i class="bi bi-chevron-right text-white"></i> <a
-                                    href="{{ url('student/dashboard') }}"
-                                    class="text-white quick-links">Dashboard</a>
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('/') }}"
+                                    class="text-white quick-links">Home</a>
                             </li>
                             <li class="mt-2">
-                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"
-                                    class="text-white quick-links">Logout</a>
+                                <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
+                                    class="text-white quick-links">Projects</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="#projects"
+                                    class="text-white quick-links">Seminars</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('register') }}"
+                                    class="text-white quick-links">Register</a>
+                            </li>
+                            <li class="mt-2">
+                                <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('login') }}"
+                                    class="text-white quick-links">Login</a>
                             </li>
                         </ul>
                     </div>

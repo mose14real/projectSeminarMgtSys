@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,6 +101,7 @@
                 </div>
             </div>
     </nav>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show">
             <span>{{ $message }}</span>
@@ -119,7 +121,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">0</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_project_topic }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#project-registration-modal">Register New
                                 Project</button>
@@ -133,7 +135,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-cloud-arrow-up project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">0</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_project_file }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#project-upload-modal">+ Upload New
                                 Project</button>
@@ -147,7 +149,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">1</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_project_topic }}</h1>
                             <a
                                 href="{{ url('/student/project-details') }}/{{ auth()->user()->student->project->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View
@@ -211,23 +213,41 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3"
+                                action="{{ url('/student/create-project') }}/{{ auth()->user()->student->project->uuid }}"
+                                method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic">
+                                    @if ($errors->has('project_topic'))
+                                        <span class="text-danger">{{ $errors->first('project_topic') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" placeholder="Project Topic"
+                                        name="project_topic" value="{{ old('project_topic') }}">
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" id="" rows="3" placeholder="Project Description"></textarea>
+                                    @if ($errors->has('project_desc'))
+                                        <span class="text-danger">{{ $errors->first('project_desc') }}</span>
+                                    @endif
+                                    <textarea class="form-control" id="" rows="3" placeholder="Project Description" name="project_desc"
+                                        value="{{ old('project_desc') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('project_type'))
+                                        <span class="text-danger">{{ $errors->first('project_type') }}</span>
+                                    @endif
                                     <select class="form-select form-select-md mb-3 project-type-user"
-                                        aria-label=".form-select-lg example">
+                                        aria-label=".form-select-lg example" name="project_type">
                                         <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Group">Group</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 d-none group-details-user">
-                                    <textarea class="form-control" rows="3" placeholder="Add group members matric numbers..."></textarea>
+                                    @if ($errors->has('project_members'))
+                                        <span class="text-danger">{{ $errors->first('project_members') }}</span>
+                                    @endif
+                                    <textarea class="form-control" rows="3" placeholder="Add group members matric numbers..."
+                                        name="project_members" value="{{ old('project_members') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit"
@@ -257,18 +277,18 @@
                                 method="POST">
                                 @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        name="seminar_topic" value="{{ old('seminar_topic') }}">
                                     @if ($errors->has('seminar_topic'))
                                         <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
                                     @endif
+                                    <input type="text" class="form-control" placeholder="Seminar Topic"
+                                        name="seminar_topic" value="{{ old('seminar_topic') }}">
                                 </div>
                                 <div class="mb-3 group-details">
-                                    <textarea class="form-control" rows="3" placeholder="Seminar Description" name="seminar_desc"
-                                        value="{{ old('seminar_desc') }}"></textarea>
                                     @if ($errors->has('seminar_desc'))
                                         <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
                                     @endif
+                                    <textarea class="form-control" rows="3" placeholder="Seminar Description" name="seminar_desc"
+                                        value="{{ old('seminar_desc') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit"
@@ -288,14 +308,21 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Upload Project Area</h5>
+                            <h5 class="modal-title" id="modalTitleId">Project Upload</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3"
+                                action="{{ url('/student/upload/project') }}/{{ auth()->user()->student->project->uuid }}"
+                                method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                @if ($errors->has('project_file'))
+                                    <span class="text-danger">{{ $errors->first('project_file') }}</span>
+                                @endif
                                 <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="Password">
+                                    <input type="file" name="project_file" class="form-control">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn btn-block float-end register-page-btn">Upload
@@ -315,7 +342,7 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Upload Seminar Area</h5>
+                            <h5 class="modal-title" id="modalTitleId">Seminar Upload</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -326,10 +353,10 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="file" name="seminar_file" class="form-control">
                                     @if ($errors->has('seminar_file'))
                                         <span class="text-danger">{{ $errors->first('seminar_file') }}</span>
                                     @endif
+                                    <input type="file" name="seminar_file" class="form-control">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn btn-block float-end register-page-btn">Upload
@@ -343,6 +370,7 @@
             </div>
             <!-- ENDS HERE -->
         </div>
+
         <!-- FOOTER SECTION -->
         <footer class="mt-5">
             <div class="container">
@@ -411,17 +439,17 @@
             const groupDetailsEditUser = document.querySelector('.group-details-edit-user');
             projectTypeUser.addEventListener('click', (event) => {
                 event.preventDefault();
-                if (projectTypeUser.value == 'group') {
+                if (projectTypeUser.value == 'Group') {
                     groupDetailsUser.classList.remove('d-none');
-                } else if (projectTypeUser.value == 'individual') {
+                } else if (projectTypeUser.value == 'Individual') {
                     groupDetailsUser.classList.add('d-none');
                 }
             })
             projectTypeEditUser.addEventListener('click', (event) => {
                 event.preventDefault();
-                if (projectTypeEditUser.value == 'group') {
+                if (projectTypeEditUser.value == 'Group') {
                     groupDetailsEditUser.classList.remove('d-none');
-                } else if (projectTypeEditUser.value == 'individual') {
+                } else if (projectTypeEditUser.value == 'Individual') {
                     groupDetailsEditUser.classList.add('d-none');
                 }
             })

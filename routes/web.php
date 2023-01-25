@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 #--USER--CONTROLLER--START-HERE
 Route::controller(UserController::class)->group(function () {
+
     Route::get('/', 'index');
-    Route::get('details', 'details');
+    Route::get('project-details', 'ProjectDetails');
+    Route::get('seminar-details', 'seminarDetails');
     Route::get('register', 'register');
     Route::post('store', 'store');
     Route::get('login', 'login');
@@ -27,25 +29,28 @@ Route::controller(UserController::class)->group(function () {
     Route::get('logout', 'logout')->name('logout');
 });
 #--USER--CONTROLLER--ENDS-HERE
-// Route::get('download/{file}', [StudentController::class, 'download']);
 
 #--STUDENT--CONTROLLER--START-HERE
 Route::middleware(['web'])->group(function () {
+
     Route::controller(StudentController::class)->group(function () {
+
         Route::prefix('student')->group(function () {
+
             Route::get('/dashboard', 'dashboard');
             Route::get('/profile/show/{uuid}', 'showProfile');
             Route::get('/profile/edit/{uuid}', 'editProfile');
             Route::put('/profile/update/{uuid}', 'updateProfile');
-            Route::get('project-details/{uuid}', 'projectDetails');
+
             Route::post('create-seminar/{uuid}', 'createSeminar');
             Route::put('/upload/seminar/{uuid}', 'uploadSeminar');
-            // Route::get('download/{file}', [StudentController::class, 'download']);
-            Route::get('/download/seminar/{file}', 'downloadSeminar');
+            Route::get('/download/seminar/{seminar_file}', 'downloadSeminar');
             Route::get('seminar-details/{uuid}', 'seminarDetails');
-            // Route::post('create-project', 'createProject');
-            // Route::post('/upload/project/{uuid}', 'uploadProject');
-            // Route::get('/download/project{uuid}', 'downloadProject');
+
+            Route::post('create-project/{uuid}', 'createProject');
+            Route::put('/upload/project/{uuid}', 'uploadProject');
+            Route::get('/download/project/{project_file}', 'downloadProject');
+            Route::get('project-details/{uuid}', 'projectDetails');
         });
     });
 });

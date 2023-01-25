@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Project Details | Project & Seminar Archival Mgt Sys</title>
+    <title>Student | Project-Details | Page</title>
 </head>
 
 <body>
@@ -102,7 +102,7 @@
             </div>
     </nav>
 
-    <!-- SEMINAR DETAILS START -->
+    <!-- PROJECT DETAILS START HERE -->
     <div class="project-details-section bg-white" id="projects">
         <div class="container">
             <h2 class="text-center mt-5 deep-blue-color">Project Details</h2>
@@ -112,9 +112,9 @@
                         <img src="{{ asset('img/4.svg') }}" alt="">
                     </div>
                     <div class="col p-3">
-                        <h3 class="fw-normal fs-5">Student Name</h3>
+                        <h3 class="fw-normal fs-5">{{ $project->project_topic }}</h3>
                         <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
-                            2023-01-31</span>
+                            {{ $project->updated_at }}</span>
                     </div>
                 </div>
             </div>
@@ -123,37 +123,38 @@
                     <tbody>
                         <tr>
                             <th scope="row">Project Topic</th>
-                            <td>Topic</td>
+                            <td>{{ $project->project_topic }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Project Description</th>
-                            <td>Description</td>
+                            <td>{{ $project->project_desc }}</td>
                         </tr>
                         <tr>
                             <th scope="row">Project Type</th>
-                            <td>Individual / Group</td>
+                            <td>{{ $project->project_type }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Group Matric</th>
-                            <td></td>
-                        </tr>
+                        @if ($project->project_type == 'Group')
+                            <tr>
+                                <th scope="row">Group Matric</th>
+                                <td>{{ $project->project_members }}</td>
+                            </tr>
+                        @endif
                         <tr>
                             <th scope="row">File</th>
-                            <td>Project File</td>
+                            <td>
+                                {{ $project->project_file_name }}
+                                <a href="{{ url('student/download/project/' . base64_encode($project->project_file_path)) }}"
+                                    download="download"><button type="button"
+                                        class="btn btn-block edit-btn float-end">Download</button>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="col-12 mb-3">
-                    <a href="#"><button type="submit" class="btn btn-block edit-btn">Download</button>
-                        <div class="clearfix"></div>
-                    </a>
-                </div>
             </div>
-
         </div>
-        <!-- SEMINAR DETAILS END -->
-
-
+        <!-- ENDS HERE -->
 
         <!-- FOOTER SECTION -->
         <footer class="mt-5">
@@ -177,7 +178,8 @@
                         <ul>
                             <li class="mt-3">
                                 <i class="bi bi-chevron-right text-white"></i> <a
-                                    href="{{ url('student/dashboard') }}" class="text-white quick-links">Dashboard</a>
+                                    href="{{ url('student/dashboard') }}"
+                                    class="text-white quick-links">Dashboard</a>
                             </li>
                             <li class="mt-2">
                                 <i class="bi bi-chevron-right text-white"></i> <a href="{{ route('logout') }}"
