@@ -108,6 +108,10 @@ body{
     background-color:var(--deep-blue);
     clip-path: polygon(0 0, 100% 0%, 100% 90%, 0 100%);
 }
+.header-text{
+    color:var(--light-blue);
+    font-style:normal !important;
+}
 @media screen and (max-width:767px)
 {
     .header-section{
@@ -116,6 +120,7 @@ body{
 }
 .header-text{
     color:var(--light-blue);
+    font-style:normal;
 }
 .search-btn,.search-btn:focus{
     background-color:var(--light-blue);
@@ -189,7 +194,13 @@ body{
 }
 
 /* PROJECT AND SEMINAR SECTION STYLING */
-.project-and-seminar-section,.project-details-section{
+.project-and-seminar-section{
+    min-height:20vh;
+}
+/* .project-and-seminar-section,.project-details-section{
+    min-height:100vh;
+} */
+.project-details-section{
     min-height:100vh;
 }
 .project-illustrations{
@@ -220,6 +231,9 @@ body{
 }
 .project-main-card{
     background-color:var(--v-light-blue);
+}
+.card-wrapper{
+    justify-content: center;
 }
 .file-upload-btn,.file-upload-btn:focus{
     background-color:var(--deep-blue);
