@@ -60,6 +60,9 @@ Route::middleware(['web'])->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', 'dashboard');
+        Route::get('/project-data', 'projectData');
+        Route::get('/student-data', 'studentData');
+        Route::get('/seminar-data', 'seminarData');
         // Route::get('/dashboard', 'studentDashboard');
         // Route::get('/profile', 'studentProfile');
         // Route::post('/profile/edit/{uuid}', 'edit');
