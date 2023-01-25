@@ -16,7 +16,11 @@ class StudentController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('student.dashboard');
+            $seminar = Auth::user()->student->seminar;
+            return view('student.dashboard', [
+                "count_seminar_topic" => is_null($seminar->seminar_topic) ? "0" : "1",
+                "count_seminar_file" => is_null($seminar->seminar_file_name) ? "0" : "1"
+            ]);
         }
 
         return redirect('login')->withSuccess('Opps! You do not have access to dashboard');
@@ -73,10 +77,13 @@ class StudentController extends Controller
 
         if (Auth::check()) {
             $seminar = Seminar::findByUuid($uuid);
+            if (!is_null($seminar->seminar_topic)) {
+                return redirect('student/dashboard')->withSuccess('Seminar already exist');
+            }
             $seminar->update($credentials);
             return redirect('student/dashboard')->withSuccess('Seminar registered successfully');
         }
-        return redirect("login")->withSuccess('Opps! You do not have access to register seminar');
+        return redirect("login")->withSuccess('Opps! No access to register seminar');
     }
 
     public function uploadSeminar(Request $request, $uuid)
@@ -87,23 +94,35 @@ class StudentController extends Controller
 
         if (Auth::check()) {
             $seminar = Seminar::findByUuid($uuid);
+            if (!is_null($seminar->seminar_file_name)) {
+                return redirect('student/dashboard')->withSuccess('Seminar file already exist');
+            }
             if ($request->seminar_file) {
-                $fileName = $request->seminar_file->getClientOriginalName();
-                $filePath = $request->seminar_file->move(public_path('seminars'), $fileName);
-                $seminarPath = "seminars/{$fileName}";
+                $seminarName = $request->seminar_file->getClientOriginalName();
+                $publicPath = $request->seminar_file->move(public_path('seminars'), $seminarName);
+                $seminarPath = "seminars/{$seminarName}";
+                $seminar->seminar_file_name = $seminarName;
                 $seminar->seminar_file_path = $seminarPath;
                 $seminar->save();
                 return redirect('student/dashboard')->withSuccess('Seminar uploaded successfully');
             }
         }
-        return redirect("login")->withSuccess('Opps! Access denied to upload seminar');
+        return redirect("login")->withSuccess('Opps! no ccess to upload seminar');
     }
 
-    public function downloadSeminar(Request $request, $uuid)
+    public function downloadSeminar(String $file)
     {
-        $seminars = Seminar::orderBy('id', 'desc')->paginate(5);
-        return view('fileDownload', compact('seminars'));
+        if (Auth::check()) {
+            $file = base64_decode($file);
+            return response()->download(public_path($file));
+        }
     }
+
+    // public function download(String $file)
+    // {
+    //     $file = base64_decode($file);
+    //     return response()->download(public_path($file));
+    // }
 
     public function seminarDetails($uuid)
     {
