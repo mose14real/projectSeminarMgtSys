@@ -19,7 +19,7 @@
     <!-- GENERAL STYLESHEET -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
     <title>Home | Page</title>
 </head>
@@ -133,7 +133,7 @@
     <div class="projects" id="project-seminar-list">
         <div class="container">
             <h2 class="text-center mb-3 mt-5 deep-blue-color">Projects And Seminars Lists</h2>
-            <div class="row">
+            <div class="row card-wrapper">
                 <!-- project card starts here -->
                 <div class="col-md-4 mb-3">
                     <div class="card project-main-card">
