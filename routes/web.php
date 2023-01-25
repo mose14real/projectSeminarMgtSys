@@ -27,6 +27,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('logout', 'logout')->name('logout');
 });
 #--USER--CONTROLLER--ENDS-HERE
+// Route::get('download/{file}', [StudentController::class, 'download']);
 
 #--STUDENT--CONTROLLER--START-HERE
 Route::middleware(['web'])->group(function () {
@@ -39,7 +40,8 @@ Route::middleware(['web'])->group(function () {
             Route::get('project-details/{uuid}', 'projectDetails');
             Route::post('create-seminar/{uuid}', 'createSeminar');
             Route::put('/upload/seminar/{uuid}', 'uploadSeminar');
-            Route::get('/download/seminar/{uuid}', 'downloadSeminar');
+            // Route::get('download/{file}', [StudentController::class, 'download']);
+            Route::get('/download/seminar/{file}', 'downloadSeminar');
             Route::get('seminar-details/{uuid}', 'seminarDetails');
             // Route::post('create-project', 'createProject');
             // Route::post('/upload/project/{uuid}', 'uploadProject');

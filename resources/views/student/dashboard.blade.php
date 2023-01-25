@@ -163,7 +163,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">0</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_seminar_topic }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#seminar-registration-modal">Register New
                                 Seminar</button>
@@ -177,7 +177,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-cloud-arrow-up project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">0</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_seminar_file }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#seminar-upload-modal">+ Upload New
                                 Seminar</button>
@@ -191,7 +191,7 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal-text project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">1</h1>
+                            <h1 class="card-title text-center text-white">{{ $count_seminar_topic }}</h1>
                             <a
                                 href="{{ url('/student/seminar-details') }}/{{ auth()->user()->student->seminar->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View

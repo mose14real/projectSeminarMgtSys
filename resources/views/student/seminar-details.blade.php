@@ -132,8 +132,9 @@
                         <tr>
                             <th scope="row">File</th>
                             <td>
-                                {{ $seminar->seminar_file_path }}
-                                <a href="#"><button type="submit"
+                                {{ $seminar->seminar_file_name }}
+                                <a href="{{ url('student/download/seminar/' . base64_encode($seminar->seminar_file_path)) }}"
+                                    download="download"><button type="button"
                                         class="btn btn-block edit-btn">Download</button>
                                     <div class="clearfix"></div>
                                 </a>

@@ -77,8 +77,6 @@ class UserController extends Controller
 
     public function authLogin(Request $request)
     {
-        // return redirect("login")->withSuccess('Opps! You have entered invalid credentials');
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
