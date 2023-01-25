@@ -28,6 +28,21 @@ class AdminController extends Controller
         return view('admin.profile');
     }
 
+    public function studentData()
+    {
+        return view('admin.student-data');
+    }
+
+    public function projectData()
+    {
+        return view('admin.project-data');
+    }
+
+    public function seminarData()
+    {
+        return view('admin.seminar-data');
+    }
+
     public function show($id)
     {
         //

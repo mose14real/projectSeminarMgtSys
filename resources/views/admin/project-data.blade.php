@@ -370,6 +370,45 @@
             </div>
             <!-- ENDS HERE -->
 
+            <!-- student data table -->
+            <div class="col-12">
+                <h3 class="mt-5 mb-3">Student Data</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Project / Seminar Topic</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Modification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td scope="row">1</td>
+                                <td>Adebayo Aleemah Ade</td>
+                                <td>Library Management System</td>
+                                <td>Approved</td>
+                                <td>
+                                    <button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#student-data-modal"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ends here -->
+
             <!-- ADD NEW STUDENT TO TABLE -->
             <div class="modal fade" id="add-student-to-table-modal" tabindex="-1" data-bs-backdrop="static"
                 data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -513,6 +552,46 @@
                 </div>
             </div>
             <!-- ENDS HERE -->
+
+            <!-- projects data table -->
+            <div class="col-12">
+                <h3 class="mt-5 mb-3">Projects Data</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Project / Seminar Topic</th>
+                                <th scope="col">Project / Seminar Description</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Modification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td scope="row">1</td>
+                                <td>Control Management system in Javascript...</td>
+                                <td>Library Management System</td>
+                                <td>Approved</td>
+                                <td>
+                                    <button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#edit-upload-project-to-table-modal"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ends here -->
+
 
             <!-- EDIT UPLOADED PROJECTS AND SEMINARS MODAL SECTION STARTS HERE -->
             <div class="modal fade" id="edit-upload-project-to-table-modal" tabindex="-1" data-bs-backdrop="static"
