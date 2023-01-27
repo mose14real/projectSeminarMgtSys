@@ -16,64 +16,59 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-#--USER--CONTROLLER--START-HERE
+#--USERS--START-HERE
 Route::controller(UserController::class)->group(function () {
-
     Route::get('/', 'index');
-    Route::get('project-details', 'ProjectDetails');
-    Route::get('seminar-details', 'seminarDetails');
+    Route::get('project-details/{uuid}', 'ProjectDetailsAll');
+    Route::get('seminar-details/{uuid}', 'seminarDetailsAll');
+    Route::get('download/{file}', 'download');
     Route::get('register', 'register');
     Route::post('store', 'store');
     Route::get('login', 'login');
     Route::post('auth-login', 'authLogin');
     Route::get('logout', 'logout')->name('logout');
 });
-#--USER--CONTROLLER--ENDS-HERE
+#--ENDS-HERE
 
-#--STUDENT--CONTROLLER--START-HERE
+#--STUDENT--START-HERE
 Route::middleware(['web'])->group(function () {
-
     Route::controller(StudentController::class)->group(function () {
-
         Route::prefix('student')->group(function () {
-
             Route::get('/dashboard', 'dashboard');
             Route::get('/profile/show/{uuid}', 'showProfile');
             Route::get('/profile/edit/{uuid}', 'editProfile');
             Route::put('/profile/update/{uuid}', 'updateProfile');
+            Route::get('/download/{file}', 'downloadAll');
 
             Route::post('create-seminar/{uuid}', 'createSeminar');
             Route::put('/upload/seminar/{uuid}', 'uploadSeminar');
-            Route::get('/download/seminar/{seminar_file}', 'downloadSeminar');
             Route::get('seminar-details/{uuid}', 'seminarDetails');
 
             Route::post('create-project/{uuid}', 'createProject');
             Route::put('/upload/project/{uuid}', 'uploadProject');
-            Route::get('/download/project/{project_file}', 'downloadProject');
             Route::get('project-details/{uuid}', 'projectDetails');
         });
     });
 });
-#--STUDENT--CONTROLLER--ENDS-HERE
+#----ENDS-HERE
 
-#--ADMIN--CONTROLLER--START-HERE
+#--ADMIN--START-HERE
 Route::controller(AdminController::class)->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', 'dashboard');
         Route::get('/project-data', 'projectData');
         Route::get('/student-data', 'studentData');
         Route::get('/seminar-data', 'seminarData');
-        // Route::get('/dashboard', 'studentDashboard');
-        // Route::get('/profile', 'studentProfile');
         // Route::post('/profile/edit/{uuid}', 'edit');
-        // Route::post('/profile/edit/{uuid}', 'editStudent');
         // Route::update('/profile/update/{uuid}', 'update');
-        // Route::update('/profile/update/{uuid}', 'updateStudent');
-        // Route::post('/upload/project/{uuid}', 'uploadProject');
-        // Route::get('/download/project/{uuid}', 'downloadProject');
-        // Route::post('/upload/seminar/{uuid}', 'uploadSeminar');
-        // Route::get('/download/seminar/{uuid}', 'downloadSeminar');
+        // Route::get('/download/{file}', 'downloadAny');
         // Route::delete('/destroy/{uuid}', 'destroy');
+
+        // Route::get('/profile', 'studentProfile');
+        // Route::post('/profile/edit/{uuid}', 'editStudent');
+        // Route::update('/profile/update/{uuid}', 'updateStudent');
+        // Route::post('/upload/seminar/{uuid}', 'uploadStudentSeminar');
+        // Route::post('/upload/project/{uuid}', 'uploadStudentProject');
     });
 });
-#--ADMIN--CONTROLLER--ENDS-HERE
+#--ENDS-HERE

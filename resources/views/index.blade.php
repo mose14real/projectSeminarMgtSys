@@ -105,11 +105,15 @@
                             <h4 class="text-white">Projects</h4>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
+                            @foreach ($projects as $project)
+                                <li class="list-group-item">
+                                    <a
+                                        href="{{ url('project-details/' . $project->uuid) }}">{{ $project->project_topic }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
+                    {{ $projects->links() }}
                 </div>
                 <!-- Seminars cards starts here -->
                 <div class="col-md-4 p-2">
@@ -118,78 +122,81 @@
                             <h4 class="text-white">Seminars</h4>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="#">Project and Seminar Management System</a>
-                            </li>
+                            @foreach ($seminars as $seminar)
+                                <li class="list-group-item">
+                                    <a
+                                        href="{{ url('seminar-details/' . $seminar->uuid) }}">{{ $seminar->seminar_topic }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
+                    <div>{{ $seminars->links() }}</div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- PROJECTS -->
     <div class="projects" id="project-seminar-list">
         <div class="container">
-            <h2 class="text-center mb-3 mt-5 deep-blue-color">Projects And Seminars Lists</h2>
+            <h2 class="text-center mb-3 mt-5 deep-blue-color">Projects List</h2>
             <div class="row card-wrapper">
                 <!-- project card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    project</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
+                @foreach ($projects as $project)
+                    <div class="col-md-4 mb-3">
+                        <div class="card project-main-card">
+                            <div class="card-body">
+                                <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
+                                        project</i></span>
+                                <h5 class="card-title">
+                                    <a
+                                        href="{{ url('project-details/' . $project->uuid) }}">{{ $project->project_topic }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    {{ $project->project_desc }}
+                                </p>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="me-3 fs-6 timestamp">Published on <br><i
+                                                class="bi bi-clock-fill fs-6"></i>
+                                            {{ $project->updated_at }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+                <div>{{ $projects->links() }}</div>
                 <!-- ends here -->
-
+            </div>
+            <h2 class="text-center mb-3 mt-5 deep-blue-color">Seminars List</h2>
+            <div class="row card-wrapper">
                 <!-- seminar card starts here -->
-                <div class="col-md-4 mb-3">
-                    <div class="card project-main-card">
-                        <div class="card-body">
-                            <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
-                                    seminar</i></span>
-                            <h5 class="card-title">
-                                <a href="#">Project and Seminar Management System</a>
-                            </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis optio ipsam obcaecati
-                                doloribus officiis, nesciunt eum laborum nostrum error consectetur?
-                            </p>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="bi bi-person-circle fs-6"><span class="ml-2 fs-6">
-                                                Oluwasegun</span></i>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-alarm-fill fs-6"><span class="ml-2 fs-6"> 2023-01-03</span></i>
+                @foreach ($seminars as $seminar)
+                    <div class="col-md-4 mb-3">
+                        <div class="card project-main-card">
+                            <div class="card-body">
+                                <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
+                                        seminar</i></span>
+                                <h5 class="card-title">
+                                    <a
+                                        href="{{ url('seminar-details/' . $seminar->uuid) }}">{{ $seminar->seminar_topic }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    {{ $seminar->seminar_desc }}
+                                </p>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <span class="me-3 fs-6 timestamp">Published on <br><i
+                                                class="bi bi-clock-fill fs-6"></i>
+                                            {{ $seminar->updated_at }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+                <div>{{ $seminars->links() }}</div>
                 <!-- ends here -->
             </div>
         </div>

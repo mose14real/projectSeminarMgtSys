@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->foreignId('student_id')->constrained('students');
             $table->string('seminar_topic')->nullable();
-            $table->text('seminar_desc')->nullable();
+            $table->longText('seminar_desc')->nullable();
             $table->string('seminar_file_name')->nullable();
             $table->string('seminar_file_path')->nullable();
             $table->timestamps();

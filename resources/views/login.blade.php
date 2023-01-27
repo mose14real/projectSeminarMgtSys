@@ -70,18 +70,18 @@
                 <form class="mt-3" action="{{ url('auth-login') }}" method="POST">
                     @csrf
                     <div class="col-12 mb-3">
-                        <input type="text" class="form-control" placeholder="Email" name="email"
-                            value="{{ old('email') }}">
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
+                        <input type="text" class="form-control" placeholder="Email" name="email"
+                            value="{{ old('email') }}">
                     </div>
                     <div class="col-12 mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password"
-                            value="{{ old('password') }}">
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif
+                        <input type="password" class="form-control" placeholder="Password" name="password"
+                            value="{{ old('password') }}">
                     </div>
                     <div class="col-12 mb-3">
                         <button type="submit" class="btn btn-block w-100 register-page-btn">Login</button>

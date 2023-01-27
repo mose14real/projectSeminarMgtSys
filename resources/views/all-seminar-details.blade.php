@@ -37,10 +37,10 @@
                         <a class="nav-link text-white active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="#projects">Projects</a>
+                        <a class="nav-link text-white " href="{{ url('/') }}">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="#projects">Seminars</a>
+                        <a class="nav-link text-white " href="{{ url('/') }}">Seminars</a>
                     </li>
                 </ul>
                 <!-- register and login button wrapper -->
@@ -59,50 +59,49 @@
     <!-- PROJECT DETAILS START HERE -->
     <div class="project-details-section bg-white" id="projects">
         <div class="container">
-            <h2 class="text-center mt-5 deep-blue-color">Seminar Details</h2>
-            <h2 class="fw-light mt-5">Free Download Online Air Conditioner Shop Project in PHP with source code</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae nisi necessitatibus dignissimos! Minima
-                inventore id sunt hic nihil dolore temporibus.</p>
-            <div class="mt-5 col-md-4 student-details-card">
-                <div class="row">
-                    <div class="col p-3">
-                        <img src="{{ asset('img/4.svg') }}" alt="">
-                    </div>
-                    <div class="col p-3">
-                        <h3 class="fw-normal fs-5">Topic</h3>
-                        <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
-                            Date</span>
+            <h3 class="text-center mt-5 deep-blue-color">Seminar Details</h2>
+                <h2 class="text-center fw-light mt-5">{{ $seminar->seminar_topic }}</h2>
+                <p class="text-center">{{ $seminar->seminar_desc }}</p>
+                <div class="mt-5 col-md-4 student-details-card">
+                    <div class="row">
+                        <div class="col p-3">
+                            <img src="{{ asset('img/4.svg') }}" alt="">
+                        </div>
+                        <div class="col p-3">
+                            <h3 class="fw-normal fs-5">
+                                {{ $developer->first_name . ' ' . $developer->middle_name . ' ' . $developer->last_name }}
+                            </h3>
+                            <h2 class="fw-normal fs-5"><i>{{ $developer->student->matric }}</i></h2>
+                            <span class="me-3 fs-6 timestamp">Published on <br><i class="bi bi-clock-fill fs-6"></i>
+                                {{ $seminar->updated_at }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="mt-5">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Project Topic</th>
-                            <td>Project Topic</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Project Description</th>
-                            <td>Project Description</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Developer Name</th>
-                            <td>Developer Name</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">File</th>
-                            <td>
-                                File
-                                <a href="#" download="download"><button type="button"
-                                        class="btn btn-block edit-btn float-end">Download</button>
-                                    <div class="clearfix"></div>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="mt-5">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Seminar Topic</th>
+                                <td>{{ $seminar->seminar_topic }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Seminar Description</th>
+                                <td>{{ $seminar->seminar_desc }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">File</th>
+                                <td>
+                                    {{ $seminar->seminar_file_name }}
+                                    <a href="{{ url('download/' . base64_encode($seminar->seminar_file_path)) }}"
+                                        download><button type="button"
+                                            class="btn btn-block edit-btn float-end">Download</button>
+                                        <div class="clearfix"></div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
         </div>
         <!-- ENDS HERE -->
 

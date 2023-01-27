@@ -56,14 +56,7 @@ class StudentController extends Controller
     {
         $credentials = $request->validate(
             [
-                'first_name' => [],
-                'middle_name' => [],
-                'last_name' => [],
-                'matric' => [],
-                'email' => [],
-                'phone' => ['min:11'],
-                'supervisor' => [],
-                'session' => ['min:9', 'max:9'],
+                'phone' => ['min:11', 'max:11']
             ]
         );
 
@@ -73,9 +66,20 @@ class StudentController extends Controller
             $student->user->update($credentials);
             return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
         }
-        return redirect("login")->withSuccess('Opps! No access to update profile');
+        return redirect('login')->withSuccess('Opps! No access to update profile');
+    }
+
+    #--Student--Download--All--
+    public function downloadAll($file)
+    {
+        if (Auth::check()) {
+            $file = base64_decode($file);
+            return response()->download(public_path($file));
+        }
+        return redirect('login')->withSuccess('Opps! No ccess to download file');
     }
     #--ENDS--HERE--
+
 
     #--SEMINAR--START--HERE--
 
@@ -97,7 +101,7 @@ class StudentController extends Controller
             $seminar->update($credentials);
             return redirect('student/dashboard')->withSuccess('Seminar registered successfully');
         }
-        return redirect("login")->withSuccess('Opps! No access to register seminar');
+        return redirect('login')->withSuccess('Opps! No access to register seminar');
     }
 
     #--Upload--Seminar--
@@ -121,7 +125,7 @@ class StudentController extends Controller
             }
 
             if ($request->seminar_file) {
-                $seminarName = $request->seminar_file->getClientOriginalName();
+                $seminarName = time() . "_" . $request->seminar_file->getClientOriginalName();
                 $publicPath = $request->seminar_file->move(public_path('seminars'), $seminarName);
                 $seminarPath = "seminars/{$seminarName}";
                 $seminar->seminar_file_name = $seminarName;
@@ -130,17 +134,7 @@ class StudentController extends Controller
                 return redirect('student/dashboard')->withSuccess('Seminar file uploaded successfully');
             }
         }
-        return redirect("login")->withSuccess('Opps! No ccess to upload seminar');
-    }
-
-    #--Download--Seminar--
-    public function downloadSeminar($seminar_file)
-    {
-        if (Auth::check()) {
-            $seminar_file = base64_decode($seminar_file);
-            return response()->download(public_path($seminar_file));
-        }
-        return redirect("login")->withSuccess('Opps! No ccess to download seminar');
+        return redirect('login')->withSuccess('Opps! No ccess to upload seminar');
     }
 
     #--Seminar--Details--
@@ -148,11 +142,16 @@ class StudentController extends Controller
     {
         if (Auth::check()) {
             $seminar = Seminar::findByUuid($uuid);
-            return view('student.seminar-details', compact('seminar'));
+            $developer = $seminar->student->user;
+            return view('student.seminar-details', [
+                "seminar" => $seminar,
+                "developer" => $developer
+            ]);
         }
         return redirect('login')->withSuccess('Opps! No access to view seminar details');
     }
     #--ENDS--HERE--
+
 
     #--PROJECT--START--HERE--
 
@@ -198,7 +197,7 @@ class StudentController extends Controller
             }
 
             if ($request->project_file) {
-                $projectName = $request->project_file->getClientOriginalName();
+                $projectName = time() . "_" . $request->project_file->getClientOriginalName();
                 $publicPath = $request->project_file->move(public_path('projects'), $projectName);
                 $projectPath = "projects/{$projectName}";
                 $project->project_file_name = $projectName;
@@ -207,17 +206,7 @@ class StudentController extends Controller
                 return redirect('student/dashboard')->withSuccess('Project file uploaded successfully');
             }
         }
-        return redirect("login")->withSuccess('Opps! No ccess to upload project');
-    }
-
-    #--Download--Project--
-    public function downloadProject($project_file)
-    {
-        if (Auth::check()) {
-            $project_file = base64_decode($project_file);
-            return response()->download(public_path($project_file));
-        }
-        return redirect("login")->withSuccess('Opps! No ccess to download project');
+        return redirect('login')->withSuccess('Opps! No ccess to upload project');
     }
 
     #--Project--Details--
@@ -225,7 +214,14 @@ class StudentController extends Controller
     {
         if (Auth::check()) {
             $project = Project::findByUuid($uuid);
-            return view('student.project-details', compact('project'));
+            $developer = $project->student->user;
+            return view(
+                'student.project-details',
+                [
+                    "project" => $project,
+                    "developer" => $developer
+                ]
+            );
         }
         return redirect('login')->withSuccess('Opps! No access to view project details');
     }

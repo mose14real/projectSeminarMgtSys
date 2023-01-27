@@ -23,7 +23,7 @@ class Seminar extends Model
         'seminar_file_path',
     ];
 
-    public function seminar(): BelongsTo
+    public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
     }

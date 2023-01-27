@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->foreignId('student_id')->constrained('students');
             $table->string('project_topic')->nullable();
-            $table->text('project_desc')->nullable();
+            $table->longText('project_desc')->nullable();
             $table->string('project_type')->nullable();
             $table->string('project_members')->nullable();
             $table->string('project_file_name')->nullable();

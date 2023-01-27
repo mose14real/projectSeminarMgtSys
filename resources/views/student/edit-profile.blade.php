@@ -122,59 +122,38 @@
                         @csrf
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" name="first_name"
-                                value="{{ $student->user->first_name }}">
-                            @if ($errors->has('first_name'))
-                                <span class="text-danger">{{ $errors->first('first_name') }}</span>
-                            @endif
+                                value="{{ $student->user->first_name }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" name="middle_name"
-                                value="{{ $student->user->middle_name }}">
-                            @if ($errors->has('middle_name'))
-                                <span class="text-danger">{{ $errors->first('middle_name') }}</span>
-                            @endif
+                                value="{{ $student->user->middle_name }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" name="last_name"
-                                value="{{ $student->user->last_name }}">
-                            @if ($errors->has('last_name'))
-                                <span class="text-danger">{{ $errors->first('last_name') }}</span>
-                            @endif
+                                value="{{ $student->user->last_name }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                                value="{{ $student->matric }}">
-                            @if ($errors->has('matric'))
-                                <span class="text-danger">{{ $errors->first('matric') }}</span>
-                            @endif
+                                value="{{ $student->matric }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" class="form-control" placeholder="Email" name="email"
-                                value="{{ $student->user->email }}">
-                            @if ($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                            @endif
+                                value="{{ $student->user->email }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Phone Number" name="phone"
-                                value="{{ $student->phone }}">
                             @if ($errors->has('phone'))
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             @endif
+                            <input type="text" class="form-control" placeholder="Phone Number" name="phone"
+                                value="{{ $student->phone }}">
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Supervisor" name="supervisor"
-                                value="{{ $student->supervisor }}">
-                            @if ($errors->has('supervisor'))
-                                <span class="text-danger">{{ $errors->first('supervisor') }}</span>
-                            @endif
+                                value="{{ $student->supervisor }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" placeholder="Session i.e 2021/2022"
-                                name="session" value="{{ $student->session }}">
-                            @if ($errors->has('session'))
-                                <span class="text-danger">{{ $errors->first('session') }}</span>
-                            @endif
+                                name="session" value="{{ $student->session }}" readonly>
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block w-25 register-page-btn">Update</button>
