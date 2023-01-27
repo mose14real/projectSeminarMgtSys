@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Seminar;
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Student;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function details()
-    {
-        return view('admin.details');
-    }
-
+    #--Student--Dashboard--
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $students = Student::count(); //DB::table('students')->count();
+        $seminars = Seminar::count(); //DB::table('seminars')->count();
+        $projects = Project::count(); //DB::table('projects')->count();
+        return view(
+            'admin.dashboard',
+            [
+                "students" => $students,
+                "seminars" => $seminars,
+                "projects" => $projects
+            ]
+        );
     }
 
     public function profile()
@@ -41,25 +43,5 @@ class AdminController extends Controller
     public function seminarData()
     {
         return view('admin.seminar-data');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

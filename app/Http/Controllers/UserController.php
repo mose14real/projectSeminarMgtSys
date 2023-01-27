@@ -133,18 +133,18 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (auth()->user()->role == "admin") {
+                return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
+            }
             return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
         }
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
+        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
     #--Logout--
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
         return redirect('login');
     }
 }

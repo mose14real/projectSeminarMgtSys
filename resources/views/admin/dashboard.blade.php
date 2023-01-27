@@ -41,22 +41,12 @@
                         <a class="nav-link text-white active me-2" aria-current="page"
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Students</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="#">Seminars</a>
-                    </li> -->
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
                                 class="bi bi-search"></i></button>
                     </li>
                 </ul>
-
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,13 +55,10 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
-                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
-                                projects</a></li> -->
-                        <!-- <li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href="#"><button class="btn btn-block d-block mx-auto sign-out-btn">Log
+                        <li><a href="{{ url('logout') }}"><button class="btn btn-block d-block mx-auto sign-out-btn">Log
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -114,17 +101,17 @@
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">
         <div class="container">
-            <h2 class="text-center mt-5">Projects And Seminar Overview</h2>
+            <h2 class="text-center mt-5">Overview of Student | Projects | Seminar</h2>
             <div class="row mt-5">
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">No Registered of students
+                            <span class="badge project-overview-badge mb-2 font-poppins">No of Registered Students
                             </span>
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-mortarboard-fill project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">34</h1>
+                            <h1 class="card-title text-center text-white">{{ $students }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#add-student-modal">+ Add New Student</button>
                         </div>
@@ -133,11 +120,11 @@
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">No of projects</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">No of Projects</span>
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">300</h1>
+                            <h1 class="card-title text-center text-white">{{ $projects }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#upload-project-modal">+ Add New Project</button>
                         </div>
@@ -146,11 +133,11 @@
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">No of seminars</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">No of Seminars</span>
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <h1 class="card-title text-center text-white">324</h1>
+                            <h1 class="card-title text-center text-white">{{ $seminars }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
                                 data-bs-target="#upload-seminar-modal">+ Add New
                                 Seminar</button>
@@ -165,7 +152,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-mortarboard-fill project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Student</button></a>
+                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                                    Student</button></a>
                         </div>
                     </div>
                 </div>
@@ -175,7 +163,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Project</button></a>
+                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                                    Project</button></a>
                         </div>
                     </div>
                 </div>
@@ -185,7 +174,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View Seminar</button></a>
+                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                                    Seminar</button></a>
                         </div>
                     </div>
                 </div>
@@ -202,7 +192,7 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <form class="mt-3">
+                            <form class="mt-3">
                                 <div class="col-12 mb-3">
                                     <input type="text" class="form-control" placeholder="First Name"
                                         aria-label="First name">
@@ -215,28 +205,29 @@
                                     <input type="text" class="form-control" placeholder="Last Name"
                                         aria-label="First name">
                                 </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Matric Number"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" placeholder="Email Address"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Phone Number"
-                                            aria-label="Last name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Supervisor"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control"
-                                            placeholder="Session i.e 2021/2022" aria-label="Last name">
-                                    </div>
                                 <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Edit Student</button>
+                                    <input type="text" class="form-control" placeholder="Matric Number"
+                                        aria-label="First name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="email" class="form-control" placeholder="Email Address"
+                                        aria-label="First name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Phone Number"
+                                        aria-label="Last name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Supervisor"
+                                        aria-label="First name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Session i.e 2021/2022"
+                                        aria-label="Last name">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <button type="submit" class="btn btn-block float-end register-page-btn">Edit
+                                        Student</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>

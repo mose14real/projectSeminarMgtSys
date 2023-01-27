@@ -24,28 +24,28 @@ Route::controller(UserController::class)->group(function () {
     Route::get('download/{file}', 'download');
     Route::get('register', 'register');
     Route::post('store', 'store');
-    Route::get('login', 'login');
+    Route::get('login', 'login')->name('login');
     Route::post('auth-login', 'authLogin');
     Route::get('logout', 'logout')->name('logout');
 });
 #--ENDS-HERE
 
 #--STUDENT--START-HERE
-Route::middleware(['web'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::controller(StudentController::class)->group(function () {
         Route::prefix('student')->group(function () {
-            Route::get('/dashboard', 'dashboard');
-            Route::get('/profile/show/{uuid}', 'showProfile');
-            Route::get('/profile/edit/{uuid}', 'editProfile');
-            Route::put('/profile/update/{uuid}', 'updateProfile');
-            Route::get('/download/{file}', 'downloadAll');
-
+            Route::get('dashboard', 'dashboard');
+            Route::get('profile/show/{uuid}', 'showProfile');
+            Route::get('profile/edit/{uuid}', 'editProfile');
+            Route::put('profile/update/{uuid}', 'updateProfile');
+            Route::get('download/{file}', 'downloadAll');
+            #--Seminar--
             Route::post('create-seminar/{uuid}', 'createSeminar');
-            Route::put('/upload/seminar/{uuid}', 'uploadSeminar');
+            Route::put('upload/seminar/{uuid}', 'uploadSeminar');
             Route::get('seminar-details/{uuid}', 'seminarDetails');
-
+            #--Project--
             Route::post('create-project/{uuid}', 'createProject');
-            Route::put('/upload/project/{uuid}', 'uploadProject');
+            Route::put('upload/project/{uuid}', 'uploadProject');
             Route::get('project-details/{uuid}', 'projectDetails');
         });
     });
@@ -53,22 +53,24 @@ Route::middleware(['web'])->group(function () {
 #----ENDS-HERE
 
 #--ADMIN--START-HERE
-Route::controller(AdminController::class)->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/dashboard', 'dashboard');
-        Route::get('/project-data', 'projectData');
-        Route::get('/student-data', 'studentData');
-        Route::get('/seminar-data', 'seminarData');
-        // Route::post('/profile/edit/{uuid}', 'edit');
-        // Route::update('/profile/update/{uuid}', 'update');
-        // Route::get('/download/{file}', 'downloadAny');
-        // Route::delete('/destroy/{uuid}', 'destroy');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('dashboard', 'dashboard');
+            Route::get('project-data', 'projectData');
+            Route::get('student-data', 'studentData');
+            Route::get('seminar-data', 'seminarData');
+            // Route::post('/profile/edit/{uuid}', 'edit');
+            // Route::update('/profile/update/{uuid}', 'update');
+            // Route::get('/download/{file}', 'downloadAny');
+            // Route::delete('/destroy/{uuid}', 'destroy');
 
-        // Route::get('/profile', 'studentProfile');
-        // Route::post('/profile/edit/{uuid}', 'editStudent');
-        // Route::update('/profile/update/{uuid}', 'updateStudent');
-        // Route::post('/upload/seminar/{uuid}', 'uploadStudentSeminar');
-        // Route::post('/upload/project/{uuid}', 'uploadStudentProject');
+            // Route::get('/profile', 'studentProfile');
+            // Route::post('/profile/edit/{uuid}', 'editStudent');
+            // Route::update('/profile/update/{uuid}', 'updateStudent');
+            // Route::post('/upload/seminar/{uuid}', 'uploadStudentSeminar');
+            // Route::post('/upload/project/{uuid}', 'uploadStudentProject');
+        });
     });
 });
 #--ENDS-HERE
