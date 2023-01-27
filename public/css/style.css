@@ -212,7 +212,8 @@ body{
 
 /* PROJECTS SECTION STYLING */
 .projects{
-    min-height:100vh;
+    /* min-height:100vh; */
+    min-height:20vh;
 }
 .student-details-card{
     border:1px solid gray;
