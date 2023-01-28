@@ -50,7 +50,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Admin</i>
+                        <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
@@ -105,7 +105,7 @@
             <div class="row mt-5">
                 <!-- projects data table -->
                 <table class="table table-bordered">
-                    <tbody>
+                    <thead>
                         <tr>
                             <th scope="col">S/N</th>
                             <th scope="col">Topic</th>
@@ -116,29 +116,34 @@
                             <th scope="col">File Path</th>
                             <th scope="col">Actions</th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#project-registration-modal"><i
-                                            class="bi bi-pencil-square"></i></button></a>
-                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#project-upload-modal"><i
-                                            class="bi bi-upload"></i></button></a>
-                                <a href="#"><button class="btn btn-block edit-btn"><i
-                                            class="bi bi-download"></i></button></a>
-                                <a href="#"><button class="btn btn-block delete-btn"><i
-                                            class="bi bi-trash3"></i></button></a>
-                            </td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($projects as $key => $project)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $project->project_topic }}</td>
+                                <td>{{ $project->project_desc }}</td>
+                                <td>{{ $project->project_type }}</td>
+                                <td>{{ $project->project_members }}</td>
+                                <td>{{ $project->project_file_name }}</td>
+                                <td>{{ $project->project_file_path }}</td>
+                                <td>
+                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#project-registration-modal"><i
+                                                class="bi bi-pencil-square"></i></button></a>
+                                    <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#project-upload-modal"><i
+                                                class="bi bi-upload"></i></button></a>
+                                    <a href="#"><button class="btn btn-block edit-btn"><i
+                                                class="bi bi-download"></i></button></a>
+                                    <a href="#"><button class="btn btn-block delete-btn"><i
+                                                class="bi bi-trash3"></i></button></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
         </div>
     </div>
@@ -169,7 +174,8 @@
                             @if ($errors->has('project_desc'))
                                 <span class="text-danger">{{ $errors->first('project_desc') }}</span>
                             @endif
-                            <textarea class="form-control" id="" rows="3" name="project_desc" value="{{ old('project_desc') }}"></textarea>
+                            <textarea class="form-control" id="" rows="3" name="project_desc"
+                                value="{{ old('project_desc') }}"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_type'))

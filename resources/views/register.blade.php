@@ -87,18 +87,18 @@
                             value="{{ old('last_name') }}">
                     </div>
                     <div class="col-12 mb-3">
-                        @if ($errors->has('matric'))
-                            <span class="text-danger">{{ $errors->first('matric') }}</span>
-                        @endif
-                        <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                            value="{{ old('matric') }}">
-                    </div>
-                    <div class="col-12 mb-3">
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
                         <input type="email" class="form-control" placeholder="Email" name="email"
                             value="{{ old('email') }}">
+                    </div>
+                    <div class="col-12 mb-3">
+                        @if ($errors->has('matric'))
+                            <span class="text-danger">{{ $errors->first('matric') }}</span>
+                        @endif
+                        <input type="text" class="form-control" placeholder="Matric Number" name="matric"
+                            value="{{ old('matric') }}">
                     </div>
                     <div class="col-12 mb-3">
                         @if ($errors->has('phone'))

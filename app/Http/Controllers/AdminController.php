@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Seminar;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -32,16 +33,34 @@ class AdminController extends Controller
 
     public function studentData()
     {
-        return view('admin.student-data');
+        $students = Student::orderBy('id', 'desc')->paginate(5);
+        return view(
+            'admin.student-data',
+            [
+                "students" => $students
+            ]
+        );
     }
 
     public function projectData()
     {
-        return view('admin.project-data');
+        $projects = Project::orderBy('id', 'desc')->paginate(5);
+        return view(
+            'admin.project-data',
+            [
+                "projects" => $projects
+            ]
+        );
     }
 
     public function seminarData()
     {
-        return view('admin.seminar-data');
+        $seminars = Seminar::orderBy('id', 'desc')->paginate(5);
+        return view(
+            'admin.seminar-data',
+            [
+                "seminars" => $seminars
+            ]
+        );
     }
 }

@@ -115,7 +115,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    {{ $projects->links() }}
+                    <div class="d-flex justify-content-center mt-1">{{ $projects->links() }}</div>
                 </div>
                 <!-- Seminars cards starts here -->
                 <div class="col-md-4 p-2">
@@ -132,7 +132,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div>{{ $seminars->links() }}</div>
+                    <div class="d-flex justify-content-center mt-1">{{ $seminars->links() }}</div>
                 </div>
             </div>
         </div>
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div>{{ $projects->links() }}</div>
+                <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
                 <!-- ends here -->
             </div>
             <h2 class="text-center mb-3 mt-5 deep-blue-color">Seminars List</h2>
@@ -198,7 +198,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div>{{ $seminars->links() }}</div>
+                <div class="d-flex justify-content-center">{{ $seminars->links() }}</div>
                 <!-- ends here -->
             </div>
         </div>

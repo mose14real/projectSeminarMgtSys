@@ -50,7 +50,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Admin</i>
+                        <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
@@ -98,6 +98,13 @@
             </div>
     </nav>
 
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <span>{{ $message }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">
         <div class="container">
@@ -126,7 +133,7 @@
                             </p>
                             <h1 class="card-title text-center text-white">{{ $projects }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#upload-project-modal">+ Add New Project</button>
+                                data-bs-target="#project-registration-modal">+ Add New Project</button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +146,7 @@
                             </p>
                             <h1 class="card-title text-center text-white">{{ $seminars }}</h1>
                             <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#upload-seminar-modal">+ Add New
+                                data-bs-target="#seminar-registration-modal">+ Add New
                                 Seminar</button>
                         </div>
                     </div>
@@ -195,290 +202,81 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3" action="{{ url('store') }}" method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('first_name'))
+                                        <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="First Name"
-                                        aria-label="First name">
+                                        name="first_name" value="{{ old('first_name') }}">
                                 </div>
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('middle_name'))
+                                        <span class="text-danger">{{ $errors->first('middle_name') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Middle Name"
-                                        aria-label="First name">
+                                        name="middle_name" value="{{ old('middle_name') }}">
                                 </div>
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('last_name'))
+                                        <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Last Name"
-                                        aria-label="First name">
+                                        name="last_name" value="{{ old('last_name') }}">
                                 </div>
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
+                                    <input type="email" class="form-control" placeholder="Email" name="email"
+                                        value="{{ old('email') }}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    @if ($errors->has('matric'))
+                                        <span class="text-danger">{{ $errors->first('matric') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Matric Number"
-                                        aria-label="First name">
+                                        name="matric" value="{{ old('matric') }}">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="email" class="form-control" placeholder="Email Address"
-                                        aria-label="First name">
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                    <input type="tel" class="form-control" placeholder="Phone Number"
+                                        name="phone" value="{{ old('phone') }}">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Phone Number"
-                                        aria-label="Last name">
-                                </div>
-                                <div class="col-12 mb-3">
+                                    @if ($errors->has('supervisor'))
+                                        <span class="text-danger">{{ $errors->first('supervisor') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Supervisor"
-                                        aria-label="First name">
+                                        name="supervisor" value="{{ old('supervisor') }}">
                                 </div>
                                 <div class="col-12 mb-3">
+                                    @if ($errors->has('session'))
+                                        <span class="text-danger">{{ $errors->first('session') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Session i.e 2021/2022"
-                                        aria-label="Last name">
+                                        name="session" value="{{ old('session') }}">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Edit
-                                        Student</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- UPLOAD PROJECTS AND SEMINARS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="upload-project-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Upload Project And Seminar</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3">
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
+                                    <input type="password" class="form-control" placeholder="Password"
+                                        name="password">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="Password"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Upload
-                                        Project / Seminar</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- UPLOAD PROJECTS AND SEMINARS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="upload-seminar-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Upload Project And Seminar</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3">
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="Password"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Upload
-                                        Project / Seminar</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- ADD NEW STUDENT TO TABLE -->
-            <div class="modal fade" id="add-student-to-table-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Add New Student</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3">
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Matric Number"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Phone Number"
-                                            aria-label="Last name">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Supervisor"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control"
-                                            placeholder="Session i.e 2021/2022" aria-label="Last name">
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Password"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Add
-                                        +</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- EDIT STUDENTS DETAILS MODAL STARTS HERE -->
-            <div class="modal fade" id="student-data-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Edit Student Data</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3">
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Matric Number"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Phone Number"
-                                            aria-label="Last name">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Supervisor"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control"
-                                            placeholder="Session i.e 2021/2022" aria-label="Last name">
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Password"
-                                        aria-label="First name">
+                                    @if ($errors->has('cpassword'))
+                                        <span class="text-danger">{{ $errors->first('cpassword') }}</span>
+                                    @endif
+                                    <input type="password" class="form-control" placeholder="Confirm Password"
+                                        name="cpassword">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit"
-                                        class="btn btn-block float-end register-page-btn">Edit</button>
+                                        class="btn btn-block w-100 register-page-btn">Register</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>
@@ -488,49 +286,54 @@
             </div>
             <!-- ENDS HERE -->
 
-            <!-- EDIT UPLOADED PROJECTS AND SEMINARS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="edit-upload-project-to-table-modal" tabindex="-1" data-bs-backdrop="static"
+            <!-- ADD PROJECTS MODAL SECTION STARTS HERE -->
+            <div class="modal fade" id="project-registration-modal" tabindex="-1" data-bs-backdrop="static"
                 data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Edit Uploaded Project And Seminar</h5>
+                            <h5 class="modal-title" id="modalTitleId">Project Registration</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3" action="#" method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
+                                    @if ($errors->has('project_topic'))
+                                        <span class="text-danger">{{ $errors->first('project_topic') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" placeholder="Project Topic"
+                                        name="project_topic" value="{{ old('project_topic') }}">
+                                </div>
+                                <div class="mb-3">
+                                    @if ($errors->has('project_desc'))
+                                        <span class="text-danger">{{ $errors->first('project_desc') }}</span>
+                                    @endif
+                                    <textarea class="form-control" id="" rows="3" placeholder="Project Description" name="project_desc"
+                                        value="{{ old('project_desc') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
+                                    @if ($errors->has('project_type'))
+                                        <span class="text-danger">{{ $errors->first('project_type') }}</span>
+                                    @endif
+                                    <select class="form-select form-select-md mb-3 project-type-user"
+                                        aria-label=".form-select-lg example" name="project_type">
                                         <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Group">Group</option>
                                     </select>
                                 </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="Password"
-                                        aria-label="First name">
+                                <div class="mb-3 d-none group-details-user">
+                                    @if ($errors->has('project_members'))
+                                        <span class="text-danger">{{ $errors->first('project_members') }}</span>
+                                    @endif
+                                    <textarea class="form-control" rows="3" placeholder="Add group members matric numbers..."
+                                        name="project_members" value="{{ old('project_members') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit"
-                                        class="btn btn-block float-end register-page-btn">Edit</button>
+                                        class="btn btn-block float-end register-page-btn">Register</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>
@@ -540,50 +343,36 @@
             </div>
             <!-- ENDS HERE -->
 
-
-            <!-- UPLOAD PROJECTS AND SEMINARS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="upload-project-to-table-modal" tabindex="-1" data-bs-backdrop="static"
+            <!-- ADD SEMINARS MODAL SECTION STARTS HERE -->
+            <div class="modal fade" id="seminar-registration-modal" tabindex="-1" data-bs-backdrop="static"
                 data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Upload Project And Seminar</h5>
+                            <h5 class="modal-title" id="modalTitleId">Seminar Registration</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3" action="#" method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Full Name"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <select class="form-select form-select-md mb-3 project-type"
-                                        aria-label=".form-select-lg example">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="individual">Individual</option>
-                                        <option value="group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        placeholder="add group matric numbers..."></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
+                                    @if ($errors->has('seminar_topic'))
+                                        <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
+                                    @endif
                                     <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        aria-label="First name">
+                                        name="seminar_topic" value="{{ old('seminar_topic') }}">
+                                </div>
+                                <div class="mb-3 group-details">
+                                    @if ($errors->has('seminar_desc'))
+                                        <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
+                                    @endif
+                                    <textarea class="form-control" rows="3" placeholder="Seminar Description" name="seminar_desc"
+                                        value="{{ old('seminar_desc') }}"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="file" class="form-control" placeholder="Password"
-                                        aria-label="First name">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Upload
-                                        Project / Seminar</button>
+                                    <button type="submit"
+                                        class="btn btn-block float-end register-page-btn">Register</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>
@@ -592,7 +381,6 @@
                 </div>
             </div>
             <!-- ENDS HERE -->
-
         </div>
     </div>
 
@@ -656,6 +444,28 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        const projectTypeUser = document.querySelector('.project-type-user');
+        const groupDetailsUser = document.querySelector('.group-details-user');
+        const projectTypeEditUser = document.querySelector('.project-type-edit-user');
+        const groupDetailsEditUser = document.querySelector('.group-details-edit-user');
+        projectTypeUser.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (projectTypeUser.value == 'Group') {
+                groupDetailsUser.classList.remove('d-none');
+            } else if (projectTypeUser.value == 'Individual') {
+                groupDetailsUser.classList.add('d-none');
+            }
+        })
+        projectTypeEditUser.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (projectTypeEditUser.value == 'Group') {
+                groupDetailsEditUser.classList.remove('d-none');
+            } else if (projectTypeEditUser.value == 'Individual') {
+                groupDetailsEditUser.classList.add('d-none');
+            }
+        })
+    </script>
 </body>
 
 </html>
