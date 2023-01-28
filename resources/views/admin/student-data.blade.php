@@ -42,7 +42,7 @@
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
+                        <input type="search" class="form-control shadow-none" placeholder="Search Students">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
                                 class="bi bi-search"></i></button>
                     </li>
@@ -122,7 +122,7 @@
                             <th scope="col">Phone Number</th>
                             <th scope="col">Supervisor</th>
                             <th scope="col">Session</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,11 +137,11 @@
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
-                                <td>
-                                    <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                <td><a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
                                             data-bs-target="#edit-student-in-table-modal"><i
                                                 class="bi bi-pencil-square"></i></button></a>
-                                    <a href="#"><button class="btn btn-block delete-btn"><i
+                                </td>
+                                <td><a href="#"><button class="btn btn-block delete-btn"><i
                                                 class="bi bi-trash3"></i></button></a>
                                 </td>
                             </tr>

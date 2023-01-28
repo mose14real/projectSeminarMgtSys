@@ -42,7 +42,7 @@
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
+                        <input type="search" class="form-control shadow-none" placeholder="Search Seminars">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
                                 class="bi bi-search"></i></button>
                     </li>
@@ -112,7 +112,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">File Name</th>
                             <th scope="col">File Path</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col" colspan="2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,12 +124,14 @@
                                 <td>{{ $seminar->seminar_file_name }}</td>
                                 <td>{{ $seminar->seminar_file_path }}</td>
                                 <td>
-                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#seminar-registration-modal"><i
-                                                class="bi bi-pencil-square"></i></button></a>
                                     <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
                                             data-bs-target="#seminar-upload-modal"><i
                                                 class="bi bi-upload"></i></button></a>
+                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#seminar-registration-modal"><i
+                                                class="bi bi-pencil-square"></i></button></a>
+                                </td>
+                                <td>
                                     <a href="#"><button class="btn btn-block edit-btn"><i
                                                 class="bi bi-download"></i></button></a>
                                     <a href="#"><button class="btn btn-block delete-btn"><i
@@ -171,6 +173,20 @@
                                 <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
                             @endif
                             <textarea class="form-control" rows="3" name="seminar_desc" value="{{ old('seminar_desc') }}"></textarea>
+                        </div>
+                        <div class="col-12 mb-3">
+                            @if ($errors->has('seminar_file_name'))
+                                <span class="text-danger">{{ $errors->first('seminar_file_name') }}</span>
+                            @endif
+                            <input type="text" class="form-control" name="seminar_file_name"
+                                value="{{ old('seminar_file_name') }}">
+                        </div>
+                        <div class="col-12 mb-3">
+                            @if ($errors->has('seminar_file_path'))
+                                <span class="text-danger">{{ $errors->first('seminar_file_path') }}</span>
+                            @endif
+                            <input type="text" class="form-control" name="seminar_file_path"
+                                value="{{ old('seminar_file_path') }}">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block float-end register-page-btn">Update
