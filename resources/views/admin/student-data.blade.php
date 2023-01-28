@@ -106,7 +106,7 @@
     @endif
 
     <!-- STUDENT DATA -->
-    <div class="student-data-area" id="projects-overview">
+    <div class="student-data-area">
         <div class="container">
             <h2 class="text-start mt-5">Student Data</h2>
             <div class="mt-5">

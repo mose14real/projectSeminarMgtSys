@@ -104,7 +104,8 @@
             <h2 class="text-start mt-5">Projects Data</h2>
             <div class="row mt-5">
                 <!-- projects data table -->
-                <table class="table table-bordered responsive">
+                <div class="table-responsive">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">S/N</th>
@@ -114,7 +115,7 @@
                             <th scope="col">Members</th>
                             <th scope="col">File Name</th>
                             <th scope="col">File Path</th>
-                            <th scope="col" colspan="2">Actions</th>
+                            <th scope="col" colspan="4" style="text-align:center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,22 +129,27 @@
                                 <td>{{ $project->project_file_name }}</td>
                                 <td>{{ $project->project_file_path }}</td>
                                 <td>
-                                    <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#project-upload-modal"><i
-                                                class="bi bi-upload"></i></button></a>
-                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#project-registration-modal"><i
-                                                class="bi bi-pencil-square"></i></button></a>
+                                    <a href="#">
+                                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
+                                </button>
+                                </a>
                                 </td>
-                                <td><a href="#"><button class="btn btn-block edit-btn"><i
-                                                class="bi bi-download"></i></button></a>
-                                    <a href="#"><button class="btn btn-block delete-btn"><i
-                                                class="bi bi-trash3"></i></button></a>
+                                <td>
+                                <a href="#"><button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button></a>
+                                </td>
+                                <td>
+                                <a href="#">
+                                    <button class="btn btn-block edit-btn"><i class="bi bi-download"></i></button></a>
+                                </td>
+                                <td>
+                                <a href="#">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                </div>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
         </div>
