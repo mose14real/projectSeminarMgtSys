@@ -42,12 +42,11 @@
                             href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <input type="search" class="form-control shadow-none" placeholder="Search Students">
+                        <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
                         <button type="submit" class="btn btn-block ms-2 search-btn"><i
                                 class="bi bi-search"></i></button>
                     </li>
                 </ul>
-
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,13 +55,10 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
-                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-journals"></i> My
-                                projects</a></li> -->
-                        <!-- <li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href="#"><button class="btn btn-block d-block mx-auto sign-out-btn">Log
+                        <li><a href="{{ url('logout') }}"><button class="btn btn-block d-block mx-auto sign-out-btn">Log
                                     Out</button></a></li>
                     </ul>
                 </li>
@@ -102,12 +98,17 @@
             </div>
     </nav>
 
-    <!-- PROJECT AND SEMINAR HERE -->
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <span>{{ $message }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    <!-- STUDENT DATA -->
     <div class="student-data-area" id="projects-overview">
         <div class="container">
-            <h2 class="text-start mt-5">Student Data Table</h2>
-
-
+            <h2 class="text-start mt-5">Student Data</h2>
             <div class="mt-5">
                 <table class="table table-bordered">
                     <tbody>
@@ -116,27 +117,30 @@
                             <th scope="col">First name</th>
                             <th scope="col">Middle name</th>
                             <th scope="col">Last name</th>
-                            <th scope="col">Matric number</th>
                             <th scope="col">Email address</th>
+                            <th scope="col">Matric number</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Supervisor</th>
                             <th scope="col">Session</th>
                             <th scope="col">Action</th>
                         </tr>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>  
-                        <td>
-                            <button class="btn btn-block edit-btn" data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button>
-                        </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#edit-student-in-table-modal"><i
+                                            class="bi bi-pencil-square"></i></button></a>
+                                <a href="#"><button class="btn btn-block delete-btn"><i
+                                            class="bi bi-trash3"></i></button></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -153,41 +157,59 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3">
+                            <form class="mt-3" action="" method="POST">
+                                @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="First Name"
-                                        aria-label="First name">
+                                    @if ($errors->has('first_name'))
+                                        <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="first_name" value="">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Middle Name"
-                                        aria-label="First name">
+                                    @if ($errors->has('middle_name'))
+                                        <span class="text-danger">{{ $errors->first('middle_name') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="middle_name" value="">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Last Name"
-                                        aria-label="First name">
+                                    @if ($errors->has('last_name'))
+                                        <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="last_name" value="">
                                 </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Matric Number"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" placeholder="Email Address"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Phone Number"
-                                            aria-label="Last name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="Supervisor"
-                                            aria-label="First name">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control"
-                                            placeholder="Session i.e 2021/2022" aria-label="Last name">
-                                    </div>
                                 <div class="col-12 mb-3">
-                                    <button type="submit" class="btn btn-block float-end register-page-btn">Edit Student</button>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
+                                    <input type="email" class="form-control" name="email" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    @if ($errors->has('matric'))
+                                        <span class="text-danger">{{ $errors->first('matric') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="matric" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="phone" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    @if ($errors->has('supervisor'))
+                                        <span class="text-danger">{{ $errors->first('supervisor') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="supervisor" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    @if ($errors->has('session'))
+                                        <span class="text-danger">{{ $errors->first('session') }}</span>
+                                    @endif
+                                    <input type="text" class="form-control" name="session" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <button type="submit" class="btn btn-block float-end register-page-btn">Update
+                                        Student</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>

@@ -12,9 +12,9 @@ class AdminController extends Controller
     #--Student--Dashboard--
     public function dashboard()
     {
-        $students = Student::count(); //DB::table('students')->count();
-        $seminars = Seminar::count(); //DB::table('seminars')->count();
-        $projects = Project::count(); //DB::table('projects')->count();
+        $students = Student::count();
+        $seminars = Seminar::count();
+        $projects = Project::count();
         return view(
             'admin.dashboard',
             [

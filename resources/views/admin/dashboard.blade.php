@@ -152,7 +152,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-mortarboard-fill project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                            <a href="{{ url('admin/student-data') }}"><button
+                                    class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Student</button></a>
                         </div>
                     </div>
@@ -163,7 +164,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                            <a href="{{ url('admin/project-data') }}"><button
+                                    class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Project</button></a>
                         </div>
                     </div>
@@ -174,7 +176,8 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="#"><button class="btn btn-block w-100 project-overview-btn font-bold">View
+                            <a href="{{ url('admin/seminar-data') }}"><button
+                                    class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Seminar</button></a>
                         </div>
                     </div>
