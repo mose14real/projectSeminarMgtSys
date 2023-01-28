@@ -18,6 +18,8 @@
     <link rel="icon" href="{{ asset('img/archival.svg') }}">
     <!-- GENERAL STYLESHEET -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/omitter.min.css') }}">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
@@ -150,9 +152,9 @@
                                         project</i></span>
                                 <h5 class="card-title">
                                     <a
-                                        href="{{ url('project-details/' . $project->uuid) }}">{{ $project->project_topic }}</a>
+                                        href="{{ url('project-details/' . $project->uuid) }}" class="project-title">{{ $project->project_topic }}</a>
                                 </h5>
-                                <p class="card-text">
+                                <p class="card-text project-description">
                                     {{ $project->project_desc }}
                                 </p>
                                 <div class="row mb-3">
@@ -272,6 +274,23 @@
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/omitter.min.js') }}"></script>
+        <script>
+window.addEventListener("load", function (event){
+  // var doms = $(".omitter-target");
+  var doms = document.querySelectorAll(".project-description");
+  var omitter = new Omitter(doms, 4, "..."); // limit to 3 lines.
+  omitter.omit();
+});
+
+window.addEventListener("load", function (event){
+  // var doms = $(".omitter-target");
+  var doms = document.querySelectorAll(".project-title");
+  var omitter = new Omitter(doms, 2, "..."); // limit to 3 lines.
+  omitter.omit();
+});
+
+        </script>
 </body>
 
 </html>
