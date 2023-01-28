@@ -57,6 +57,7 @@
         </div>
     </nav>
 
+    <div class="page-wrapper">
     <!-- HEADER SECTION STARTS HERE -->
     <header class="header-section d-flex align-items-center justify-content-center flex-column" id="header">
         <div class="container">
@@ -202,9 +203,10 @@
                 <!-- ends here -->
             </div>
         </div>
+    </div>
 
         <!-- FOOTER SECTION -->
-        <footer class="mt-5">
+        <footer class="mt-5 footer-index">
             <div class="container">
                 <div class="row">
                     <!-- ProjectArch -->
@@ -273,24 +275,26 @@
                     &copy; CopyRight Reserved 2023</p>
             </div>
         </footer>
+
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('js/omitter.min.js') }}"></script>
-        <script>
-window.addEventListener("load", function (event){
-  // var doms = $(".omitter-target");
-  var doms = document.querySelectorAll(".project-description");
-  var omitter = new Omitter(doms, 4, "..."); // limit to 3 lines.
-  omitter.omit();
-});
+        <!-- <script>
+            window.addEventListener("load", function (event){
+            // var doms = $(".omitter-target");
+            var doms = document.querySelectorAll(".project-description");
+            var omitter = new Omitter(doms, 4, "..."); // limit to 3 lines.
+            omitter.omit();
+            });
 
-window.addEventListener("load", function (event){
-  // var doms = $(".omitter-target");
-  var doms = document.querySelectorAll(".project-title");
-  var omitter = new Omitter(doms, 2, "..."); // limit to 3 lines.
-  omitter.omit();
-});
-
-        </script>
+            window.addEventListener("load", function (event){
+            // var doms = $(".omitter-target");
+            var doms = document.querySelectorAll(".project-title");
+            var omitter = new Omitter(doms, 2, "..."); // limit to 3 lines.
+            omitter.omit();
+            });
+        </script> -->
 </body>
 
 </html>

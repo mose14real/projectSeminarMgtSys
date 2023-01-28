@@ -227,7 +227,7 @@
     </div>
 
     <!-- FOOTER SECTION -->
-    <footer class="mt-5" style="position:fixed;left:0;width:100%;bottom:0;">
+    <footer class="mt-5">
         <div class="container">
             <div class="row">
                 <!-- ProjectArch -->
