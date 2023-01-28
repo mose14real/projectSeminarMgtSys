@@ -50,7 +50,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Admin</i>
+                        <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
@@ -105,7 +105,7 @@
             <div class="row mt-5">
                 <!-- projects data table -->
                 <table class="table table-bordered">
-                    <tbody>
+                    <thead>
                         <tr>
                             <th scope="col">S/N</th>
                             <th scope="col">Topic</th>
@@ -114,27 +114,32 @@
                             <th scope="col">File Path</th>
                             <th scope="col">Actions</th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#seminar-registration-modal"><i
-                                            class="bi bi-pencil-square"></i></button></a>
-                                <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
-                                        data-bs-target="#seminar-upload-modal"><i
-                                            class="bi bi-upload"></i></button></a>
-                                <a href="#"><button class="btn btn-block edit-btn"><i
-                                            class="bi bi-download"></i></button></a>
-                                <a href="#"><button class="btn btn-block delete-btn"><i
-                                            class="bi bi-trash3"></i></button></a>
-                            </td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($seminars as $key => $seminar)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $seminar->seminar_topic }}</td>
+                                <td>{{ $seminar->seminar_desc }}</td>
+                                <td>{{ $seminar->seminar_file_name }}</td>
+                                <td>{{ $seminar->seminar_file_path }}</td>
+                                <td>
+                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#seminar-registration-modal"><i
+                                                class="bi bi-pencil-square"></i></button></a>
+                                    <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#seminar-upload-modal"><i
+                                                class="bi bi-upload"></i></button></a>
+                                    <a href="#"><button class="btn btn-block edit-btn"><i
+                                                class="bi bi-download"></i></button></a>
+                                    <a href="#"><button class="btn btn-block delete-btn"><i
+                                                class="bi bi-trash3"></i></button></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $seminars->links() }}</div>
             </div>
         </div>
     </div>

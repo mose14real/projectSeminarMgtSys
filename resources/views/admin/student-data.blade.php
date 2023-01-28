@@ -50,7 +50,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Admin</i>
+                        <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
@@ -111,7 +111,7 @@
             <h2 class="text-start mt-5">Student Data</h2>
             <div class="mt-5">
                 <table class="table table-bordered">
-                    <tbody>
+                    <thead>
                         <tr>
                             <th scope="col">S/N</th>
                             <th scope="col">First name</th>
@@ -124,26 +124,31 @@
                             <th scope="col">Session</th>
                             <th scope="col">Action</th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#edit-student-in-table-modal"><i
-                                            class="bi bi-pencil-square"></i></button></a>
-                                <a href="#"><button class="btn btn-block delete-btn"><i
-                                            class="bi bi-trash3"></i></button></a>
-                            </td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($students as $key => $student)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $student->user->first_name }}</td>
+                                <td>{{ $student->user->middle_name }}</td>
+                                <td>{{ $student->user->last_name }}</td>
+                                <td>{{ $student->user->email }}</td>
+                                <td>{{ $student->matric }}</td>
+                                <td>{{ $student->phone }}</td>
+                                <td>{{ $student->supervisor }}</td>
+                                <td>{{ $student->session }}</td>
+                                <td>
+                                    <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                            data-bs-target="#edit-student-in-table-modal"><i
+                                                class="bi bi-pencil-square"></i></button></a>
+                                    <a href="#"><button class="btn btn-block delete-btn"><i
+                                                class="bi bi-trash3"></i></button></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">{{ $students->links() }}</div>
             </div>
 
             <!-- EDIT STUDENT IN TABLE MODAL -->

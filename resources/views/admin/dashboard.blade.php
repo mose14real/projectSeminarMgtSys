@@ -50,7 +50,7 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> Admin</i>
+                        <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
