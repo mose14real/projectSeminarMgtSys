@@ -121,10 +121,10 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#seminar-registration-modal"><i
                                             class="bi bi-pencil-square"></i></button></a>
-                                <a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
                                         data-bs-target="#seminar-upload-modal"><i
                                             class="bi bi-upload"></i></button></a>
                                 <a href="#"><button class="btn btn-block edit-btn"><i
