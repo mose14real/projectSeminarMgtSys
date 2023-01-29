@@ -47,7 +47,7 @@ class StudentController extends Controller
     {
         $credentials = $request->validate(
             [
-                'phone' => ['min:11', 'max:11']
+                'phone' => ['required', 'min:11', 'max:11']
             ]
         );
         $student = Student::findByUuid($uuid);

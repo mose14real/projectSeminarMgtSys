@@ -17,8 +17,8 @@ class UserController extends Controller
     #--View--Index--
     public function index()
     {
-        $seminars = Seminar::whereNotNull('seminar_topic')->paginate(3);
-        $projects = Project::whereNotNull('project_topic')->paginate(3);
+        $seminars = Seminar::whereNotNull('seminar_topic')->orderBy('id', 'desc')->paginate(3);
+        $projects = Project::whereNotNull('project_topic')->orderBy('id', 'desc')->paginate(3);
         return view(
             'index',
             [

@@ -56,7 +56,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                                href="{{ url('/student/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
+                                href="{{ url('admin/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
                                     class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
                         <li>
@@ -151,7 +151,7 @@
                             </p>
                             <h1 class="card-title text-center text-white">{{ $count_project_topic }}</h1>
                             <a
-                                href="{{ url('/student/project-details') }}/{{ auth()->user()->student->project->uuid }}"><button
+                                href="{{ url('student/project-details') }}/{{ auth()->user()->student->project->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Project</button></a>
                         </div>
@@ -194,7 +194,7 @@
                             </p>
                             <h1 class="card-title text-center text-white">{{ $count_seminar_topic }}</h1>
                             <a
-                                href="{{ url('/student/seminar-details') }}/{{ auth()->user()->student->seminar->uuid }}"><button
+                                href="{{ url('student/seminar-details') }}/{{ auth()->user()->student->seminar->uuid }}"><button
                                     class="btn btn-block w-100 project-overview-btn font-bold">View
                                     Seminar</button></a>
                         </div>
