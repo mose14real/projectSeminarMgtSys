@@ -146,8 +146,8 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" title="show" id="showModal"><button p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;><i
+                                    <a href="#" title="show" id="showModal"><button class="p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;"><i
                                                 class="bi
                                             bi-trash3"></i></button>
                                     </a>
