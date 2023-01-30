@@ -138,18 +138,15 @@
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
                                 <td>
-                                    <a data-bs-toggle="modal p-0 fs-6" style="padding:.1rem .5rem !important;"
+                                    <a data-bs-toggle="modal" 
                                         data-bs-target="#edit-student-in-table-modal"
                                         data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
-                                        title="show" id="showModal"><button class="btn edit-btn btn-sm"><i
+                                        title="show" id="showModal"><button class="btn edit-btn btn-sm p-0 fs-6" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" title="show" id="showModal"><button class="p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;"><i
-                                                class="bi
-                                            bi-trash3"></i></button>
+                                    <a href="#" title="show" id="showModal"><button class="btn delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i class="bi bi-trash3"></i></button>
                                     </a>
                                 </td>
                             </tr>
