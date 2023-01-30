@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Student | Edit-Profile | Page</title>
+    <title>Student | Show-Profile | Page</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
                         <a class="nav-link text-white active me-2" aria-current="page"
-                            href="{{ url('student/dashboard') }}">Dashboard</a>
+                            href="{{ url('admin/dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item d-flex">
                         <input type="search" class="form-control shadow-none" placeholder="Search Projects/Seminars">
@@ -52,13 +52,13 @@
                 <li class="nav-item dropdown me-5">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"> {{ auth()->user()->student->matric }}</i>
+                        <i class="bi bi-person-circle"> {{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                                href="{{ url('student/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
+                                href="{{ url('admin/profile/edit') }}/{{ auth()->user()->uuid }}"><i
                                     class="bi bi-person-badge-fill"></i>
-                                View Profile</a></li>
+                                Edit Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -115,49 +115,34 @@
             <h2 class="mt-5">Personal Information</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <form class="mt-3" action="{{ url('student/profile/update', $student->uuid) }}" method="POST">
-                        @method('PUT')
-                        @csrf
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="first_name"
-                                value="{{ $student->user->first_name }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="middle_name"
-                                value="{{ $student->user->middle_name }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="last_name"
-                                value="{{ $student->user->last_name }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="matric"
-                                value="{{ $student->matric }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="email" class="form-control" name="email"
-                                value="{{ $student->user->email }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            @if ($errors->has('phone'))
-                                <span class="text-danger">{{ $errors->first('phone') }}</span>
-                            @endif
-                            <input type="text" class="form-control" name="phone"
-                                value="{{ $student->phone }}">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="supervisor"
-                                value="{{ $student->supervisor }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="session"
-                                value="{{ $student->session }}" readonly>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <button type="submit" class="btn btn-block w-25 register-page-btn">Update</button>
+                    <div class="mt-5">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">First Name</th>
+                                    <td>{{ $admin->first_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Middle Name</th>
+                                    <td>{{ $admin->middle_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Last Name</th>
+                                    <td>{{ $admin->last_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td>{{ $admin->email }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <a href="{{ url('admin/profile/edit') }}/{{ auth()->user()->uuid }}"><button type="submit"
+                                class="btn btn-block w-25 register-page-btn">Edit Profile</button>
                             <div class="clearfix"></div>
-                        </div>
-                    </form>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <img src="{{ asset('img/5.svg') }}" alt="" style="width:300px;margin-left:50px;">
@@ -187,7 +172,7 @@
                     <h5 class="text-white mt-3">Quick Links</h5>
                     <ul>
                         <li class="mt-3">
-                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('student/dashboard') }}"
+                            <i class="bi bi-chevron-right text-white"></i> <a href="{{ url('admin/dashboard') }}"
                                 class="text-white quick-links">Dashboard</a>
                         </li>
                         <li class="mt-2">
@@ -240,7 +225,6 @@
             }
         })
         projectTypeEditUser.addEventListener('click', (event) => {
-            // alert()
             event.preventDefault();
             if (projectTypeEditUser.value == 'group') {
                 groupDetailsEditUser.classList.remove('d-none');

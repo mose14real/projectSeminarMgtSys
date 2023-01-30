@@ -53,7 +53,9 @@
                         <i class="bi bi-person-circle">&nbsp;{{ auth()->user()->email }}</i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge-fill"></i>
+                        <li><a class="dropdown-item"
+                                href="{{ url('admin/profile/show') }}/{{ auth()->user()->uuid }}"><i
+                                    class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">

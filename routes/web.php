@@ -57,19 +57,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('dashboard', 'dashboard');
+            Route::get('profile/show/{uuid}', 'showProfile');
+            Route::get('profile/edit/{uuid}', 'editProfile');
+            Route::put('profile/update/{uuid}', 'updateProfile');
             Route::get('project-data', 'projectData');
             Route::get('student-data', 'studentData');
             Route::get('seminar-data', 'seminarData');
-            // Route::post('/profile/edit/{uuid}', 'edit');
-            // Route::update('/profile/update/{uuid}', 'update');
-            // Route::get('/download/{file}', 'downloadAny');
-            // Route::delete('/destroy/{uuid}', 'destroy');
-
-            // Route::get('/profile', 'studentProfile');
-            // Route::post('/profile/edit/{uuid}', 'editStudent');
-            // Route::update('/profile/update/{uuid}', 'updateStudent');
-            // Route::post('/upload/seminar/{uuid}', 'uploadStudentSeminar');
-            // Route::post('/upload/project/{uuid}', 'uploadStudentProject');
         });
     });
 });
