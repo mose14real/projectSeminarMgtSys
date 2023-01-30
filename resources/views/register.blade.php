@@ -97,8 +97,8 @@
                         @if ($errors->has('matric'))
                             <span class="text-danger">{{ $errors->first('matric') }}</span>
                         @endif
-                        <input type="text" class="form-control" placeholder="Matric Number" name="matric"
-                            value="{{ old('matric') }}">
+                        <input type="text" class="form-control" placeholder="Matric Number i.e 16/69/0000"
+                            name="matric" value="{{ old('matric') }}">
                     </div>
                     <div class="col-12 mb-3">
                         @if ($errors->has('phone'))

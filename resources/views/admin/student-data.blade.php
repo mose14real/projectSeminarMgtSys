@@ -137,12 +137,17 @@
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
-                                <td><a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
-                                            data-bs-target="#edit-student-in-table-modal"><i
-                                                class="bi bi-pencil-square"></i></button></a>
+                                <td>
+                                    <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
+                                        data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
+                                        title="show" id="showModal"><button class="btn edit-btn btn-sm"><i
+                                                class="bi bi-pencil-square"></i></button>
+                                    </a>
                                 </td>
-                                <td><a href="#"><button class="btn btn-block delete-btn"><i
-                                                class="bi bi-trash3"></i></button></a>
+                                <td>
+                                    <a href="#" title="show" id="showModal"><button><i
+                                                class="bi bi-trash3"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -162,55 +167,69 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3" action="" method="POST">
+                            <form class="mt-3"
+                                action="{{ url('admin/profile/update-student', $student->user->uuid) }}">
+                                @method('PUT')
                                 @csrf
+                                <div class="col-12 mb-3">
+                                    <input type="text" id="uuid" class="form-control" name="uuid"
+                                        value="{{ $student->user->uuid }}">
+                                </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('first_name'))
                                         <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="first_name" value="">
+                                    <input type="text" id="first_name" class="form-control" name="first_name"
+                                        value="{{ $student->user->first_name }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('middle_name'))
                                         <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="middle_name" value="">
+                                    <input type="text" id="middle_name" class="form-control" name="middle_name"
+                                        value="{{ $student->user->middle_name }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('last_name'))
                                         <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="last_name" value="">
+                                    <input type="text" id="last_name" class="form-control" name="last_name"
+                                        value="{{ $student->user->last_name }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
-                                    <input type="email" class="form-control" name="email" value="">
+                                    <input type="email" id="email" class="form-control" name="email"
+                                        value="{{ $student->user->email }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('matric'))
                                         <span class="text-danger">{{ $errors->first('matric') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="matric" value="">
+                                    <input type="text" id="matric" class="form-control" name="matric"
+                                        value="{{ $student->matric }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="phone" value="">
+                                    <input type="text" id="phone" class="form-control" name="phone"
+                                        value="{{ $student->phone }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('supervisor'))
                                         <span class="text-danger">{{ $errors->first('supervisor') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="supervisor" value="">
+                                    <input type="text" id="supervisor" class="form-control" name="supervisor"
+                                        value="{{ $student->supervisor }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('session'))
                                         <span class="text-danger">{{ $errors->first('session') }}</span>
                                     @endif
-                                    <input type="text" class="form-control" name="session" value="">
+                                    <input type="text" id="session" class="form-control" name="session"
+                                        value="{{ $student->session }}">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -285,7 +304,33 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        const first_name = document.getElementById('first_name')
+        const middle_name = document.getElementById('middle_name')
+        const last_name = document.getElementById('last_name')
+        const email = document.getElementById('email')
+        const matric = document.getElementById('matric')
+        const supervisor = document.getElementById('supervisor')
+        const session = document.getElementById('session')
+        $(document).on('click', '#showModal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            console.log(href)
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    console.log(result)
+                    return
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>

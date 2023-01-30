@@ -143,8 +143,7 @@
                             @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
-                            <input type="email" class="form-control" name="email" value="{{ $admin->email }}"
-                                readonly>
+                            <input type="email" class="form-control" name="email" value="{{ $admin->email }}">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block w-25 register-page-btn">Update</button>

@@ -56,7 +56,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                                href="{{ url('admin/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
+                                href="{{ url('student/profile/show') }}/{{ auth()->user()->student->uuid }}"><i
                                     class="bi bi-person-badge-fill"></i>
                                 Profile</a></li>
                         <li>

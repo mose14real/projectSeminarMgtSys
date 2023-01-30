@@ -60,8 +60,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('profile/show/{uuid}', 'showProfile');
             Route::get('profile/edit/{uuid}', 'editProfile');
             Route::put('profile/update/{uuid}', 'updateProfile');
-            Route::get('project-data', 'projectData');
+            #--Student--
             Route::get('student-data', 'studentData');
+            Route::get('profile/edit-student/{uuid}', 'editStudentProfile');
+            Route::put('profile/update-student/{uuid}', 'updateStudentProfile');
+            #--Project--
+            Route::get('project-data', 'projectData');
+            #--Seminar--
             Route::get('seminar-data', 'seminarData');
         });
     });
