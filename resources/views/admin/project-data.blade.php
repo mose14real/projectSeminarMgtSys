@@ -18,6 +18,8 @@
     <link rel="icon" href="{{ asset('img/archival.svg') }}">
     <!-- GENERAL STYLESHEET -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- <link rel="stylesheet" href="{{ asset('css/omitter.min.css') }}"> -->
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
@@ -104,58 +106,57 @@
             <h2 class="text-start mt-5">Projects Data</h2>
             <div class="row mt-5">
                 <!-- projects data table -->
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">S/N</th>
-                            <th scope="col">Topic</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Members</th>
-                            <th scope="col">File Name</th>
-                            <th scope="col">File Path</th>
-                            <th scope="col" colspan="4" style="text-align:center;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($projects as $key => $project)
+                <div class="table-responsive-sm" style="overflow-x:auto;">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $project->project_topic }}</td>
-                                <td>{{ $project->project_desc }}</td>
-                                <td>{{ $project->project_type }}</td>
-                                <td>{{ $project->project_members }}</td>
-                                <td>{{ $project->project_file_name }}</td>
-                                <td>{{ $project->project_file_path }}</td>
-                                <td>
-                                    <a href="#">
-                                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
-                                </button>
-                                </a>
-                                </td>
-                                <td>
-                                <a href="#"><button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button></a>
-                                </td>
-                                <td>
-                                <a href="#">
-                                    <button class="btn btn-block edit-btn"><i class="bi bi-download"></i></button></a>
-                                </td>
-                                <td>
-                                <a href="#">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button>
-                                </td>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Topic</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Members</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">File Path</th>
+                                <th scope="col" colspan="4" style="text-align:center;">Actions</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($projects as $key => $project)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td style="width:200px">{{ $project->project_topic }}</td>
+                                    <td class="project_desc" style="width:800px">{{ $project->project_desc }}</td>
+                                    <td>{{ $project->project_type }}</td>
+                                    <td style="width:600px">{{ $project->project_members }}</td>
+                                    <td>{{ $project->project_file_name }}</td>
+                                    <td>{{ $project->project_file_path }}</td>
+                                    <td>
+                                        <a href="#">
+                                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
+                                    </button>
+                                    </a>
+                                    </td>
+                                    <td>
+                                    <a href="#"><button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button></a>
+                                    </td>
+                                    <td>
+                                    <a href="#">
+                                        <button class="btn btn-block edit-btn"><i class="bi bi-download"></i></button></a>
+                                    </td>
+                                    <td>
+                                    <a href="#">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
         </div>
     </div>
     <!-- ends here -->
-
 
     <!-- EDIT PROJECTS MODAL SECTION STARTS HERE -->
     <div class="modal fade" id="project-registration-modal" tabindex="-1" data-bs-backdrop="static"
