@@ -138,18 +138,21 @@
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
                                 <td>
-                                    <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
-                                        data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
-                                        title="show" id="showModal"><button class="btn edit-btn btn-sm p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;"><i
-                                                class="bi bi-pencil-square"></i></button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" title="show" id="showModal"><button
-                                            class="btn delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i
-                                                class="bi bi-trash3"></i></button>
-                                    </a>
+                                    <form action="#" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
+                                            data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
+                                            title="edit" id="editStudentModal"><button
+                                                class="btn edit-btn btn-sm p-0 fs-6"
+                                                style="padding:.1rem .5rem !important;"><i
+                                                    class="bi bi-pencil-square"></i></button>
+                                        </a>
+                                        <a href="#"><button class="btn delete-btn p-0 fs-6"
+                                                style="padding:.1rem .5rem !important;"><i
+                                                    class="bi bi-trash3"></i></button>
+                                        </a>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -170,7 +173,8 @@
                         </div>
                         <div class="modal-body">
                             <form class="mt-3"
-                                action="{{ url('admin/profile/update-student', $student->user->uuid) }}">
+                                action="{{ url('admin/profile/update-student', $student->user->uuid) }}"
+                                method="POST">
                                 @method('PUT')
                                 @csrf
                                 <div class="col-12 mb-3">
@@ -293,9 +297,9 @@
                 &copy; CopyRight Reserved 2023</p>
         </div>
     </footer>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         const first_name = document.getElementById('first_name')
         const middle_name = document.getElementById('middle_name')
@@ -304,7 +308,7 @@
         const matric = document.getElementById('matric')
         const supervisor = document.getElementById('supervisor')
         const session = document.getElementById('session')
-        $(document).on('click', '#showModal', function(event) {
+        $(document).on('click', '#editStudentModal', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
             console.log(href)

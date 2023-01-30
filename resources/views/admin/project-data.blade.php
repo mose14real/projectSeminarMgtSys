@@ -132,15 +132,27 @@
                                     <td>{{ $project->project_file_path }}</td>
                                     <td class="d-flex" style="gap:.2rem">
                                         <a href="#">
-                                            <button class="btn btn-secondary p-0 fs-6" style="padding:.1rem .5rem !important;" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
-                                    </button>
-                                    </a>
-                                    <a href="#"><button class="btn btn-block delete-btn p-0 fs-6" style="padding:.1rem .5rem !important"><i class="bi bi-trash3"></i></button></a>
-                                    <a href="#">
-                                        <button class="btn btn-block edit-btn p-0 fs-6" style="padding:.1rem .5rem !important"><i class="bi bi-download"></i></button></a>
+                                            <button class="btn btn-secondary p-0 fs-6"
+                                                style="padding:.1rem .5rem !important;" data-bs-toggle="modal"
+                                                data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
+                                            </button>
+                                        </a>
                                         <a href="#">
-                                        <button class="btn btn-primary p-0 fs-6" style="padding:.1rem .5rem !important" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button></a>
-
+                                            <button class="btn btn-block edit-btn p-0 fs-6"
+                                                style="padding:.1rem .5rem !important"><i
+                                                    class="bi bi-download"></i></button></a>
+                                        <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
+                                            data-attr="#" title="edit" id="editProjectModal"><button
+                                                class="btn btn-primary p-0 fs-6"
+                                                style="padding:.1rem .5rem !important"><i
+                                                    class="bi bi-pencil-square"></i></button></a>
+                                        <form action="#" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <a href="#"><button class="btn btn-block delete-btn p-0 fs-6"
+                                                    style="padding:.1rem .5rem !important"><i
+                                                        class="bi bi-trash3"></i></button></a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -164,27 +176,27 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="mt-3" action="#" method="POST">
+                    <form class="mt-3" action="{{ url('admin/profile/update-project', $project->uuid) }}"
+                        method="POST">
+                        @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_topic'))
                                 <span class="text-danger">{{ $errors->first('project_topic') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="project_topic"
-                                value="{{ old('project_topic') }}">
+                            <input type="text" id="project_topic" class="form-control" name="project_topic">
                         </div>
                         <div class="mb-3">
                             @if ($errors->has('project_desc'))
                                 <span class="text-danger">{{ $errors->first('project_desc') }}</span>
                             @endif
-                            <textarea class="form-control" id="" rows="3" name="project_desc"
-                                value="{{ old('project_desc') }}"></textarea>
+                            <textarea class="form-control" id="project_desc" rows="3" name="project_desc"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_type'))
                                 <span class="text-danger">{{ $errors->first('project_type') }}</span>
                             @endif
-                            <select class="form-select form-select-md mb-3 project-type-user"
+                            <select id="project_type" class="form-select form-select-md mb-3 project-type-user"
                                 aria-label=".form-select-lg example" name="project_type">
                                 <option>-- Select Project Type --</option>
                                 <option value="Individual">Individual</option>
@@ -195,21 +207,21 @@
                             @if ($errors->has('project_members'))
                                 <span class="text-danger">{{ $errors->first('project_members') }}</span>
                             @endif
-                            <textarea class="form-control" rows="3" name="project_members" value="{{ old('project_members') }}"></textarea>
+                            <textarea id="project_members" class="form-control" rows="3" name="project_members"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_file_name'))
                                 <span class="text-danger">{{ $errors->first('project_file_name') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="project_file_name"
-                                value="{{ old('project_file_name') }}">
+                            <input type="text" id="project_file_name" class="form-control"
+                                name="project_file_name">
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_file_path'))
                                 <span class="text-danger">{{ $errors->first('project_file_path') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="project_file_path"
-                                value="{{ old('project_file_path') }}">
+                            <input type="text" id="project_file_path" class="form-control"
+                                name="project_file_path">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -254,9 +266,6 @@
         </div>
     </div>
     <!-- ENDS HERE -->
-
-    </div>
-    </div>
 
     <!-- FOOTER SECTION -->
     <footer class="mt-5">
@@ -316,8 +325,9 @@
                 &copy; CopyRight Reserved 2023</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         const projectTypeUser = document.querySelector('.project-type-user');
         const groupDetailsUser = document.querySelector('.group-details-user');
@@ -339,6 +349,32 @@
                 groupDetailsEditUser.classList.add('d-none');
             }
         })
+    </script>
+    <script>
+        const project_topic = document.getElementById('project_topic')
+        const project_desc = document.getElementById('project_desc')
+        const project_type = document.getElementById('project_type')
+        const project_members = document.getElementById('project_members')
+        const project_file_name = document.getElementById('project_file_name')
+        const project_file_path = document.getElementById('project_file_path')
+        $(document).on('click', '#editProjectModal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            console.log(href)
+            $.ajax({
+                url: href,
+                success: function(result) {
+                    console.log(result)
+                    project_topic.value = result.project_topic
+                    project_desc.value = result.project_desc
+                    project_type.value = result.project_type
+                    project_members.value = result.project_members
+                    project_file_name.value = result.project_file_name
+                    project_file_path.value = result.project_file_path
+                    return
+                }
+            })
+        });
     </script>
 </body>
 

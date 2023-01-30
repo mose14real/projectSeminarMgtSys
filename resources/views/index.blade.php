@@ -66,7 +66,8 @@
                 <p class="mt-3 text-center text-white">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
                     commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                    Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis, doloribus
+                    Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis,
+                    doloribus
                     deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
                     magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
                     officiis cupiditate vel cum
@@ -152,10 +153,10 @@
                                     <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
                                             project</i></span>
                                     <h5 class="card-title">
-                                        <a
-                                            href="{{ url('project-details/' . $project->uuid) }}" class="project-title">{{ $project->project_topic }}</a>
+                                        <a href="{{ url('project-details/' . $project->uuid) }}"
+                                            class="title">{{ $project->project_topic }}</a>
                                     </h5>
-                                    <p class="card-text project-description">
+                                    <p class="card-text description">
                                         {{ $project->project_desc }}
                                     </p>
                                     <div class="row mb-3">
@@ -182,10 +183,10 @@
                                     <span class="badge text-bg-primary mb-2 font-poppins"><i class="bi bi-book-fill">
                                             seminar</i></span>
                                     <h5 class="card-title">
-                                        <a
-                                            href="{{ url('seminar-details/' . $seminar->uuid) }}">{{ $seminar->seminar_topic }}</a>
+                                        <a href="{{ url('seminar-details/' . $seminar->uuid) }}"
+                                            class="title">{{ $seminar->seminar_topic }}</a>
                                     </h5>
-                                    <p class="card-text">
+                                    <p class="card-text description">
                                         {{ $seminar->seminar_desc }}
                                     </p>
                                     <div class="row mb-3">
@@ -278,21 +279,21 @@
 
     </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="{{ asset('js/omitter.min.js') }}"></script>
-        <script>
-            window.addEventListener("load", function (event){
-            var doms = document.querySelectorAll(".project-description");
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/omitter.min.js') }}"></script>
+    <script>
+        window.addEventListener("load", function(event) {
+            var doms = document.querySelectorAll(".title");
+            var omitter = new Omitter(doms, 1, "...");
+            omitter.omit();
+        });
+
+        window.addEventListener("load", function(event) {
+            var doms = document.querySelectorAll(".description");
             var omitter = new Omitter(doms, 4, "...");
             omitter.omit();
-            });
-
-            window.addEventListener("load", function (event){
-            var doms = document.querySelectorAll(".project-title");
-            var omitter = new Omitter(doms, 2, "...");
-            omitter.omit();
-            });
-        </script>
+        });
+    </script>
 </body>
 
 </html>

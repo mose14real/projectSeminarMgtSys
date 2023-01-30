@@ -7,7 +7,6 @@ use App\Models\Seminar;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -57,7 +56,7 @@ class AdminController extends Controller
         return redirect('admin/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
     }
 
-    #--Admin--View--Student--
+    #--View--Student--
     public function studentData()
     {
         $students = Student::orderBy('id', 'desc')->paginate(5);
@@ -97,7 +96,7 @@ class AdminController extends Controller
         return redirect('student-data' . $uuid)->withSuccess('Student profile updated successfully');
     }
 
-    #--Admin--View--Project--
+    #--View--Project--
     public function projectData()
     {
         $projects = Project::orderBy('id', 'desc')->paginate(5);
@@ -109,7 +108,32 @@ class AdminController extends Controller
         );
     }
 
-    #--Admin--View--Seminar--
+    #--Edit--Student--Project--
+    public function editStudentProject($uuid)
+    {
+        $project = Project::findByUuid($uuid);
+        return $project;
+    }
+
+    #--Update--Student--Project--
+    public function updateStudentProject(Request $request, $uuid)
+    {
+        $credentials = $request->validate(
+            [
+                'project_topic' => ['required'],
+                'project_desc' => ['required'],
+                'project_type' => ['required'],
+                'project_members' => ['required_if:project_type,group'],
+                'project_file_name' => ['required'],
+                'project_file_path' => ['required']
+            ]
+        );
+        $project = Project::findByUuid($uuid);
+        $project->update($credentials);
+        return redirect('project-data' . $uuid)->withSuccess('Student project updated successfully');
+    }
+
+    #--View--Seminar--
     public function seminarData()
     {
         $seminars = Seminar::orderBy('id', 'desc')->paginate(5);
@@ -119,5 +143,28 @@ class AdminController extends Controller
                 "seminars" => $seminars
             ]
         );
+    }
+
+    #--Edit--Student--Seminar--
+    public function editStudentSeminar($uuid)
+    {
+        $seminar = Seminar::findByUuid($uuid);
+        return $seminar;
+    }
+
+    #--Update--Student--Seminar--
+    public function updateStudentSeminar(Request $request, $uuid)
+    {
+        $credentials = $request->validate(
+            [
+                'seminar_topic' => ['required'],
+                'seminar_desc' => ['required'],
+                'seminar_file_name' => ['required'],
+                'seminar_file_path' => ['required']
+            ]
+        );
+        $seminar = Seminar::findByUuid($uuid);
+        $seminar->update($credentials);
+        return redirect('seminar-data' . $uuid)->withSuccess('Student seminar updated successfully');
     }
 }

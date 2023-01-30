@@ -66,8 +66,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::put('profile/update-student/{uuid}', 'updateStudentProfile');
             #--Project--
             Route::get('project-data', 'projectData');
+            Route::get('profile/edit-project/{uuid}', 'editStudentProject');
+            Route::put('profile/update-project/{uuid}', 'updateStudentProject');
             #--Seminar--
             Route::get('seminar-data', 'seminarData');
+            Route::get('profile/edit-seminar/{uuid}', 'editStudentSeminar');
+            Route::put('profile/update-seminar/{uuid}', 'updateStudentSeminar');
         });
     });
 });
