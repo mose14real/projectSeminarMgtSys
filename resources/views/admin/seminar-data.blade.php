@@ -112,7 +112,7 @@
                             <th scope="col">Description</th>
                             <th scope="col">File Name</th>
                             <th scope="col">File Path</th>
-                            <th scope="col" colspan="2">Actions</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,17 +124,15 @@
                                 <td>{{ $seminar->seminar_file_name }}</td>
                                 <td>{{ $seminar->seminar_file_path }}</td>
                                 <td>
-                                    <a href="#"><button class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#seminar-upload-modal"><i
+                                    <a href="#"><button class="btn btn-secondary p-0 fs-6" data-bs-toggle="modal"
+                                            data-bs-target="#seminar-upload-modal" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-upload"></i></button></a>
-                                    <a href="#"><button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#seminar-registration-modal"><i
+                                    <a href="#"><button class="btn btn-primary p-0 fs-6" data-bs-toggle="modal"
+                                            data-bs-target="#seminar-registration-modal" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-pencil-square"></i></button></a>
-                                </td>
-                                <td>
-                                    <a href="#"><button class="btn btn-block edit-btn"><i
+                                    <a href="#"><button class="btn btn-block edit-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-download"></i></button></a>
-                                    <a href="#"><button class="btn btn-block delete-btn"><i
+                                    <a href="#"><button class="btn btn-block delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-trash3"></i></button></a>
                                 </td>
                             </tr>
