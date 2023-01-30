@@ -138,15 +138,17 @@
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
                                 <td>
-                                    <a data-bs-toggle="modal" 
-                                        data-bs-target="#edit-student-in-table-modal"
+                                    <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
                                         data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
-                                        title="show" id="showModal"><button class="btn edit-btn btn-sm p-0 fs-6" style="padding:.1rem .5rem !important;"><i
+                                        title="show" id="showModal"><button class="btn edit-btn btn-sm p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" title="show" id="showModal"><button class="btn delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i class="bi bi-trash3"></i></button>
+                                    <a href="#" title="show" id="showModal"><button
+                                            class="btn delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i
+                                                class="bi bi-trash3"></i></button>
                                     </a>
                                 </td>
                             </tr>
@@ -172,64 +174,52 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="col-12 mb-3">
-                                    <input type="text" id="uuid" class="form-control" name="uuid"
-                                        value="{{ $student->user->uuid }}">
-                                </div>
-                                <div class="col-12 mb-3">
                                     @if ($errors->has('first_name'))
                                         <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                     @endif
-                                    <input type="text" id="first_name" class="form-control" name="first_name"
-                                        value="{{ $student->user->first_name }}">
+                                    <input type="text" id="first_name" class="form-control" name="first_name">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('middle_name'))
                                         <span class="text-danger">{{ $errors->first('middle_name') }}</span>
                                     @endif
-                                    <input type="text" id="middle_name" class="form-control" name="middle_name"
-                                        value="{{ $student->user->middle_name }}">
+                                    <input type="text" id="middle_name" class="form-control" name="middle_name">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('last_name'))
                                         <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                     @endif
-                                    <input type="text" id="last_name" class="form-control" name="last_name"
-                                        value="{{ $student->user->last_name }}">
+                                    <input type="text" id="last_name" class="form-control" name="last_name">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
-                                    <input type="email" id="email" class="form-control" name="email"
-                                        value="{{ $student->user->email }}">
+                                    <input type="email" id="email" class="form-control" name="email">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('matric'))
                                         <span class="text-danger">{{ $errors->first('matric') }}</span>
                                     @endif
-                                    <input type="text" id="matric" class="form-control" name="matric"
-                                        value="{{ $student->matric }}">
+                                    <input type="text" id="matric" class="form-control" name="matric">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
-                                    <input type="text" id="phone" class="form-control" name="phone"
-                                        value="{{ $student->phone }}">
+                                    <input type="text" id="phone" class="form-control" name="phone">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('supervisor'))
                                         <span class="text-danger">{{ $errors->first('supervisor') }}</span>
                                     @endif
-                                    <input type="text" id="supervisor" class="form-control" name="supervisor"
-                                        value="{{ $student->supervisor }}">
+                                    <input type="text" id="supervisor" class="form-control" name="supervisor">
                                 </div>
                                 <div class="col-12 mb-3">
                                     @if ($errors->has('session'))
                                         <span class="text-danger">{{ $errors->first('session') }}</span>
                                     @endif
-                                    <input type="text" id="session" class="form-control" name="session"
-                                        value="{{ $student->session }}">
+                                    <input type="text" id="session" class="form-control" name="session">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -320,12 +310,16 @@
             console.log(href)
             $.ajax({
                 url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
                 success: function(result) {
                     console.log(result)
+                    first_name.value = result.first_name
+                    middle_name.value = result.middle_name
+                    last_name.value = result.last_name
+                    email.value = result.email
+                    matric.value = result.student.matric
+                    phone.value = result.student.phone
+                    supervisor.value = result.student.supervisor
+                    session.value = result.student.session
                     return
                 }
             })
