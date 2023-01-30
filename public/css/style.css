@@ -39,16 +39,15 @@ body {
 }
 
 .page-wrapper {
-    position: relative;
+    /* position: relative; */
     width: 100%;
     min-height: 100vh;
 }
 .footer-index {
     /* position: absolute;
     left: 0;
-    width: 100%;
-    top: 100%; */
-    /* display: none; */
+    bottom: 0;
+    width: 100%; */
 }
 
 /* NAVBAR SECTION STYLING */
