@@ -117,7 +117,7 @@
                                 <th scope="col">Members</th>
                                 <th scope="col">File Name</th>
                                 <th scope="col">File Path</th>
-                                <th scope="col" colspan="4" style="text-align:center;">Actions</th>
+                                <th scope="col" style="text-align:center;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,22 +130,17 @@
                                     <td style="width:600px">{{ $project->project_members }}</td>
                                     <td>{{ $project->project_file_name }}</td>
                                     <td>{{ $project->project_file_path }}</td>
-                                    <td>
+                                    <td class="d-flex" style="gap:.2rem">
                                         <a href="#">
-                                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
+                                            <button class="btn btn-secondary p-0 fs-6" style="padding:.1rem .5rem !important;" data-bs-toggle="modal" data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
                                     </button>
                                     </a>
-                                    </td>
-                                    <td>
-                                    <a href="#"><button class="btn btn-block delete-btn"><i class="bi bi-trash3"></i></button></a>
-                                    </td>
-                                    <td>
+                                    <a href="#"><button class="btn btn-block delete-btn p-0 fs-6" style="padding:.1rem .5rem !important"><i class="bi bi-trash3"></i></button></a>
                                     <a href="#">
-                                        <button class="btn btn-block edit-btn"><i class="bi bi-download"></i></button></a>
-                                    </td>
-                                    <td>
-                                    <a href="#">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button>
+                                        <button class="btn btn-block edit-btn p-0 fs-6" style="padding:.1rem .5rem !important"><i class="bi bi-download"></i></button></a>
+                                        <a href="#">
+                                        <button class="btn btn-primary p-0 fs-6" style="padding:.1rem .5rem !important" data-bs-toggle="modal" data-bs-target="#project-registration-modal"><i class="bi bi-pencil-square"></i></button></a>
+
                                     </td>
                                 </tr>
                             @endforeach

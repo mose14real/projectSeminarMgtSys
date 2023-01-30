@@ -137,11 +137,11 @@
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
-                                <td><a href="#"><button class="btn btn-block edit-btn" data-bs-toggle="modal"
+                                <td><a href="#"><button class="btn btn-block edit-btn p-0 fs-6" style="padding:.1rem .5rem !important;" data-bs-toggle="modal"
                                             data-bs-target="#edit-student-in-table-modal"><i
                                                 class="bi bi-pencil-square"></i></button></a>
                                 </td>
-                                <td><a href="#"><button class="btn btn-block delete-btn"><i
+                                <td><a href="#"><button class="btn btn-block delete-btn p-0 fs-6" style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-trash3"></i></button></a>
                                 </td>
                             </tr>
