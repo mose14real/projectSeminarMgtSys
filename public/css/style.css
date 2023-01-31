@@ -381,3 +381,10 @@ footer {
 .student-data-area {
     min-height: 80vh;
 }
+
+/* stylying for project data area */
+.project-data-table,
+th,
+td {
+    border: 1px solid gray;
+}

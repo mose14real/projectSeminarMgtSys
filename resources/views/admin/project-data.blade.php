@@ -113,20 +113,19 @@
             <h2 class="text-start mt-5">Projects Data</h2>
             <div class="row mt-5">
                 <!-- projects data table -->
-                <table class="table table-bordered">
+                <table class="project-data-table" style="">
                     <thead>
                         <tr>
-                            <th scope="col">S/N</th>
-                            <th scope="col">Topic</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Members</th>
-                            <th scope="col">File Name</th>
-                            <th scope="col">File Path</th>
-                            <th scope="col">Actions</th>
+                            <th>S/N</th>
+                            <th>Topic</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Members</th>
+                            <th>File Name</th>
+                            <th>File Path</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
                         @foreach ($projects as $key => $project)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
@@ -161,7 +160,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
                 </table>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
