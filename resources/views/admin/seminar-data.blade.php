@@ -98,6 +98,13 @@
             </div>
     </nav>
 
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <span>{{ $message }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">
         <div class="container">
@@ -132,11 +139,11 @@
                                             style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-download"></i></button></a>
                                     <a data-bs-toggle="modal" data-bs-target="#seminar-registration-modal"
-                                        data-attr="#"title="edit" id="editSeminarModal"><button
-                                            class="btn btn-primary p-0 fs-6"
+                                        data-attr="{{ url('admin/edit-seminar', $seminar->uuid) }}"title="edit"
+                                        id="editSeminarModal"><button class="btn btn-primary p-0 fs-6"
                                             style="padding:.1rem .5rem !important;"><i
                                                 class="bi bi-pencil-square"></i></button></a>
-                                    <form action="#" method="POST">
+                                    <form action="{{ url('admin/update-seminar', $seminar->uuid) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <a href="#"><button class="btn btn-block delete-btn p-0 fs-6"
@@ -166,33 +173,34 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="mt-3" action="{{ url('admin/profile/update-seminar', $seminar->uuid) }}"
-                        method="POST">
+                    <form class="mt-3" id="seminarAction" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
                             @if ($errors->has('seminar_topic'))
                                 <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="seminar_topic">
+                            <input type="text" id="seminar_topic" class="form-control" name="seminar_topic">
                         </div>
                         <div class="mb-3 group-details">
                             @if ($errors->has('seminar_desc'))
                                 <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
                             @endif
-                            <textarea class="form-control" rows="3" name="seminar_desc"></textarea>
+                            <textarea id="seminar_desc" class="form-control" rows="3" name="seminar_desc"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('seminar_file_name'))
                                 <span class="text-danger">{{ $errors->first('seminar_file_name') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="seminar_file_name">
+                            <input type="text" id="seminar_file_name" class="form-control"
+                                name="seminar_file_name">
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('seminar_file_path'))
                                 <span class="text-danger">{{ $errors->first('seminar_file_path') }}</span>
                             @endif
-                            <input type="text" class="form-control" name="seminar_file_path">
+                            <input type="text" id="seminar_file_path" class="form-control"
+                                name="seminar_file_path">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -304,14 +312,16 @@
         const seminar_desc = document.getElementById('seminar_desc')
         const seminar_file_name = document.getElementById('seminar_file_name')
         const seminar_file_path = document.getElementById('seminar_file_path')
+        const seminarAction = document.getElementById('seminarAction')
         $(document).on('click', '#editSeminarModal', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            console.log(href)
             $.ajax({
                 url: href,
                 success: function(result) {
-                    console.log(result)
+                    const updateSeminar = "{{ url('admin/update-seminar') }}" + "/" + result.uuid
+                    seminarAction.action = updateSeminar
+
                     seminar_topic.value = result.seminar_topic
                     seminar_desc.value = result.seminar_desc
                     seminar_file_name.value = result.seminar_file_name

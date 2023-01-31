@@ -100,6 +100,13 @@
             </div>
     </nav>
 
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <span>{{ $message }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">
         <div class="container">
@@ -142,7 +149,8 @@
                                                 style="padding:.1rem .5rem !important"><i
                                                     class="bi bi-download"></i></button></a>
                                         <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
-                                            data-attr="#" title="edit" id="editProjectModal"><button
+                                            data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
+                                            title="edit" id="editProjectModal"><button
                                                 class="btn btn-primary p-0 fs-6"
                                                 style="padding:.1rem .5rem !important"><i
                                                     class="bi bi-pencil-square"></i></button></a>
@@ -176,8 +184,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="mt-3" action="{{ url('admin/profile/update-project', $project->uuid) }}"
-                        method="POST">
+                    <form class="mt-3" id="projectAction" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
@@ -357,14 +364,16 @@
         const project_members = document.getElementById('project_members')
         const project_file_name = document.getElementById('project_file_name')
         const project_file_path = document.getElementById('project_file_path')
+        const projectAction = document.getElementById('projectAction')
         $(document).on('click', '#editProjectModal', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            console.log(href)
             $.ajax({
                 url: href,
                 success: function(result) {
-                    console.log(result)
+                    const updateProject = "{{ url('admin/update-project') }}" + "/" + result.uuid
+                    projectAction.action = updateProject
+
                     project_topic.value = result.project_topic
                     project_desc.value = result.project_desc
                     project_type.value = result.project_type

@@ -12,7 +12,7 @@ class StudentController extends Controller
 {
     #--STUDENT--START--HERE--
 
-    #--Student--Dashboard--
+    #--Dashboard--
     public function dashboard()
     {
         $seminar = Auth::user()->student->seminar;
@@ -28,21 +28,21 @@ class StudentController extends Controller
         );
     }
 
-    #--Student--Show--Profile--
+    #--Show--Profile--
     public function showProfile($uuid)
     {
         $student = Student::findByUuid($uuid);
         return view('student.show-profile', compact('student'));
     }
 
-    #--Student--Edit--Profile--
+    #--Edit--Profile--
     public function editProfile($uuid)
     {
         $student = Student::findByUuid($uuid);
         return view('student.edit-profile', compact('student'));
     }
 
-    #--Student--Update--Profile--
+    #--Update--Profile--
     public function updateProfile(Request $request, $uuid)
     {
         $credentials = $request->validate(
@@ -56,8 +56,8 @@ class StudentController extends Controller
         return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
     }
 
-    #--Student--Download--All--
-    public function downloadAll($file)
+    #--Download--ProSem--
+    public function downloadProSem($file)
     {
         $file = base64_decode($file);
         return response()->download(public_path($file));

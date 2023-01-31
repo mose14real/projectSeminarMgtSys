@@ -142,7 +142,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
-                                            data-attr="{{ url('admin/profile/edit-student') }}/{{ $student->user->uuid }}"
+                                            data-attr="{{ url('admin/edit-student') }}/{{ $student->user->uuid }}"
                                             title="edit" id="editStudentModal"><button
                                                 class="btn edit-btn btn-sm p-0 fs-6"
                                                 style="padding:.1rem .5rem !important;"><i
@@ -172,9 +172,7 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="mt-3"
-                                action="{{ url('admin/profile/update-student', $student->user->uuid) }}"
-                                method="POST">
+                            <form class="mt-3" id="studentAction" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <div class="col-12 mb-3">
@@ -308,14 +306,18 @@
         const matric = document.getElementById('matric')
         const supervisor = document.getElementById('supervisor')
         const session = document.getElementById('session')
+        const studentAction = document.getElementById('studentAction')
         $(document).on('click', '#editStudentModal', function(event) {
             event.preventDefault();
             let href = $(this).attr('data-attr');
-            console.log(href)
             $.ajax({
                 url: href,
-                success: function(result) {
-                    console.log(result)
+                success: function(
+                    result) { //action="{{ url('admin/update-student/', $student->user->uuid) }}"
+                    const updateStudent = "{{ url('admin/update-student') }}" + "/" + result.student
+                        .uuid
+                    studentAction.action = updateStudent
+
                     first_name.value = result.first_name
                     middle_name.value = result.middle_name
                     last_name.value = result.last_name

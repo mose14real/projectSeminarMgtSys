@@ -7,6 +7,7 @@ use App\Models\Seminar;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -84,8 +85,8 @@ class AdminController extends Controller
                 'middle_name' => ['required'],
                 'last_name' => ['required'],
                 'email' => ['required'],
-                'matric' => ['required', 'unique:students', 'min:10', 'max:10'],
-                'phone' => ['required', 'unique:students', 'min:11', 'max:11'],
+                'matric' => ['required', 'min:10', 'max:10'],
+                'phone' => ['required', 'min:11', 'max:11'],
                 'supervisor' => ['required'],
                 'session' => ['required']
             ]
@@ -93,7 +94,7 @@ class AdminController extends Controller
         $student = Student::findByUuid($uuid);
         $student->update($credentials);
         $student->user->update($credentials);
-        return redirect('student-data' . $uuid)->withSuccess('Student profile updated successfully');
+        return redirect('admin/student-data')->withSuccess('Student profile updated successfully');
     }
 
     #--View--Project--
@@ -112,6 +113,7 @@ class AdminController extends Controller
     public function editStudentProject($uuid)
     {
         $project = Project::findByUuid($uuid);
+        // Log::info($project);
         return $project;
     }
 
@@ -124,13 +126,13 @@ class AdminController extends Controller
                 'project_desc' => ['required'],
                 'project_type' => ['required'],
                 'project_members' => ['required_if:project_type,group'],
-                'project_file_name' => ['required'],
-                'project_file_path' => ['required']
+                'project_file_name' => [],
+                'project_file_path' => []
             ]
         );
         $project = Project::findByUuid($uuid);
         $project->update($credentials);
-        return redirect('project-data' . $uuid)->withSuccess('Student project updated successfully');
+        return redirect('admin/project-data')->withSuccess('Student project updated successfully');
     }
 
     #--View--Seminar--
@@ -159,12 +161,12 @@ class AdminController extends Controller
             [
                 'seminar_topic' => ['required'],
                 'seminar_desc' => ['required'],
-                'seminar_file_name' => ['required'],
-                'seminar_file_path' => ['required']
+                'seminar_file_name' => [],
+                'seminar_file_path' => []
             ]
         );
         $seminar = Seminar::findByUuid($uuid);
         $seminar->update($credentials);
-        return redirect('seminar-data' . $uuid)->withSuccess('Student seminar updated successfully');
+        return redirect('admin/seminar-data')->withSuccess('Student seminar updated successfully');
     }
 }

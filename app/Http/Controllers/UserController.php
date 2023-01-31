@@ -56,8 +56,8 @@ class UserController extends Controller
         );
     }
 
-    #--View--All--Files--
-    public function download($file)
+    #--Download--ProSem--
+    public function downloadProSem($file)
     {
         $file = base64_decode($file);
         return response()->download(public_path($file));
@@ -142,7 +142,7 @@ class UserController extends Controller
     }
 
     #--Logout--
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
         return redirect('login');

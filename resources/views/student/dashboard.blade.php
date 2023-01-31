@@ -214,7 +214,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="mt-3"
-                                action="{{ url('/student/create-project') }}/{{ auth()->user()->student->project->uuid }}"
+                                action="{{ url('student/create-project') }}/{{ auth()->user()->student->project->uuid }}"
                                 method="POST">
                                 @csrf
                                 <div class="col-12 mb-3">
@@ -273,7 +273,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="mt-3"
-                                action="{{ url('/student/create-seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
+                                action="{{ url('student/create-seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
                                 method="POST">
                                 @csrf
                                 <div class="col-12 mb-3">
@@ -314,7 +314,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="mt-3"
-                                action="{{ url('/student/upload/project') }}/{{ auth()->user()->student->project->uuid }}"
+                                action="{{ url('student/upload/project') }}/{{ auth()->user()->student->project->uuid }}"
                                 method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
@@ -348,7 +348,7 @@
                         </div>
                         <div class="modal-body">
                             <form class="mt-3"
-                                action="{{ url('/student/upload/seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
+                                action="{{ url('student/upload/seminar') }}/{{ auth()->user()->student->seminar->uuid }}"
                                 method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
