@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Student Data | Project & Seminar Archival Mgt Sys</title>
+    <title>Student | Data</title>
 </head>
 
 <body>
@@ -138,21 +138,13 @@
                                 <td>{{ $student->supervisor }}</td>
                                 <td>{{ $student->session }}</td>
                                 <td>
-                                    <form action="#" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
-                                            data-attr="{{ url('admin/edit-student') }}/{{ $student->user->uuid }}"
-                                            title="edit" id="editStudentModal"><button
-                                                class="btn edit-btn btn-sm p-0 fs-6"
-                                                style="padding:.1rem .5rem !important;"><i
-                                                    class="bi bi-pencil-square"></i></button>
-                                        </a>
-                                        <a href="#"><button class="btn delete-btn p-0 fs-6"
-                                                style="padding:.1rem .5rem !important;"><i
-                                                    class="bi bi-trash3"></i></button>
-                                        </a>
-                                    </form>
+                                    <a data-bs-toggle="modal" data-bs-target="#edit-student-in-table-modal"
+                                        data-attr="{{ url('admin/edit-student') }}/{{ $student->user->uuid }}"
+                                        title="edit" id="editStudentModal">
+                                        <button class="btn edit-btn btn-sm">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -312,8 +304,7 @@
             let href = $(this).attr('data-attr');
             $.ajax({
                 url: href,
-                success: function(
-                    result) { //action="{{ url('admin/update-student/', $student->user->uuid) }}"
+                success: function(result) {
                     const updateStudent = "{{ url('admin/update-student') }}" + "/" + result.student
                         .uuid
                     studentAction.action = updateStudent

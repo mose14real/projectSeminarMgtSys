@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Project & Seminar Archival Mgt Sys</title>
+    <title>Admin | Dashboard</title>
 </head>
 
 <body>

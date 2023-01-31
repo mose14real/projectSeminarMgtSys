@@ -21,7 +21,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Project & Seminar Archival Mgt Sys</title>
+    <title>Seminar | Data</title>
 </head>
 
 <body>
@@ -110,7 +110,7 @@
         <div class="container">
             <h2 class="text-start mt-5">Seminars Data</h2>
             <div class="row mt-5">
-                <!-- projects data table -->
+                <!-- seminar data table -->
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -131,25 +131,28 @@
                                 <td>{{ $seminar->seminar_file_name }}</td>
                                 <td>{{ $seminar->seminar_file_path }}</td>
                                 <td class="d-flex" style="gap:.2rem">
-                                    <a href="#"><button class="btn btn-secondary p-0 fs-6"
-                                            data-bs-toggle="modal" data-bs-target="#seminar-upload-modal"
-                                            style="padding:.1rem .5rem !important;"><i
-                                                class="bi bi-upload"></i></button></a>
-                                    <a href="#"><button class="btn btn-block edit-btn p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;"><i
-                                                class="bi bi-download"></i></button></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#seminar-upload-modal"
+                                        data-attr="{{ $seminar->uuid }}" title="upload" id="uploadModal">
+                                        <button class="btn btn-secondary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;">
+                                            <i class="bi bi-upload"></i>
+                                        </button>
+                                    </a>
+                                    <a
+                                        href="{{ url('admin/download/' . base64_encode($seminar->seminar_file_path)) }}">
+                                        <button class="btn btn-block edit-btn p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;">
+                                            <i class="bi bi-download"></i>
+                                        </button>
+                                    </a>
                                     <a data-bs-toggle="modal" data-bs-target="#seminar-registration-modal"
                                         data-attr="{{ url('admin/edit-seminar', $seminar->uuid) }}"title="edit"
-                                        id="editSeminarModal"><button class="btn btn-primary p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;"><i
-                                                class="bi bi-pencil-square"></i></button></a>
-                                    <form action="{{ url('admin/update-seminar', $seminar->uuid) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <a href="#"><button class="btn btn-block delete-btn p-0 fs-6"
-                                                style="padding:.1rem .5rem !important;"><i
-                                                    class="bi bi-trash3"></i></button></a>
-                                    </form>
+                                        id="editSeminarModal">
+                                        <button class="btn btn-primary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -225,7 +228,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="mt-3" action="#" method="POST" enctype="multipart/form-data">
+                    <form class="mt-3" id="uploadAction" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
@@ -329,6 +332,16 @@
                     return
                 }
             })
+        });
+    </script>
+    <script>
+        const uploadAction = document.getElementById('uploadAction')
+        $(document).on('click', '#uploadModal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            console.log(href);
+            const uploadSeminar = "{{ url('admin/upload-seminar') }}" + "/" + href
+            uploadAction.action = uploadSeminar
         });
     </script>
 </body>

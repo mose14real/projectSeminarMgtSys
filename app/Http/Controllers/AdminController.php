@@ -57,6 +57,13 @@ class AdminController extends Controller
         return redirect('admin/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
     }
 
+    #--Download--ProSem--
+    public function downloadProSem($file)
+    {
+        $file = base64_decode($file);
+        return response()->download(public_path($file));
+    }
+
     #--View--Student--
     public function studentData()
     {
@@ -109,7 +116,7 @@ class AdminController extends Controller
         );
     }
 
-    #--Edit--Student--Project--
+    #--Edit--Project--
     public function editStudentProject($uuid)
     {
         $project = Project::findByUuid($uuid);
@@ -117,7 +124,7 @@ class AdminController extends Controller
         return $project;
     }
 
-    #--Update--Student--Project--
+    #--Update--Project--
     public function updateStudentProject(Request $request, $uuid)
     {
         $credentials = $request->validate(
@@ -133,6 +140,29 @@ class AdminController extends Controller
         $project = Project::findByUuid($uuid);
         $project->update($credentials);
         return redirect('admin/project-data')->withSuccess('Student project updated successfully');
+    }
+
+    #--Upload--Project--
+    public function uploadStudentProject(Request $request, $uuid)
+    {
+        $request->validate(
+            [
+                'project_file' => ['required', 'mimes:doc,docx,pdf,zip,rar', 'max:8000000']
+            ]
+        );
+        $project = Project::findByUuid($uuid);
+        if (is_null($project->project_topic)) {
+            return redirect('admin/project-data')->withSuccess("Register project before uploading it's file");
+        }
+        if ($request->project_file) {
+            $projectName = time() . "_" . $request->project_file->getClientOriginalName();
+            $publicPath = $request->project_file->move(public_path('projects'), $projectName);
+            $projectPath = "projects/{$projectName}";
+            $project->project_file_name = $projectName;
+            $project->project_file_path = $projectPath;
+            $project->save();
+            return redirect('admin/project-data')->withSuccess('Project file uploaded successfully');
+        }
     }
 
     #--View--Seminar--
@@ -168,5 +198,28 @@ class AdminController extends Controller
         $seminar = Seminar::findByUuid($uuid);
         $seminar->update($credentials);
         return redirect('admin/seminar-data')->withSuccess('Student seminar updated successfully');
+    }
+
+    #--Upload--Seminar--
+    public function uploadStudentSeminar(Request $request, $uuid)
+    {
+        $request->validate(
+            [
+                'seminar_file' => ['required', 'mimes:doc,docx,pdf,zip', 'max:2048']
+            ]
+        );
+        $seminar = Seminar::findByUuid($uuid);
+        if (is_null($seminar->seminar_topic)) {
+            return redirect('admin/seminar-data')->withSuccess("Register seminar before uploading it's file");
+        }
+        if ($request->seminar_file) {
+            $seminarName = time() . "_" . $request->seminar_file->getClientOriginalName();
+            $publicPath = $request->seminar_file->move(public_path('seminars'), $seminarName);
+            $seminarPath = "seminars/{$seminarName}";
+            $seminar->seminar_file_name = $seminarName;
+            $seminar->seminar_file_path = $seminarPath;
+            $seminar->save();
+            return redirect('admin/seminar-data')->withSuccess('Seminar file uploaded successfully');
+        }
     }
 }

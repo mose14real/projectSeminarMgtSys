@@ -23,7 +23,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>Project & Seminar Archival Mgt Sys</title>
+    <title>Project | Data</title>
 </head>
 
 <body>
@@ -113,60 +113,56 @@
             <h2 class="text-start mt-5">Projects Data</h2>
             <div class="row mt-5">
                 <!-- projects data table -->
-                <div class="table-responsive-sm" style="overflow-x:auto;">
-                    <table class="table table-bordered">
-                        <thead>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Topic</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Members</th>
+                            <th scope="col">File Name</th>
+                            <th scope="col">File Path</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($projects as $key => $project)
                             <tr>
-                                <th scope="col">S/N</th>
-                                <th scope="col">Topic</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Members</th>
-                                <th scope="col">File Name</th>
-                                <th scope="col">File Path</th>
-                                <th scope="col" style="text-align:center;">Actions</th>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $project->project_topic }}</td>
+                                <td>{{ $project->project_desc }}</td>
+                                <td>{{ $project->project_type }}</td>
+                                <td>{{ $project->project_members }}</td>
+                                <td>{{ $project->project_file_name }}</td>
+                                <td>{{ $project->project_file_path }}</td>
+                                <td class="d-flex" style="gap:.2rem">
+                                    <a data-bs-toggle="modal" data-bs-target="#project-upload-modal"
+                                        data-attr="{{ $project->uuid }}" title="upload" id="uploadModal">
+                                        <button class="btn btn-secondary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;">
+                                            <i class="bi bi-upload"></i>
+                                        </button>
+                                    </a>
+                                    <a
+                                        href="{{ url('admin/download/' . base64_encode($project->project_file_path)) }}">
+                                        <button class="btn btn-block edit-btn p-0 fs-6"
+                                            style="padding:.1rem .5rem !important"><i
+                                                class="bi bi-download"></i></button>
+                                    </a>
+                                    <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
+                                        data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
+                                        title="edit" id="editProjectModal">
+                                        <button class="btn btn-primary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($projects as $key => $project)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td style="width:200px">{{ $project->project_topic }}</td>
-                                    <td class="project_desc" style="width:800px">{{ $project->project_desc }}</td>
-                                    <td>{{ $project->project_type }}</td>
-                                    <td style="width:600px">{{ $project->project_members }}</td>
-                                    <td>{{ $project->project_file_name }}</td>
-                                    <td>{{ $project->project_file_path }}</td>
-                                    <td class="d-flex" style="gap:.2rem">
-                                        <a href="#">
-                                            <button class="btn btn-secondary p-0 fs-6"
-                                                style="padding:.1rem .5rem !important;" data-bs-toggle="modal"
-                                                data-bs-target="#project-upload-modal"><i class="bi bi-upload"></i>
-                                            </button>
-                                        </a>
-                                        <a href="#">
-                                            <button class="btn btn-block edit-btn p-0 fs-6"
-                                                style="padding:.1rem .5rem !important"><i
-                                                    class="bi bi-download"></i></button></a>
-                                        <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
-                                            data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
-                                            title="edit" id="editProjectModal"><button
-                                                class="btn btn-primary p-0 fs-6"
-                                                style="padding:.1rem .5rem !important"><i
-                                                    class="bi bi-pencil-square"></i></button></a>
-                                        <form action="#" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <a href="#"><button class="btn btn-block delete-btn p-0 fs-6"
-                                                    style="padding:.1rem .5rem !important"><i
-                                                        class="bi bi-trash3"></i></button></a>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
         </div>
@@ -253,7 +249,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="mt-3" action="" method="POST" enctype="multipart/form-data">
+                    <form class="mt-3" id="uploadAction" enctype="multipart/form-data" method="POST">
                         @method('PUT')
                         @csrf
                         @if ($errors->has('project_file'))
@@ -383,6 +379,16 @@
                     return
                 }
             })
+        });
+    </script>
+    <script>
+        const uploadAction = document.getElementById('uploadAction')
+        $(document).on('click', '#uploadModal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            console.log(href);
+            const uploadProject = "{{ url('admin/upload-project') }}" + "/" + href
+            uploadAction.action = uploadProject
         });
     </script>
 </body>

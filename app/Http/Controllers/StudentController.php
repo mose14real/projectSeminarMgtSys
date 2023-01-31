@@ -89,7 +89,7 @@ class StudentController extends Controller
     {
         $request->validate(
             [
-                'seminar_file' => ['required', 'mimes:doc,docx,pdf,zip', 'max:2048']
+                'seminar_file' => ['required', 'mimes:doc,docx,pdf', 'max:2048']
             ]
         );
         $seminar = Seminar::findByUuid($uuid);

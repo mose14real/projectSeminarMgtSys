@@ -93,8 +93,8 @@
                                 <td>
                                     {{ $seminar->seminar_file_name }}
                                     <a href="{{ url('download/' . base64_encode($seminar->seminar_file_path)) }}"
-                                        download><button type="button"
-                                            class="btn btn-block edit-btn float-end">Download</button>
+                                        download><button type="button" class="btn btn-block edit-btn float-end"
+                                            hidden>Download</button>
                                         <div class="clearfix"></div>
                                     </a>
                                 </td>

@@ -65,19 +65,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('student-data', 'studentData');
             Route::get('edit-student/{uuid}', 'editStudentProfile');
             Route::put('update-student/{uuid}', 'updateStudentProfile');
-            Route::delete('delete/student/{uuid}', 'deleteStudent');
             #--Project--
             Route::get('project-data', 'projectData');
             Route::get('edit-project/{uuid}', 'editStudentProject');
             Route::put('update-project/{uuid}', 'updateStudentProject');
-            Route::put('upload/project/{uuid}', 'uploadStudentProject');
-            Route::delete('delete/project/{uuid}', 'deleteStudentProject');
+            Route::put('upload-project/{uuid}', 'uploadStudentProject');
             #--Seminar--
             Route::get('seminar-data', 'seminarData');
             Route::get('edit-seminar/{uuid}', 'editStudentSeminar');
             Route::put('update-seminar/{uuid}', 'updateStudentSeminar');
-            Route::put('upload/project/{uuid}', 'uploadStudentSeminar');
-            Route::delete('delete/seminar/{uuid}', 'deleteStudentSeminar');
+            Route::put('upload-seminar/{uuid}', 'uploadStudentSeminar');
         });
     });
 });
