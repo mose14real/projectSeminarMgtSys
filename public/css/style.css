@@ -383,8 +383,24 @@ footer {
 }
 
 /* stylying for project data area */
+.table-container {
+    height: 500px;
+    overflow: scroll;
+}
+.project-data-table {
+    width: 150%;
+}
 .project-data-table,
 th,
 td {
     border: 1px solid gray;
+}
+
+th,
+td {
+    padding: 8px;
+}
+
+td {
+    vertical-align: text-top;
 }

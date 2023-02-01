@@ -113,54 +113,56 @@
             <h2 class="text-start mt-5">Projects Data</h2>
             <div class="row mt-5">
                 <!-- projects data table -->
-                <table class="project-data-table" style="">
-                    <thead>
-                        <tr>
-                            <th>S/N</th>
-                            <th>Topic</th>
-                            <th>Description</th>
-                            <th>Type</th>
-                            <th>Members</th>
-                            <th>File Name</th>
-                            <th>File Path</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                        @foreach ($projects as $key => $project)
+                <div class="table-container">
+                    <table class="project-data-table" style="">
+                        <thead>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $project->project_topic }}</td>
-                                <td>{{ $project->project_desc }}</td>
-                                <td>{{ $project->project_type }}</td>
-                                <td>{{ $project->project_members }}</td>
-                                <td>{{ $project->project_file_name }}</td>
-                                <td>{{ $project->project_file_path }}</td>
-                                <td class="d-flex" style="gap:.2rem">
-                                    <a data-bs-toggle="modal" data-bs-target="#project-upload-modal"
-                                        data-attr="{{ $project->uuid }}" title="upload" id="uploadModal">
-                                        <button class="btn btn-secondary p-0 fs-6"
-                                            style="padding:.1rem .5rem !important;">
-                                            <i class="bi bi-upload"></i>
-                                        </button>
-                                    </a>
-                                    <a
-                                        href="{{ url('admin/download/' . base64_encode($project->project_file_path)) }}">
-                                        <button class="btn btn-block edit-btn p-0 fs-6"
-                                            style="padding:.1rem .5rem !important"><i
-                                                class="bi bi-download"></i></button>
-                                    </a>
-                                    <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
-                                        data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
-                                        title="edit" id="editProjectModal">
-                                        <button class="btn btn-primary p-0 fs-6"
-                                            style="padding:.1rem .5rem !important">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                    </a>
-                                </td>
+                                <th>S/N</th>
+                                <th style="width: 30%">Topic</th>
+                                <th style="width: 50%">Description</th>
+                                <th>Type</th>
+                                <th>Members</th>
+                                <th>File Name</th>
+                                <th>File Path</th>
+                                <th style="width: 20%">Actions</th>
                             </tr>
-                        @endforeach
-                </table>
+                        </thead>
+                            @foreach ($projects as $key => $project)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $project->project_topic }}</td>
+                                    <td>{{ $project->project_desc }}</td>
+                                    <td>{{ $project->project_type }}</td>
+                                    <td>{{ $project->project_members }}</td>
+                                    <td>{{ $project->project_file_name }}</td>
+                                    <td>{{ $project->project_file_path }}</td>
+                                    <td class="d-flex" style="gap:.2rem">
+                                        <a data-bs-toggle="modal" data-bs-target="#project-upload-modal"
+                                            data-attr="{{ $project->uuid }}" title="upload" id="uploadModal">
+                                            <button class="btn btn-secondary p-0 fs-6"
+                                                style="padding:.1rem .5rem !important;">
+                                                <i class="bi bi-upload"></i>
+                                            </button>
+                                        </a>
+                                        <a
+                                            href="{{ url('admin/download/' . base64_encode($project->project_file_path)) }}">
+                                            <button class="btn btn-block edit-btn p-0 fs-6"
+                                                style="padding:.1rem .5rem !important"><i
+                                                    class="bi bi-download"></i></button>
+                                        </a>
+                                        <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
+                                            data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
+                                            title="edit" id="editProjectModal">
+                                            <button class="btn btn-primary p-0 fs-6"
+                                                style="padding:.1rem .5rem !important">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                    </table>
+                </div>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
             </div>
         </div>
