@@ -61,16 +61,18 @@
         <!-- HEADER SECTION STARTS HERE -->
         <header class="header-section d-flex align-items-center justify-content-center flex-column" id="header">
             <div class="container">
-                <h1 class="text-center header-text"><i class="fas fa-book-open-cover">Project and Seminar Management
-                        System</i></h1>
+                <h1 class="text-center header-text"><i class="fas fa-book-open-cover">Project / Seminar Registration,
+                        Archival and Retrieval System</i></h1>
                 <p class="mt-3 text-center text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ducimus recusandae voluptatem,
-                    commodi odio optio rem, aperiam odit veniam saepe amet quam atque expedita officia nihil reiciendis?
-                    Provident cumque molestiae libero minima quasi corporis tempora error necessitatibus officiis,
-                    doloribus
-                    deleniti ipsum mollitia cum ex blanditiis illum architecto sequi aut impedit, voluptate atque alias
-                    magnam expedita ab? Eligendi facere et autem, sunt possimus minus ex, iure tempore nam fuga harum ut
-                    officiis cupiditate vel cum
+                    The web-based project focuses on creating a platform for project and seminar registration, archival,
+                    and retrieval. It aims to streamline the process of project and seminar registration, storage of
+                    project and seminar related information, and easy retrieval of this information. Users can register
+                    for projects, seminars, access archives of past project implementation and seminars, and retrieve
+                    information such as the information of different projects and seminars topics and students that did
+                    it. The project utilizes user-friendly interface design, secure database technology, and efficient
+                    information archival and retrieval techniques to provide a seamless experience for all users. The
+                    project utilizes user-friendly interface design, secure database technology, and efficient
+                    information archival and retrieval techniques to provide a seamless experience for all users.
                 </p>
                 <div class="mx-auto mt-3 col-8">
                     <form action="#" method="#">

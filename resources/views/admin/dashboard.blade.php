@@ -295,7 +295,7 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Project Registration</h5>
+                            <h5 class="modal-title" id="modalTitleId">Add New Project</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -352,7 +352,7 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Seminar Registration</h5>
+                            <h5 class="modal-title" id="modalTitleId">Add New Seminar</h5>
                             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
