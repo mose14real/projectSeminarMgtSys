@@ -31,7 +31,7 @@ Route::controller(UserController::class)->group(function () {
 #--ENDS-HERE
 
 #--STUDENT--START-HERE
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'student'])->group(function () {
     Route::controller(StudentController::class)->group(function () {
         Route::prefix('student')->group(function () {
             Route::get('dashboard', 'dashboard');

@@ -129,27 +129,24 @@
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">No of Projects</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">No of uploaded Projects</span>
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
                             <h1 class="card-title text-center text-white">{{ $projects }}</h1>
-                            <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#project-registration-modal">+ Add New Project</button>
+                            <button class="btn btn-block w-100 project-overview-btn font-bold">Total Project</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card project-overview-card">
                         <div class="card-body">
-                            <span class="badge project-overview-badge mb-2 font-poppins">No of Seminars</span>
+                            <span class="badge project-overview-badge mb-2 font-poppins">No of uploaded Seminars</span>
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
                             <h1 class="card-title text-center text-white">{{ $seminars }}</h1>
-                            <button class="btn btn-block w-100 project-overview-btn font-bold" data-bs-toggle="modal"
-                                data-bs-target="#seminar-registration-modal">+ Add New
-                                Seminar</button>
+                            <button class="btn btn-block w-100 project-overview-btn font-bold">Total Seminar</button>
                         </div>
                     </div>
                 </div>
@@ -173,9 +170,11 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="{{ url('admin/project-data') }}"><button
-                                    class="btn btn-block w-100 project-overview-btn font-bold">View
-                                    Project</button></a>
+                            <a href="{{ url('admin/project-data') }}">
+                                <button class="btn btn-block w-100 project-overview-btn font-bold">View & Add New
+                                    Project
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -185,9 +184,11 @@
                             <p class="card-text text-center text-white">
                                 <i class="bi bi-journal project-overview-icon"></i>
                             </p>
-                            <a href="{{ url('admin/seminar-data') }}"><button
-                                    class="btn btn-block w-100 project-overview-btn font-bold">View
-                                    Seminar</button></a>
+                            <a href="{{ url('admin/seminar-data') }}">
+                                <button class="btn btn-block w-100 project-overview-btn font-bold">View & Add New
+                                    Seminar
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -280,102 +281,6 @@
                                 <div class="col-12 mb-3">
                                     <button type="submit"
                                         class="btn btn-block w-100 register-page-btn">Register</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- ADD PROJECTS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="project-registration-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Add New Project</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3" action="#" method="POST">
-                                @csrf
-                                <div class="col-12 mb-3">
-                                    @if ($errors->has('project_topic'))
-                                        <span class="text-danger">{{ $errors->first('project_topic') }}</span>
-                                    @endif
-                                    <input type="text" class="form-control" placeholder="Project Topic"
-                                        name="project_topic" value="{{ old('project_topic') }}">
-                                </div>
-                                <div class="mb-3">
-                                    @if ($errors->has('project_desc'))
-                                        <span class="text-danger">{{ $errors->first('project_desc') }}</span>
-                                    @endif
-                                    <textarea class="form-control" id="" rows="3" placeholder="Project Description" name="project_desc"
-                                        value="{{ old('project_desc') }}"></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    @if ($errors->has('project_type'))
-                                        <span class="text-danger">{{ $errors->first('project_type') }}</span>
-                                    @endif
-                                    <select class="form-select form-select-md mb-3 project-type-user"
-                                        aria-label=".form-select-lg example" name="project_type">
-                                        <option>-- Select Project Type --</option>
-                                        <option value="Individual">Individual</option>
-                                        <option value="Group">Group</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3 d-none group-details-user">
-                                    @if ($errors->has('project_members'))
-                                        <span class="text-danger">{{ $errors->first('project_members') }}</span>
-                                    @endif
-                                    <textarea class="form-control" rows="3" placeholder="Add group members matric numbers..."
-                                        name="project_members" value="{{ old('project_members') }}"></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit"
-                                        class="btn btn-block float-end register-page-btn">Register</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDS HERE -->
-
-            <!-- ADD SEMINARS MODAL SECTION STARTS HERE -->
-            <div class="modal fade" id="seminar-registration-modal" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalTitleId">Add New Seminar</h5>
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="mt-3" action="#" method="POST">
-                                @csrf
-                                <div class="col-12 mb-3">
-                                    @if ($errors->has('seminar_topic'))
-                                        <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
-                                    @endif
-                                    <input type="text" class="form-control" placeholder="Seminar Topic"
-                                        name="seminar_topic" value="{{ old('seminar_topic') }}">
-                                </div>
-                                <div class="mb-3 group-details">
-                                    @if ($errors->has('seminar_desc'))
-                                        <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
-                                    @endif
-                                    <textarea class="form-control" rows="3" placeholder="Seminar Description" name="seminar_desc"
-                                        value="{{ old('seminar_desc') }}"></textarea>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <button type="submit"
-                                        class="btn btn-block float-end register-page-btn">Register</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>

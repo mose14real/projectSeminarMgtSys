@@ -180,30 +180,35 @@
                         @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
+                            <input type="text" id="matric" class="form-control" readonly>
+                        </div>
+                        <div class="col-12 mb-3">
                             @if ($errors->has('seminar_topic'))
                                 <span class="text-danger">{{ $errors->first('seminar_topic') }}</span>
                             @endif
-                            <input type="text" id="seminar_topic" class="form-control" name="seminar_topic">
+                            <input type="text" id="seminar_topic" class="form-control" name="seminar_topic"
+                                placeholder="Seminar Topic">
                         </div>
                         <div class="mb-3 group-details">
                             @if ($errors->has('seminar_desc'))
                                 <span class="text-danger">{{ $errors->first('seminar_desc') }}</span>
                             @endif
-                            <textarea id="seminar_desc" class="form-control" rows="3" name="seminar_desc"></textarea>
+                            <textarea id="seminar_desc" class="form-control" rows="3" name="seminar_desc"
+                                placeholder="Seminar Description"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('seminar_file_name'))
                                 <span class="text-danger">{{ $errors->first('seminar_file_name') }}</span>
                             @endif
                             <input type="text" id="seminar_file_name" class="form-control"
-                                name="seminar_file_name">
+                                name="seminar_file_name" placeholder="Seminar File Name">
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('seminar_file_path'))
                                 <span class="text-danger">{{ $errors->first('seminar_file_path') }}</span>
                             @endif
                             <input type="text" id="seminar_file_path" class="form-control"
-                                name="seminar_file_path">
+                                name="seminar_file_path" placeholder="Seminar File Path">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -311,6 +316,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
+        const matric = document.getElementById('matric')
         const seminar_topic = document.getElementById('seminar_topic')
         const seminar_desc = document.getElementById('seminar_desc')
         const seminar_file_name = document.getElementById('seminar_file_name')
@@ -325,6 +331,7 @@
                     const updateSeminar = "{{ url('admin/update-seminar') }}" + "/" + result.uuid
                     seminarAction.action = updateSeminar
 
+                    matric.value = result.student.matric
                     seminar_topic.value = result.seminar_topic
                     seminar_desc.value = result.seminar_desc
                     seminar_file_name.value = result.seminar_file_name

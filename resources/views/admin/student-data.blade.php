@@ -21,6 +21,8 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+    {{-- DATABASE TABLE STYLESHEET --}}
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"> --}}
     <title>Student | Data</title>
 </head>
 
@@ -110,7 +112,7 @@
         <div class="container">
             <h2 class="text-start mt-5">Student Data</h2>
             <div class="mt-5">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="student_table">
                     <thead>
                         <tr>
                             <th scope="col">S/N</th>
@@ -290,6 +292,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script> --}}
     <script>
         const first_name = document.getElementById('first_name')
         const middle_name = document.getElementById('middle_name')
@@ -322,6 +325,19 @@
             })
         });
     </script>
+    {{-- <script>
+        $(document).ready(function() {
+            // $('#table_id').DataTable();
+            $('#student_table').DataTable({
+
+            });
+
+            // Select2 Multiple
+            // $('.select2-multiple').select2({
+            //     allowClear: true
+            // });
+        });
+    </script> --}}
 </body>
 
 </html>

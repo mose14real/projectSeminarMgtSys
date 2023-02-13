@@ -127,40 +127,40 @@
                                 <th style="width: 20%">Actions</th>
                             </tr>
                         </thead>
-                            @foreach ($projects as $key => $project)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $project->project_topic }}</td>
-                                    <td>{{ $project->project_desc }}</td>
-                                    <td>{{ $project->project_type }}</td>
-                                    <td>{{ $project->project_members }}</td>
-                                    <td>{{ $project->project_file_name }}</td>
-                                    <td>{{ $project->project_file_path }}</td>
-                                    <td class="d-flex" style="gap:.2rem">
-                                        <a data-bs-toggle="modal" data-bs-target="#project-upload-modal"
-                                            data-attr="{{ $project->uuid }}" title="upload" id="uploadModal">
-                                            <button class="btn btn-secondary p-0 fs-6"
-                                                style="padding:.1rem .5rem !important;">
-                                                <i class="bi bi-upload"></i>
-                                            </button>
-                                        </a>
-                                        <a
-                                            href="{{ url('admin/download/' . base64_encode($project->project_file_path)) }}">
-                                            <button class="btn btn-block edit-btn p-0 fs-6"
-                                                style="padding:.1rem .5rem !important"><i
-                                                    class="bi bi-download"></i></button>
-                                        </a>
-                                        <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
-                                            data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
-                                            title="edit" id="editProjectModal">
-                                            <button class="btn btn-primary p-0 fs-6"
-                                                style="padding:.1rem .5rem !important">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($projects as $key => $project)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $project->project_topic }}</td>
+                                <td>{{ $project->project_desc }}</td>
+                                <td>{{ $project->project_type }}</td>
+                                <td>{{ $project->project_members }}</td>
+                                <td>{{ $project->project_file_name }}</td>
+                                <td>{{ $project->project_file_path }}</td>
+                                <td class="d-flex" style="gap:.2rem">
+                                    <a data-bs-toggle="modal" data-bs-target="#project-upload-modal"
+                                        data-attr="{{ $project->uuid }}" title="upload" id="uploadModal">
+                                        <button class="btn btn-secondary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important;">
+                                            <i class="bi bi-upload"></i>
+                                        </button>
+                                    </a>
+                                    <a
+                                        href="{{ url('admin/download/' . base64_encode($project->project_file_path)) }}">
+                                        <button class="btn btn-block edit-btn p-0 fs-6"
+                                            style="padding:.1rem .5rem !important"><i
+                                                class="bi bi-download"></i></button>
+                                    </a>
+                                    <a data-bs-toggle="modal" data-bs-target="#project-registration-modal"
+                                        data-attr="{{ url('admin/edit-project') }}/{{ $project->uuid }}"
+                                        title="edit" id="editProjectModal">
+                                        <button class="btn btn-primary p-0 fs-6"
+                                            style="padding:.1rem .5rem !important">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </table>
                 </div>
                 <div class="d-flex justify-content-center">{{ $projects->links() }}</div>
@@ -184,16 +184,21 @@
                         @method('PUT')
                         @csrf
                         <div class="col-12 mb-3">
+                            <input type="text" id="matric" class="form-control" readonly>
+                        </div>
+                        <div class="col-12 mb-3">
                             @if ($errors->has('project_topic'))
                                 <span class="text-danger">{{ $errors->first('project_topic') }}</span>
                             @endif
-                            <input type="text" id="project_topic" class="form-control" name="project_topic">
+                            <input type="text" id="project_topic" class="form-control" name="project_topic"
+                                placeholder="Project Topic">
                         </div>
                         <div class="mb-3">
                             @if ($errors->has('project_desc'))
                                 <span class="text-danger">{{ $errors->first('project_desc') }}</span>
                             @endif
-                            <textarea class="form-control" id="project_desc" rows="3" name="project_desc"></textarea>
+                            <textarea class="form-control" id="project_desc" rows="3" name="project_desc"
+                                placeholder="Project Description"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_type'))
@@ -210,21 +215,22 @@
                             @if ($errors->has('project_members'))
                                 <span class="text-danger">{{ $errors->first('project_members') }}</span>
                             @endif
-                            <textarea id="project_members" class="form-control" rows="3" name="project_members"></textarea>
+                            <textarea id="project_members" class="form-control" rows="3" name="project_members"
+                                placeholder="Project Members"></textarea>
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_file_name'))
                                 <span class="text-danger">{{ $errors->first('project_file_name') }}</span>
                             @endif
                             <input type="text" id="project_file_name" class="form-control"
-                                name="project_file_name">
+                                name="project_file_name" placeholder="Project File Name">
                         </div>
                         <div class="col-12 mb-3">
                             @if ($errors->has('project_file_path'))
                                 <span class="text-danger">{{ $errors->first('project_file_path') }}</span>
                             @endif
                             <input type="text" id="project_file_path" class="form-control"
-                                name="project_file_path">
+                                name="project_file_path" placeholder="Project File Path">
                         </div>
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-block float-end register-page-btn">Update
@@ -354,6 +360,7 @@
         })
     </script>
     <script>
+        const matric = document.getElementById('matric')
         const project_topic = document.getElementById('project_topic')
         const project_desc = document.getElementById('project_desc')
         const project_type = document.getElementById('project_type')
@@ -370,6 +377,7 @@
                     const updateProject = "{{ url('admin/update-project') }}" + "/" + result.uuid
                     projectAction.action = updateProject
 
+                    matric.value = result.student.matric
                     project_topic.value = result.project_topic
                     project_desc.value = result.project_desc
                     project_type.value = result.project_type

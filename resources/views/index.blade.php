@@ -278,9 +278,8 @@
                     &copy; CopyRight Reserved 2023</p>
             </div>
         </footer>
-
     </div>
-
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/omitter.min.js') }}"></script>
     <script>
@@ -294,6 +293,19 @@
             var doms = document.querySelectorAll(".description");
             var omitter = new Omitter(doms, 4, "...");
             omitter.omit();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // $('#table_id').DataTable();
+            $('#dataTable').DataTable({
+
+            });
+
+            // Select2 Multiple
+            // $('.select2-multiple').select2({
+            //     allowClear: true
+            // });
         });
     </script>
 </body>

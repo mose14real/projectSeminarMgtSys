@@ -9,14 +9,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isNull;
+
 class AdminController extends Controller
 {
     #--Student--Dashboard--
     public function dashboard()
     {
         $students = Student::count();
-        $seminars = Seminar::count();
-        $projects = Project::count();
+        $seminars = Seminar::whereNotNull('seminar_file_name')->count();
+        $projects = Project::whereNotNull('project_file_name')->count();
         return view(
             'admin.dashboard',
             [
@@ -121,7 +123,7 @@ class AdminController extends Controller
     {
         $project = Project::findByUuid($uuid);
         // Log::info($project);
-        return $project;
+        return $project->load('student');
     }
 
     #--Update--Project--
@@ -177,14 +179,14 @@ class AdminController extends Controller
         );
     }
 
-    #--Edit--Student--Seminar--
+    #--Edit--Seminar--
     public function editStudentSeminar($uuid)
     {
         $seminar = Seminar::findByUuid($uuid);
-        return $seminar;
+        return $seminar->load('student');
     }
 
-    #--Update--Student--Seminar--
+    #--Update--Seminar--
     public function updateStudentSeminar(Request $request, $uuid)
     {
         $credentials = $request->validate(
