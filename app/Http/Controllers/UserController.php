@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UserFormRequest;
 use App\Models\Project;
 use App\Models\Seminar;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +18,11 @@ class UserController extends Controller
     #--View--Index--
     public function index()
     {
-        $seminars = Seminar::whereNotNull('seminar_topic')->orderBy('id', 'desc')->paginate(3);
-        $projects = Project::whereNotNull('project_topic')->orderBy('id', 'desc')->paginate(3);
         return view(
             'index',
             [
-                "seminars" => $seminars,
-                "projects" => $projects
+                "seminars" => Seminar::whereNotNull('seminar_topic')->orderBy('id', 'desc')->paginate(3),
+                "projects" => Project::whereNotNull('project_topic')->orderBy('id', 'desc')->paginate(3)
             ]
         );
     }
@@ -70,20 +69,9 @@ class UserController extends Controller
     }
 
     #--Create--User--Student--Seminar--Project
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        $request->validate([
-            'first_name' => ['required'],
-            'middle_name' => ['required'],
-            'last_name' => ['required'],
-            'matric' => ['required', 'unique:students', 'min:10', 'max:10'],
-            'email' => ['required', 'unique:users'],
-            'phone' => ['required', 'unique:students', 'min:11', 'max:11'],
-            'supervisor' => ['required'],
-            'session' => ['required', 'min:9', 'max:9'],
-            'password' => ['required'],
-            'cpassword' => ['required', 'same:password'],
-        ]);
+        $request->validated();
         #--Database--Transaction--
         DB::transaction(function () use ($request) {
             #--Create--User--
@@ -126,19 +114,16 @@ class UserController extends Controller
     }
 
     #--Authorize--Login--
-    public function authLogin(Request $request)
+    public function authLogin(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             if (auth()->user()->role == "admin") {
                 return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
             }
             return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
         }
-        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
+        return back()->withError('Invalid credentials')->onlyInput('email', 'password');
     }
 
     #--Logout--

@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +80,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 });
 #--ENDS-HERE
+
+#--FALLBACK--START-HERE
+Route::fallback(FallbackController::class);
+#----ENDS-HERE

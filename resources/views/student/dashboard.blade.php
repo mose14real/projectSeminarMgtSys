@@ -102,12 +102,11 @@
             </div>
     </nav>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <span>{{ $message }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
+    <!-- Flash Message -->
+    <div class="container">
+        @include('flash-message')
+        @yield('content')
+    </div>
 
     <!-- PROJECT AND SEMINAR HERE -->
     <div class="project-overview" id="projects-overview">

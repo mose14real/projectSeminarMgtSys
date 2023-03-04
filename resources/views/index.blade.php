@@ -61,8 +61,8 @@
         <!-- HEADER SECTION STARTS HERE -->
         <header class="header-section d-flex align-items-center justify-content-center flex-column" id="header">
             <div class="container">
-                <h1 class="text-center header-text"><i class="fas fa-book-open-cover">Project / Seminar Registration,
-                        Archival and Retrieval System</i></h1>
+                <h1 class="text-center header-text"><i class="fas fa-book-open-cover">School Project & Seminar
+                        Management System</i></h1>
                 <p class="mt-3 text-center text-white">
                     The web-based project focuses on creating a platform for project and seminar registration, archival,
                     and retrieval. It aims to streamline the process of project and seminar registration, storage of

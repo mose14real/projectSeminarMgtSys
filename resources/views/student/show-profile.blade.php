@@ -103,12 +103,10 @@
             </div>
     </nav>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <span>{{ $message }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
+    <div class="container">
+        @include('flash-message')
+        @yield('content')
+    </div>
 
     <div class="user-details-section mb-5">
         <div class="container">

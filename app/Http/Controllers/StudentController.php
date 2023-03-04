@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
 use App\Models\Project;
 use App\Models\Seminar;
 use Illuminate\Http\Request;
@@ -55,7 +56,6 @@ class StudentController extends Controller
         $student->user->update($credentials);
         return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
     }
-
     #--Download--ProSem--
     public function downloadProSem($file)
     {
@@ -78,7 +78,7 @@ class StudentController extends Controller
         );
         $seminar = Seminar::findByUuid($uuid);
         if (!is_null($seminar->seminar_topic)) {
-            return redirect('student/dashboard')->withSuccess('Seminar already exist');
+            return redirect('student/dashboard')->withInfo('Seminar already exist');
         }
         $seminar->update($credentials);
         return redirect('student/dashboard')->withSuccess('Seminar registered successfully');
@@ -94,10 +94,10 @@ class StudentController extends Controller
         );
         $seminar = Seminar::findByUuid($uuid);
         if (is_null($seminar->seminar_topic)) {
-            return redirect('student/dashboard')->withSuccess("Register seminar before uploading it's file");
+            return redirect('student/dashboard')->withWarning("Register seminar before uploading it's file");
         }
         if (!is_null($seminar->seminar_file_name)) {
-            return redirect('student/dashboard')->withSuccess('Seminar file already exist');
+            return redirect('student/dashboard')->withInfo('Seminar file already exist');
         }
         if ($request->seminar_file) {
             $seminarName = time() . "_" . $request->seminar_file->getClientOriginalName();
@@ -136,7 +136,7 @@ class StudentController extends Controller
         ]);
         $project = Project::findByUuid($uuid);
         if (!is_null($project->project_topic)) {
-            return redirect('student/dashboard')->withSuccess('Project already exist');
+            return redirect('student/dashboard')->withInfo('Project already exist');
         }
         $project->update($credentials);
         return redirect('student/dashboard')->withSuccess('Project registered successfully');
@@ -152,10 +152,10 @@ class StudentController extends Controller
         );
         $project = Project::findByUuid($uuid);
         if (is_null($project->project_topic)) {
-            return redirect('student/dashboard')->withSuccess("Register project before uploading it's file");
+            return redirect('student/dashboard')->withWarning("Register project before uploading it's file");
         }
         if (!is_null($project->project_file_name)) {
-            return redirect('student/dashboard')->withSuccess('Project file already exist');
+            return redirect('student/dashboard')->withInfo('Project file already exist');
         }
         if ($request->project_file) {
             $projectName = time() . "_" . $request->project_file->getClientOriginalName();

@@ -103,12 +103,10 @@
             </div>
     </nav>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <span>{{ $message }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
+    <div class="container">
+        @include('flash-message')
+        @yield('content')
+    </div>
 
     <div class="user-details-section mb-5">
         <div class="container">
@@ -116,8 +114,8 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <form class="mt-3" action="{{ url('student/profile/update', $student->uuid) }}" method="POST">
-                        @method('PUT')
                         @csrf
+                        @method('PUT')
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" name="first_name"
                                 value="{{ $student->user->first_name }}" readonly>

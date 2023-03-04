@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->foreignId('user_id')->constrained('users');
             $table->string('matric')->unique();
-            $table->string('phone')->unique;
+            $table->string('phone')->unique();
             $table->string('supervisor');
             $table->string('session');
             $table->timestamps();

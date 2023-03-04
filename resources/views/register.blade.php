@@ -59,11 +59,14 @@
                     </a>
                 </div>
             </div>
-
             <!-- form register section starts here -->
             <div class="col-md-6 pt-4 form-register">
                 <h4 class="deep-blue-color">Registration</h4>
                 <form class="mt-3" action="{{ url('store') }}" method="POST">
+                    <div class="container">
+                        @include('flash-message')
+                        @yield('content')
+                    </div>
                     @csrf
                     <div class="col-12 mb-3">
                         @if ($errors->has('first_name'))
