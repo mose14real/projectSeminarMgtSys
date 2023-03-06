@@ -119,9 +119,9 @@ class UserController extends Controller
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             if (auth()->user()->role == "admin") {
-                return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
+                return redirect('admin/dashboard')->withSuccess('You have Successfully loggedin');
             }
-            return redirect()->intended('student/dashboard')->withSuccess('You have Successfully loggedin');
+            return redirect('student/dashboard')->withSuccess('You have Successfully loggedin');
         }
         return back()->withError('Invalid credentials')->onlyInput('email', 'password');
     }
