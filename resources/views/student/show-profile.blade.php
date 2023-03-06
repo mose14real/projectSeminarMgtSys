@@ -129,12 +129,12 @@
                                     <td>{{ $student->user->last_name }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Matric Number</th>
-                                    <td>{{ $student->matric }}</td>
-                                </tr>
-                                <tr>
                                     <th scope="row">Email</th>
                                     <td>{{ $student->user->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matric Number</th>
+                                    <td>{{ $student->matric }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Phone Number</th>

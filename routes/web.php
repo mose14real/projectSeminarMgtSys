@@ -19,14 +19,14 @@ use App\Http\Controllers\FallbackController;
 
 #--USERS--START-HERE
 Route::controller(UserController::class)->group(function () {
-    Route::get('/', 'index');
-    Route::get('project-details/{uuid}', 'ProjectDetailsAll');
-    Route::get('seminar-details/{uuid}', 'seminarDetailsAll');
-    Route::get('download/{file}', 'downloadProSem');
-    Route::get('register', 'register');
-    Route::post('store', 'store');
+    Route::get('/', 'index')->name('/');
+    Route::get('project-details/{uuid}', 'ProjectDetailsAll')->name('project-details');
+    Route::get('seminar-details/{uuid}', 'seminarDetailsAll')->name('seminar-details');
+    Route::get('download/{file}', 'downloadProSem')->name('download');
+    Route::get('register', 'register')->name('register');
+    Route::post('store', 'store')->name('store');
     Route::get('login', 'login')->name('login');
-    Route::post('auth-login', 'authLogin');
+    Route::post('auth-login', 'authLogin')->name('auth-login');
     Route::get('logout', 'logout')->name('logout');
 });
 #--ENDS-HERE

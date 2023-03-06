@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserFormRequest;
 use App\Models\Project;
 use App\Models\Seminar;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Student;
+use App\Http\Requests\UpdateUserStudentRequest;
 
 class StudentController extends Controller
 {
@@ -44,17 +44,16 @@ class StudentController extends Controller
     }
 
     #--Update--Profile--
-    public function updateProfile(Request $request, $uuid)
+    public function updateProfile(UpdateUserStudentRequest $request, $uuid)
     {
-        $credentials = $request->validate(
-            [
-                'phone' => ['required', 'min:11', 'max:11']
-            ]
-        );
+        $credentials = $request->validated();
         $student = Student::findByUuid($uuid);
-        $student->update($credentials);
-        $student->user->update($credentials);
-        return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
+        if ($credentials) {
+            $student->update($credentials);
+            // $student->user->update($credentials);
+            return redirect('student/profile/show/' . $uuid)->withSuccess('Profile updated successfully');
+        }
+        return back()->withError();
     }
     #--Download--ProSem--
     public function downloadProSem($file)

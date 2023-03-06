@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\UserFormRequest;
+use App\Models\User;
 use App\Models\Project;
 use App\Models\Seminar;
-use App\Models\User;
 use App\Models\Student;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StudentRegisterRequest;
 
 class UserController extends Controller
 {
@@ -69,7 +69,7 @@ class UserController extends Controller
     }
 
     #--Create--User--Student--Seminar--Project
-    public function store(UserFormRequest $request)
+    public function store(StudentRegisterRequest $request)
     {
         $request->validated();
         #--Database--Transaction--
